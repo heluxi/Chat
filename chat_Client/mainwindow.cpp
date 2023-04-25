@@ -6,10 +6,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::on_addBut_clicked()
+{
+    sql_manage::getinstance()->addFriend(1,2,"test");
 }
 
