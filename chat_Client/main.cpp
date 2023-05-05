@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include"sql_manage.h"
+#include"page_login.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,8 @@ int main(int argc, char *argv[])
     sql_manage::getinstance()->openUserdb();
     sql_manage::getinstance()->openMsgdb();
 
+    Page_login login;
+    login.show();
     MainWindow w;
     w.show();
     return a.exec();

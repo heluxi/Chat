@@ -1,0 +1,79 @@
+QLabel#lb_sum{
+    color:#1abc9c;
+    font: 87 16pt "Arial Black";
+    font-weight:bold;
+}
+QLabel#lb_userSum{
+    color:#1abc9c;
+    font: 87 16pt "Arial Black";
+    font-weight:bold;
+}
+
+/*QWidget#centralwidget{
+    background-color: white;
+}*/
+QWidget#bg_title{
+/*    background-color: rgb(91, 156, 200);*/
+    background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(91, 156, 200, 255),stop:1 rgba(255,255,255,255));
+/*    color:rgb(255,255,255,255);*/
+/*    color:white;*/
+    border:0px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+/*    font:16pt "Candara";*/
+/*    font: 87 16pt "Arial Black";*/
+}
+/*QWidget#widget_2{
+    background-color:white;
+    }*/
+QTableWidget{
+/*    background-color:gray;*/
+    color:gray;
+    border-radius:6px;
+}
+QTreeWidget{
+    background-color:rgb(91, 156, 200);
+/*    color:white;*/
+    font: 87 16pt "Arial Black";
+   /* background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:1 rgba(255,255,255,255),stop:0.0112994 rgba(64,145,252,255));*/
+/*    color:rgb(255,255,255,255);*/
+    color:white;
+    border:0px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+}
+QPushButton#btn_exit{
+    border-radius:6px;
+    color:white;
+/*    background-color:#1abc9c;*/
+    /*background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 #1abc9c,stop:1 rgba(255,255,255,255));*/
+    border:1px groove #81a8dc;
+    font: 87 15pt "Arial Black";
+}
+QPushButton[btn="main"]{border-radius:6px;color:white;background-color:#1abc9c;font: 87 15pt "Arial Black";}
+QPushButton[btn_bottom="main"]{border-radius:6px;color:white;background-color:#1abc9c;font: 87 15pt "Arial Black";}
+QPushButton[btn_user="main_user"]{border-radius:6px;color:white;background-color:#1abc9c;font: 87 15pt "Arial Black";}
+QCheckBox#cb_all{
+    color:#1abc9c;
+    font: 87 15pt "Arial Black";
+}
+QCheckBox#cb_all_2{
+    color:#1abc9c;
+    font: 87 15pt "Arial Black";
+}
+QLabel#lb_title{
+    color:white;
+    font: 87 26pt "Arial Black";
+}
+QLabel#lb_username{
+    color:white;
+    font: 87 16pt "Arial Black";
+}
+QLineEdit{
+    background-color:rgb(247,247,247);
+    border:1px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+    font:14pt "Candara";
+}
+

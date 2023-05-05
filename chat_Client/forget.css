@@ -1,0 +1,27 @@
+QWidget{
+    background-color:white;
+}
+QPushButton{
+    background-color:rgb(29,123,255);
+    color:rgb(255,255,255);
+    font:25 16pt "Bahnschrift Light";
+    border:0px groove gray;
+    border-radius:9px;
+}
+QPushButton#btn_forget_cancel{
+    background-color:white;
+    color:rgb(29,123,255);
+    font:25 16pt "Bahnschrift Light";
+    border:0px groove gray;
+    border-radius:9px;
+}
+QLabel#lb_title{
+    font: 87 24pt "Arial Black";
+}
+QLineEdit{
+    background-color:rgb(247,247,247);
+    border:1px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+    font:14pt "Candara";
+}

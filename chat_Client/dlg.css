@@ -1,0 +1,53 @@
+QWidget{
+    background-color:white;
+}
+/*QPushButton{border-radius:6px;color:white;background-color:#1abc9c;}*/
+QPushButton{
+    background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(64,145,252,255),stop:1 rgba(255,255,255,255));
+/*    color:rgb(255,255,255,255);*/
+    color:white;
+    border:0px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+/*    font:16pt "Candara";*/
+    font: 87 16pt "Arial Black";
+}
+QPushButton#btn_forget{
+    background-color:white;
+    color: rgb(91, 156, 200);
+    font: 87 14pt "Arial Black";
+}
+
+QCheckBox#cb_remember{
+    color: rgb(91, 156, 200);
+    font: 87 14pt "Arial Black";
+}
+
+/*QLabel{color:#1abc9c;}*/
+QLabel#lb_title{
+    font: 87 26pt "Arial Black";
+    color: rgb(91, 156, 200);
+/*    background-color: white;*/
+}
+QLabel#lb1{
+    color: rgb(91, 156, 200);
+/*    background-color: white;*/
+    font-size:24;
+    font-weight:bold;
+}
+QLabel#lb2{
+    color: rgb(91, 156, 200);
+/*    background-color: white;*/
+    font-size:24;
+    font-weight:bold;
+}
+/*QLineEdit{border: 2px solid #2ecc71;border-radius:6px;min-height:25;}*/
+QLineEdit{
+    background-color:rgb(247,247,247);
+    border:1px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+    font:14pt "Candara";
+}
+
+

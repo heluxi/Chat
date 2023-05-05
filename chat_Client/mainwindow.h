@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include"sql_manage.h"
+
+#include"tcp_manage.h"
+#include<iostream>
+using std::string;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,11 +20,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_addBut_clicked();
+
+
+
+
+    void on_sendBut_clicked();
 
 private:
     Ui::MainWindow *ui;
-
+    tcp_manage *m_tcp;
 
 };
 #endif // MAINWINDOW_H

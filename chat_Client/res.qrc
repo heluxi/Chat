@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/pic/Chat.png</file>
+        <file>res/pic/用户.png</file>
+        <file>res/pic/卡通头像.png</file>
+        <file>res/pic/3.1 设置.png</file>
+        <file>res/pic/ic_add_2.png</file>
+        <file>res/pic/搜索.png</file>
+        <file>res/pic/文件夹.png</file>
+        <file>res/pic/图片.png</file>
+        <file>res/pic/截图.png</file>
+        <file>res/pic/表情.png</file>
+        <file>res/pic/删除2.png</file>
+        <file>res/pic/解除固定,图钉.png</file>
+        <file>res/pic/放大.png</file>
+        <file>res/pic/减号.png</file>
+        <file>res/pic/天猫.png</file>
+        <file>register.jpg</file>
+        <file>login.jpg</file>
+        <file>icon</file>
+        <file>register.css</file>
+        <file>main.css</file>
+        <file>forget.css</file>
+        <file>dlg.css</file>
+        <file>网络设置.svg</file>
+    </qresource>
+</RCC>
