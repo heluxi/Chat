@@ -2,13 +2,22 @@
 #include "ui_mainwindow.h"
 #include"chatlist.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
+
+    login.show();
+
+    connect(&login,&Page_login::sendLoginSuccess,this,[=](){
+        this->show();
+    });
+
     m_tcp=new tcp_manage(this);
+
     //聊天信息列表
     chatList *list1=new chatList();
     QListWidgetItem *item1=new QListWidgetItem();
@@ -32,7 +41,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_sendBut_clicked()
 {
    QString msg= ui->textEdit->toPlainText();
-   if(m_tcp->sendMsg(msg)!=-1)
-        ui->textEdit->clear();
+   m_tcp->sendMsg(msg);
+   ui->textEdit->clear();
 }
 

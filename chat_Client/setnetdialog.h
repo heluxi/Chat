@@ -2,7 +2,8 @@
 #define SETNETDIALOG_H
 
 #include <QDialog>
-#include<iostream>
+#include"tcp_manage.h"
+
 using std::string;
 
 namespace Ui {
@@ -25,6 +26,7 @@ signals:
     void sendIpandAdd(unsigned short port,string ip);
 private:
     Ui::setnetDialog *ui;
+    tcp_manage *m_tcp;
 };
 
 #endif // SETNETDIALOG_H

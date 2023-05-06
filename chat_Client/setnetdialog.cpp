@@ -19,11 +19,15 @@ void setnetDialog::on_okButton_clicked()
 {
     if(!ui->portLineEdit->text().isEmpty())
     {
-        tcp_manage tcp;
+        m_tcp=new tcp_manage(this);
+
         int port=ui->portLineEdit->text().toUShort();
         QString ip=ui->ipcomboBox->currentText();
-        tcp.connectServer(ip,port);
+        m_tcp->connectServer(ip,port);
+
+        connect(m_tcp,&tcp_manage::connectSucess,this,[=](){
             this->hide();
+        });
     }
     else
     {

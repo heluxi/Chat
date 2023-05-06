@@ -106,7 +106,8 @@ void Page_login::on_bin_login_clicked()
             QMessageBox::warning(NULL,"Error","用户名或密码错误！！！");
         }
     }*/
-
+    emit sendLoginSuccess();
+    this->hide();
 }
 
 

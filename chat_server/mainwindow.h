@@ -2,9 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-#include"tcp_manage.h"
-#include"page_login.h"
+#include<QTcpServer>
+#include<QTcpSocket>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,16 +17,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-
-
-
-
-    void on_sendBut_clicked();
-
 private:
     Ui::MainWindow *ui;
-    tcp_manage *m_tcp;
-    Page_login login;
+    QTcpServer *sockSer;//用于监听
+    QTcpSocket *sockCln;//用于通信
 };
 #endif // MAINWINDOW_H

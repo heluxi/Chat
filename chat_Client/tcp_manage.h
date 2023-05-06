@@ -12,21 +12,15 @@ class tcp_manage : public QObject
 public:
     explicit tcp_manage(QObject *parent = nullptr);
 
-
-    void error_handing(QString msg)
-    {
-        qDebug()<<msg;
-
-    }
-
    void connectServer(const QString &host, const int &port);
-   int sendMsg(QString msg);
+   void sendMsg(QString msg);
    QByteArray recvMsg();
 
 signals:
 void recvFormServre(QByteArray);
+void connectSucess();
 private:
-    QTcpSocket *tcpSocket;
+    static QTcpSocket *tcpSocket;
     QString name="default";
 
 
