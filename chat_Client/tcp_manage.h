@@ -1,20 +1,23 @@
-#ifndef TCP_MANAGE_H
-#define TCP_MANAGE_H
+#ifndef tcp_manage_H
+#define tcp_manage_H
 
 #include <QObject>
 #include<QTcpSocket>
 #include<QDebug>
+#include<QFile>
+#include<QFileInfo>
+#include<QTimer>
 
-
-class tcp_manage : public QObject
+class clientSock : public QObject
 {
     Q_OBJECT
 public:
-    explicit tcp_manage(QObject *parent = nullptr);
+    explicit clientSock(QObject *parent = nullptr);
 
    void connectServer(const QString &host, const int &port);
    void sendMsg(QString msg);
    QByteArray recvMsg();
+   QString getName();
 
 signals:
 void recvFormServre(QByteArray);
@@ -26,4 +29,30 @@ private:
 
 };
 
-#endif // TCP_MANAGE_H
+
+
+//发送接受文件的套接字
+
+
+class clientFileSock : public QObject
+{
+    Q_OBJECT
+public:
+    explicit clientFileSock(QObject *parent = nullptr);
+
+   void connectServer(const QString &host, const int &port);
+   void sendFile(QString filePath);
+
+
+signals:
+void sendFileSucess(QString fileName);
+private:
+    static QTcpSocket *fileSocket;
+    QString fileName;
+    int fileSize;
+    QFile file;
+    int sendSize;
+    QTimer  timer;
+
+};
+#endif // tcp_manage_H

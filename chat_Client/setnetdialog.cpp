@@ -19,13 +19,15 @@ void setnetDialog::on_okButton_clicked()
 {
     if(!ui->portLineEdit->text().isEmpty())
     {
-        m_tcp=new tcp_manage(this);
+        m_tcp=new clientSock(this);
+        file_sock=new clientFileSock(this);
 
         int port=ui->portLineEdit->text().toUShort();
         QString ip=ui->ipcomboBox->currentText();
         m_tcp->connectServer(ip,port);
+        file_sock->connectServer(ip,port);
 
-        connect(m_tcp,&tcp_manage::connectSucess,this,[=](){
+        connect(m_tcp,&clientSock::connectSucess,this,[=](){
             this->hide();
         });
     }

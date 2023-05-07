@@ -1,14 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include"chatlist.h"
-
+#include<QFileInfo>
+#include<QDateTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    fileInfo=nullptr;
 
     login.show();
 
@@ -16,7 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
         this->show();
     });
 
-    m_tcp=new tcp_manage(this);
+    m_tcp=new clientSock(this);
+    m_fileTcp=new clientFileSock(this);
 
     //聊天信息列表
     chatList *list1=new chatList();
@@ -25,10 +27,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->listWidget->addItem(item1);
     ui->listWidget->setItemWidget(item1,list1);
 
-    connect(m_tcp,&tcp_manage::recvFormServre,this,[=](QByteArray data){
-        ui->textBrowser->append(data);
+    connect(m_tcp,&clientSock::recvFormServre,this,[=](QByteArray data){
+        QDateTime time=QDateTime::currentDateTime();
+
+        QString showData=data+"\t"+time.toString("yyyy-MM-dd hh:mm:ss");
+        ui->textBrowser->append(showData);
     });
 
+    connect(m_fileTcp,&clientFileSock::sendFileSucess,[=]()
+    {
+
+        ui->textEdit->clear();
+    });
 }
 
 MainWindow::~MainWindow()
@@ -41,7 +51,40 @@ MainWindow::~MainWindow()
 void MainWindow::on_sendBut_clicked()
 {
    QString msg= ui->textEdit->toPlainText();
-   m_tcp->sendMsg(msg);
-   ui->textEdit->clear();
+   if(msg.isEmpty())
+   {
+    QMessageBox::warning(this,"warning","输入有空");
+
+   }
+   else
+   {
+       //判断是发送文件还是文字
+
+       if(fileInfo!=nullptr)
+       {
+            m_fileTcp->sendFile(fileName);
+            delete fileInfo;
+            fileInfo=nullptr;
+
+       }
+       else
+       {
+            m_tcp->sendMsg(msg);
+            ui->textEdit->clear();
+       }
+
+   }
+}
+
+
+void MainWindow::on_fileButton_clicked()
+{
+
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    fileName=dialog.getOpenFileName(this,"选择要发送文件");
+    qDebug()<<"fileName"<<fileName;
+    fileInfo=new QFileInfo(fileName);
+    ui->textEdit->setText(fileInfo->fileName());
 }
 

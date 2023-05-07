@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include<QFileDialog>
+#include<QMessageBox>
 
 #include"tcp_manage.h"
 #include"page_login.h"
@@ -25,9 +27,14 @@ private slots:
 
     void on_sendBut_clicked();
 
+    void on_fileButton_clicked();
+
 private:
     Ui::MainWindow *ui;
-    tcp_manage *m_tcp;
+    clientSock *m_tcp;
+    clientFileSock *m_fileTcp;
+    QFileInfo *fileInfo;
+    QString fileName;
     Page_login login;
 };
 #endif // MAINWINDOW_H

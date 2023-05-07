@@ -103,26 +103,6 @@ background-color: rgba(255, 255, 255, 0);</string>
 background-color: rgba(255, 255, 255, 0);</string>
        </property>
       </widget>
-      <widget class="QWidget" name="widget_14" native="true">
-       <property name="geometry">
-        <rect>
-         <x>115</x>
-         <y>9</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>41</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/res/pic/文件夹.png);
-background-color: rgba(255, 255, 255, 0);</string>
-       </property>
-      </widget>
       <widget class="QWidget" name="widget_15" native="true">
        <property name="geometry">
         <rect>
@@ -141,6 +121,22 @@ background-color: rgba(255, 255, 255, 0);</string>
        <property name="styleSheet">
         <string notr="true">image: url(:/res/pic/截图.png);
 background-color: rgba(255, 255, 255, 0);</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="fileButton">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>10</y>
+         <width>31</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/res/pic/文件夹.png);</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>

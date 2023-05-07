@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include<QTcpServer>
 #include<QTcpSocket>
+#include<QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,10 +17,18 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void readMsg();
+    void newConnect();
+    void removeSocket();
 
 private:
     Ui::MainWindow *ui;
     QTcpServer *sockSer;//用于监听
-    QTcpSocket *sockCln;//用于通信
+    QList<QTcpSocket*> sockLists;//用于通信
+    QFile file;
+    QString fileName;
+    int fileSize;
+    bool isFile;
+    int recvSize;
 };
 #endif // MAINWINDOW_H

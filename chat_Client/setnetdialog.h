@@ -26,7 +26,8 @@ signals:
     void sendIpandAdd(unsigned short port,string ip);
 private:
     Ui::setnetDialog *ui;
-    tcp_manage *m_tcp;
+    clientSock *m_tcp;
+    clientFileSock *file_sock;
 };
 
 #endif // SETNETDIALOG_H
