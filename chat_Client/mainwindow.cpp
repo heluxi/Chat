@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->listWidget->addItem(item1);
     ui->listWidget->setItemWidget(item1,list1);
 
-    connect(m_tcp,&clientSock::recvFormServre,this,[=](QByteArray data){
+    connect(m_tcp,&clientSock::recvFormServre,this,[=](QString data){
         QDateTime time=QDateTime::currentDateTime();
 
         QString showData=data+"\t"+time.toString("yyyy-MM-dd hh:mm:ss");
@@ -38,6 +38,13 @@ MainWindow::MainWindow(QWidget *parent)
     {
 
         ui->textEdit->clear();
+    });
+    connect(m_fileTcp,&clientFileSock::sucessRecvfile,[=](QString data){
+        QDateTime time=QDateTime::currentDateTime();
+
+        QString showData=data+"\t"+time.toString("yyyy-MM-dd hh:mm:ss");
+        ui->textBrowser->append(showData);
+
     });
 }
 
@@ -62,13 +69,18 @@ void MainWindow::on_sendBut_clicked()
 
        if(fileInfo!=nullptr)
        {
+           qDebug()<<"sendfile";
             m_fileTcp->sendFile(fileName);
             delete fileInfo;
             fileInfo=nullptr;
+            QDateTime time=QDateTime::currentDateTime();
+            QString showData=fileName+"\t"+time.toString("yyyy-MM-dd hh:mm:ss");
+            ui->textBrowser->append(showData);
 
        }
        else
        {
+            qDebug()<<"sendmsg";
             m_tcp->sendMsg(msg);
             ui->textEdit->clear();
        }

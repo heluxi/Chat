@@ -5,6 +5,8 @@
 #include<QTcpServer>
 #include<QTcpSocket>
 #include<QFile>
+#include<QTimer>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,7 +22,10 @@ public:
     void readMsg();
     void newConnect();
     void removeSocket();
-
+    void sendfile(QTcpSocket* &sock);
+    void sendhead(QTcpSocket* &sock);
+signals:
+    void sendSock(QTcpSocket* &sock);
 private:
     Ui::MainWindow *ui;
     QTcpServer *sockSer;//用于监听
@@ -30,5 +35,10 @@ private:
     int fileSize;
     bool isFile;
     int recvSize;
+    int sendSize;
+    QTimer timer;
+    QTcpSocket* curScok;
+    int fileport;//对方发送文件的端口
+
 };
 #endif // MAINWINDOW_H

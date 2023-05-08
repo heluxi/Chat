@@ -12,6 +12,7 @@ SOURCES += \
     chatlist.cpp \
     dlg_forget.cpp \
     dlg_regiseter.cpp \
+    frienddlg.cpp \
     main.cpp \
     mainwindow.cpp \
     page_login.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     chatlist.h \
     dlg_forget.h \
     dlg_regiseter.h \
+    frienddlg.h \
     mainwindow.h \
     page_login.h \
     setnetdialog.h \
@@ -33,6 +35,7 @@ FORMS += \
     chatlist.ui \
     dlg_forget.ui \
     dlg_regiseter.ui \
+    frienddlg.ui \
     mainwindow.ui \
     page_login.ui \
     setnetdialog.ui

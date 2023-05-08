@@ -16,11 +16,11 @@ public:
 
    void connectServer(const QString &host, const int &port);
    void sendMsg(QString msg);
-   QByteArray recvMsg();
+   QString recvMsg();
    QString getName();
 
 signals:
-void recvFormServre(QByteArray);
+void recvFormServre(QString);
 void connectSucess();
 private:
     static QTcpSocket *tcpSocket;
@@ -42,9 +42,10 @@ public:
 
    void connectServer(const QString &host, const int &port);
    void sendFile(QString filePath);
-
+   void recvFile();
 
 signals:
+   void sucessRecvfile(QString recvFileName);
 void sendFileSucess(QString fileName);
 private:
     static QTcpSocket *fileSocket;
@@ -53,6 +54,12 @@ private:
     QFile file;
     int sendSize;
     QTimer  timer;
+
+    QString recvFileName;
+    int recvFileSize;
+    QFile recvfile;
+    bool isfile;
+    int recvSize;
 
 };
 #endif // tcp_manage_H

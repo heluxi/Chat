@@ -1,4 +1,5 @@
 #include "tcp_manage.h"
+#include <QDir>
 #include<QMessageBox>
 
 QTcpSocket* clientSock::tcpSocket=nullptr;
@@ -39,12 +40,19 @@ void  clientSock:: sendMsg(QString msg)
 
 }
 
-QByteArray clientSock::recvMsg()
+QString clientSock::recvMsg()
 {
 
     QByteArray data=tcpSocket->readAll();
-    emit recvFormServre(data);
-    return data;
+    qDebug()<<"recv msg from server "<<data;
+    QString msg=data;
+    if(msg.section("##",0,0)=="sendmsg")
+    {
+        msg=msg.section("##",1,1);
+        emit recvFormServre(msg);
+        qDebug()<<"recv msg from server "<<msg;
+        return msg;
+    }
 }
 
 QString clientSock::getName()
@@ -55,20 +63,18 @@ QString clientSock::getName()
 
 
 //发送接受文件的套接字
+
 clientFileSock::clientFileSock(QObject *parent)
     : QObject{parent}
 {
     if(fileSocket==nullptr)
         fileSocket=new QTcpSocket(this);
     fileSize=0;
-
-    connect(fileSocket,&QTcpSocket::connected,[=](){
+    isfile=false;
+    connect(fileSocket,&QTcpSocket::connected,this,[=](){
         qDebug()<<"文件套接字连接成功";
     });
-    connect(fileSocket,&QTcpSocket::readyRead,[=](){
-
-
-    });
+    connect(fileSocket,&QTcpSocket::readyRead,this,&clientFileSock::recvFile);
     connect(&timer,&QTimer::timeout,this,[=](){
         timer.stop();
         int len;
@@ -118,6 +124,41 @@ void clientFileSock::sendFile(QString filePath)
     {
         qDebug()<<"头部信息发送失败";
         file.close();
+    }
+
+}
+
+void clientFileSock::recvFile()
+{
+    QByteArray readMsg=fileSocket->readAll();
+    QString msg=readMsg;
+    //解析服务器发来的数据
+    if(msg.section("##",0,0)=="sendfile")
+    {
+        recvFileName=msg.section("##",1,1);
+        recvFileSize=msg.section("##",2,2).toInt();
+        recvfile.setFileName("../"+recvFileName);
+
+        if(!recvfile.open(QIODevice::WriteOnly))
+            qDebug()<<"文件打开失败";
+
+        isfile=true;
+        qDebug()<<isfile;
+    }
+    else if(isfile)
+    {
+        qDebug()<<"读取文件";
+        recvSize=0;
+        int len=recvfile.write(readMsg);
+        recvSize+=len;
+        if(recvSize==recvFileSize)
+        {
+            emit sucessRecvfile(recvFileName);
+            recvfile.close();
+            recvFileName.clear();
+            recvFileSize=0;
+            isfile=false;
+        }
     }
 
 }
