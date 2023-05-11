@@ -24,8 +24,9 @@ void setnetDialog::on_okButton_clicked()
 
         int port=ui->portLineEdit->text().toUShort();
         QString ip=ui->ipcomboBox->currentText();
+        int  filePort=ui->filePortEdit->text().toUShort();
         m_tcp->connectServer(ip,port);
-        file_sock->connectServer(ip,port);
+        file_sock->connectServer(ip,filePort);
 
         connect(m_tcp,&clientSock::connectSucess,this,[=](){
             this->hide();

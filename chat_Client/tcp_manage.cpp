@@ -1,5 +1,8 @@
 #include "tcp_manage.h"
+#include "type.h"
 #include <QDir>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include<QMessageBox>
 
 QTcpSocket* clientSock::tcpSocket=nullptr;
@@ -29,30 +32,73 @@ void clientSock::connectServer(const QString &host, const int &port)
 
 }
 
-void  clientSock:: sendMsg(QString msg)
+void  clientSock:: sendMsg(const quint8 &type, const QJsonValue &dataVal)
 {
-        QString sendmsg=QString("[%1]:%2").arg(name).arg(msg);
-        int len=tcpSocket->write(sendmsg.toUtf8());
-        if(len<0)
-        {
-            qDebug()<<"发送失败！";
-        }
+//        QString sendmsg=QString("[%1]:%2").arg(name).arg(msg);
+//        int len=tcpSocket->write(sendmsg.toUtf8());
+//        if(len<0)
+//        {
+//            qDebug()<<"发送失败！";
+//        }
+        //创建json对象
+        QJsonObject json;
+        json.insert("from",ID);
+        json.insert("type",type);
+        json.insert("data",dataVal);
+        json.insert("to",1);
+        //创建json文档
+        QJsonDocument document;
+        document.setObject(json);
+        tcpSocket->write(document.toJson(QJsonDocument::Indented));
+
 
 }
 
-QString clientSock::recvMsg()
+void clientSock::recvMsg()
 {
 
     QByteArray data=tcpSocket->readAll();
     qDebug()<<"recv msg from server "<<data;
-    QString msg=data;
-    if(msg.section("##",0,0)=="sendmsg")
-    {
-        msg=msg.section("##",1,1);
-        emit recvFormServre(msg);
-        qDebug()<<"recv msg from server "<<msg;
-        return msg;
-    }
+//    QString msg=data;
+//    if(msg.section("##",0,0)=="sendmsg")
+//    {
+//        msg=msg.section("##",1,1);
+//        emit recvFormServre(msg);
+//        qDebug()<<"recv msg from server "<<msg;
+//        return msg;
+//    }
+    QJsonParseError jsonError;
+    // 转化为 JSON 文档
+    QJsonDocument doucment = QJsonDocument::fromJson(data, &jsonError);
+    // 解析未发生错误
+    if (!doucment.isNull() && (jsonError.error == QJsonParseError::NoError)) {
+        // JSON 文档为对象
+        if (doucment.isObject()) {
+            // 转化为对象
+            QJsonObject jsonObj = doucment.object();
+            qDebug() << "<- 收到服务器发来的消息，消息内容为："  << jsonObj;
+
+            QJsonValue dataVal = jsonObj.value("data");
+
+            int msgType = jsonObj.value("type").toInt();
+
+            // 根据消息类型解析服务器消息
+            switch (msgType) {
+            case SendMsg://私聊消息
+            {
+                emit recvFormServre(dataVal.toString());
+                qDebug()<<"私聊";
+                break;
+            }
+            case SendFile:
+            case SendGroupMsg:
+            {
+
+            }
+
+            }
+        }
+}
 }
 
 QString clientSock::getName()
@@ -87,6 +133,7 @@ clientFileSock::clientFileSock(QObject *parent)
         }while(len>0);
         if(sendSize==fileSize)
         {
+            qDebug()<<"文件发送成功";
             file.close();
             emit sendFileSucess(fileName);
         }
@@ -110,11 +157,22 @@ void clientFileSock::sendFile(QString filePath)
     fileSize=info.size();
 
     file.setFileName(filePath);
-    QString head=QString("sendfile##%1##%2").arg(fileName).arg(fileSize);
+
+
+    QString head=QString("%0##%1").arg(fileName).arg(fileSize);
+    //封装发送的消息
+    QJsonObject JsonObj;
+    JsonObj.insert("from",ID);
+    JsonObj.insert("type",SendFileHead);
+    JsonObj.insert("data",head);
+    QJsonDocument document;
+    document.setObject(JsonObj);
+
+
     if(!file.open(QIODevice::ReadOnly))
          qDebug()<<"打开文件出错";
     //先发送头部信息
-    int len=fileSocket->write(head.toUtf8());
+    int len=fileSocket->write(document.toJson(QJsonDocument::Indented));
     //发送真正的文件信息，防止Tcp粘包
     if(len>0)
     {
@@ -138,15 +196,14 @@ void clientFileSock::recvFile()
         recvFileName=msg.section("##",1,1);
         recvFileSize=msg.section("##",2,2).toInt();
         recvfile.setFileName("../"+recvFileName);
-
-        if(!recvfile.open(QIODevice::WriteOnly))
-            qDebug()<<"文件打开失败";
-
         isfile=true;
         qDebug()<<isfile;
     }
     else if(isfile)
     {
+        if(!recvfile.open(QIODevice::WriteOnly))
+            qDebug()<<"文件打开失败";
+
         qDebug()<<"读取文件";
         recvSize=0;
         int len=recvfile.write(readMsg);

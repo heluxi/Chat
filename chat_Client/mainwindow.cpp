@@ -1,8 +1,11 @@
 #include "mainwindow.h"
+#include "type.h"
 #include "ui_mainwindow.h"
 #include"chatlist.h"
 #include<QFileInfo>
 #include<QDateTime>
+#include <QJsonValue>
+#include"frienddlg.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&login,&Page_login::sendLoginSuccess,this,[=](){
         this->show();
     });
+
 
     m_tcp=new clientSock(this);
     m_fileTcp=new clientFileSock(this);
@@ -58,6 +62,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_sendBut_clicked()
 {
    QString msg= ui->textEdit->toPlainText();
+   QJsonValue data=msg;
    if(msg.isEmpty())
    {
     QMessageBox::warning(this,"warning","输入有空");
@@ -81,7 +86,7 @@ void MainWindow::on_sendBut_clicked()
        else
        {
             qDebug()<<"sendmsg";
-            m_tcp->sendMsg(msg);
+            m_tcp->sendMsg(SendMsg,data);
             ui->textEdit->clear();
        }
 
@@ -95,8 +100,19 @@ void MainWindow::on_fileButton_clicked()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::AnyFile);
     fileName=dialog.getOpenFileName(this,"选择要发送文件");
-    qDebug()<<"fileName"<<fileName;
-    fileInfo=new QFileInfo(fileName);
-    ui->textEdit->setText(fileInfo->fileName());
+    if(!fileName.isEmpty())
+    {
+        fileInfo=new QFileInfo(fileName);
+        ui->textEdit->setText(fileInfo->fileName());
+    }
+}
+
+
+
+
+void MainWindow::on_btn_user_clicked()
+{
+  friendlg.show();
+
 }
 

@@ -347,7 +347,7 @@
          </font>
         </property>
         <property name="text">
-         <string>username</string>
+         <string>UserID</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

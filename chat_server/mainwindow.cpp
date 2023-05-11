@@ -1,5 +1,11 @@
 #include "mainwindow.h"
+#include "type.h"
 #include "ui_mainwindow.h"
+#include<QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonObject>
+#include<tcpServer.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,15 +14,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     isFile=false;
 
-    sockSer=new QTcpServer(this);
-    sockSer->listen(QHostAddress::Any,quint16(8888));
-    connect(sockSer,&QTcpServer::newConnection,this,&MainWindow::newConnect);
-    connect(&timer,&QTimer::timeout,this,[=](){
-        qDebug()<<"开始发送文件";
-        timer.stop();
-        sendfile(curScok);
-    });
-
+//    sockSer=new QTcpServer(this);
+//    sockSer->listen(QHostAddress::Any,quint16(8888));
+//    connect(sockSer,&QTcpServer::newConnection,this,&MainWindow::newConnect);
+//    connect(&timer,&QTimer::timeout,this,[=](){
+//        qDebug()<<"开始发送文件";
+//        timer.stop();
+//        sendfile(curScok);
+//    });
+    msgServer=new TcpMsgSever(this);
+    fileServer=new TcpFileSever(this);
 }
 
 MainWindow::~MainWindow()
@@ -40,66 +47,68 @@ void MainWindow::newConnect()
         sockLists.append(sockCln);
         connect(sockCln,&QTcpSocket::readyRead,[=](){
 
-
                 QByteArray readmsg=sockCln->readAll();
 
                   qDebug()<<"recv from client"<<readmsg<<sockCln->peerPort();
                 ui->textEdit->append(readmsg);
-                //解析发送来的数据
-                QString message=readmsg;
-                if(message.section("##",0,0)=="sendfile")
-                {
-                        fileName=message.section("##",1,1);
-                        fileSize=message.section("##",2,2).toUInt();
-                        file.setFileName(fileName);
-                        if(!file.open(QIODevice::WriteOnly))
-                            qDebug()<<"文件打开失败";
-
-                       isFile=true;
-                       fileport=sockCln->peerPort();
-                }
-                else if(isFile)
-                {
-                    qDebug()<<"开始写文件";
-
-                    recvSize=0;
-                    int len=file.write(readmsg);
-                    recvSize+=len;
-                    if(recvSize==fileSize)//接受完文件
-                    {
-                        qDebug()<<"接受文件完成";
-                        isFile=false;
-                        file.close();
-                        //发送文件给其他客户端
-                        foreach (QTcpSocket* sock, sockLists) {
-                            if(sock->peerPort()!=port)
-                            {
-                                curScok=sock;
-                                sendhead(sock);
-                            }
-
-                        }
-                    }
-
-                }
-                else//读取文本信息
-                {
-                    qDebug()<<"发送文本消息";
-                    foreach (QTcpSocket* sock, sockLists) {
-                        QString sendmsg=QString("sendmsg##%1").arg(message);
-                        sock->write(sendmsg.toUtf8());
-                    }
-
-
-                }
-            }
-
-        );
 
 
 
+        });
+//                QString message=readmsg;
+//                if(message.section("##",0,0)=="sendfile")
+//                {
+//                        fileName=message.section("##",1,1);
+//                        fileSize=message.section("##",2,2).toUInt();
+//                        file.setFileName(fileName);
+//                        if(!file.open(QIODevice::WriteOnly))
+//                            qDebug()<<"文件打开失败";
 
-        connect(sockCln,&QTcpSocket::disconnected,this,&MainWindow::removeSocket);
+//                       isFile=true;
+//                       fileport=sockCln->peerPort();
+//                }
+//                else if(isFile)
+//                {
+//                    qDebug()<<"开始写文件";
+
+//                    recvSize=0;
+//                    int len=file.write(readmsg);
+//                    recvSize+=len;
+//                    if(recvSize==fileSize)//接受完文件
+//                    {
+//                        qDebug()<<"接受文件完成";
+//                        isFile=false;
+//                        file.close();
+//                        //发送文件给其他客户端
+//                        foreach (QTcpSocket* sock, sockLists) {
+//                            if(sock->peerPort()!=fileport)
+//                            {
+//                                curScok=sock;
+//                                sendhead(sock);
+//                            }
+
+//                        }
+//                    }
+
+//                }
+//                else//读取文本信息
+//                {
+//                    qDebug()<<"发送文本消息";
+//                    foreach (QTcpSocket* sock, sockLists) {
+//                        QString sendmsg=QString("sendmsg##%1").arg(message);
+//                        sock->write(sendmsg.toUtf8());
+//                    }
+
+
+//                }
+//            }
+
+//        );
+
+
+
+
+//        connect(sockCln,&QTcpSocket::disconnected,this,&MainWindow::removeSocket);
 
 }
 

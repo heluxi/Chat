@@ -7,6 +7,7 @@
 
 #include"tcp_manage.h"
 #include"page_login.h"
+#include "frienddlg.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,6 +30,8 @@ private slots:
 
     void on_fileButton_clicked();
 
+    void on_btn_user_clicked();
+
 private:
     Ui::MainWindow *ui;
     clientSock *m_tcp;
@@ -36,5 +39,7 @@ private:
     QFileInfo *fileInfo;
     QString fileName;
     Page_login login;
+    FriendDlg friendlg;
+
 };
 #endif // MAINWINDOW_H

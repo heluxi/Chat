@@ -29,7 +29,8 @@ HEADERS += \
     page_login.h \
     setnetdialog.h \
     sql_manage.h \
-    tcp_manage.h
+    tcp_manage.h \
+    type.h
 
 FORMS += \
     chatlist.ui \

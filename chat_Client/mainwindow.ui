@@ -6,21 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1260</width>
-    <height>713</height>
+    <width>1262</width>
+    <height>682</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">border-radius:1px;</string>
+   </property>
    <widget class="QWidget" name="widget_7" native="true">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>410</x>
       <y>10</y>
-      <width>831</width>
-      <height>671</height>
+      <width>841</width>
+      <height>651</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -29,9 +32,9 @@
     <widget class="QTextBrowser" name="textBrowser">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>20</x>
        <y>81</y>
-       <width>811</width>
+       <width>761</width>
        <height>351</height>
       </rect>
      </property>
@@ -42,10 +45,10 @@
     <widget class="QWidget" name="widget_16" native="true">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>430</y>
        <width>811</width>
-       <height>241</height>
+       <height>211</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -56,89 +59,118 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>211</width>
-        <height>41</height>
+        <width>181</width>
+        <height>49</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
-      <widget class="QWidget" name="widget_9" native="true">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>41</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/res/pic/表情.png);
-background-color: rgba(255, 255, 255, 0);</string>
-       </property>
-      </widget>
-      <widget class="QWidget" name="widget_13" native="true">
-       <property name="geometry">
-        <rect>
-         <x>62</x>
-         <y>9</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>41</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/res/pic/图片.png);
-background-color: rgba(255, 255, 255, 0);</string>
-       </property>
-      </widget>
-      <widget class="QWidget" name="widget_15" native="true">
-       <property name="geometry">
-        <rect>
-         <x>168</x>
-         <y>9</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>41</width>
-         <height>31</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/res/pic/截图.png);
-background-color: rgba(255, 255, 255, 0);</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="fileButton">
-       <property name="geometry">
-        <rect>
-         <x>120</x>
-         <y>10</y>
-         <width>31</width>
-         <height>26</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-image: url(:/res/pic/文件夹.png);</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="btn_emoj">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/res/pic/表情.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>1</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_pic">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/res/pic/图片.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>2</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="fileButton">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/res/pic/文件夹.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>1</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_screenshot">
+         <property name="minimumSize">
+          <size>
+           <width>41</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">image: url(:/res/pic/截图.png);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
      <widget class="QTextEdit" name="textEdit">
       <property name="geometry">
@@ -177,12 +209,15 @@ border-radius:2px;
       <property name="text">
        <string>发送</string>
       </property>
+      <property name="shortcut">
+       <string>Return</string>
+      </property>
      </widget>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>20</x>
        <y>20</y>
        <width>141</width>
        <height>61</height>
@@ -201,10 +236,10 @@ border-radius:2px;
     <widget class="QWidget" name="widget_10" native="true">
      <property name="geometry">
       <rect>
-       <x>700</x>
-       <y>-10</y>
-       <width>121</width>
-       <height>31</height>
+       <x>690</x>
+       <y>0</y>
+       <width>131</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -212,15 +247,12 @@ border-radius:2px;
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QWidget" name="widget_17" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>31</width>
-          <height>21</height>
-         </size>
-        </property>
+       <widget class="QPushButton" name="pushButton">
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/解除固定,图钉.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -238,15 +270,12 @@ border-radius:2px;
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="widget_18" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>31</width>
-          <height>21</height>
-         </size>
-        </property>
+       <widget class="QPushButton" name="pushButton_2">
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/减号.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -264,15 +293,12 @@ border-radius:2px;
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="widget_19" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>31</width>
-          <height>21</height>
-         </size>
-        </property>
+       <widget class="QPushButton" name="pushButton_3">
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/放大.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -290,15 +316,12 @@ border-radius:2px;
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="widget_20" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>31</width>
-          <height>21</height>
-         </size>
-        </property>
+       <widget class="QPushButton" name="pushButton_4">
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/删除2.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -311,7 +334,7 @@ border-radius:2px;
       <x>90</x>
       <y>10</y>
       <width>321</width>
-      <height>671</height>
+      <height>651</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -343,28 +366,14 @@ border-radius:20px;
     <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>80</y>
-       <width>321</width>
-       <height>591</height>
+       <width>301</width>
+       <height>561</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="widget_11" native="true">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>30</y>
-       <width>41</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">image: url(:/res/pic/ic_add_2.png);
-background-color: rgba(255, 255, 255, 0);</string>
      </property>
     </widget>
     <widget class="QWidget" name="widget_12" native="true">
@@ -381,15 +390,37 @@ background-color: rgba(255, 255, 255, 0);</string>
 background-color: rgba(255, 255, 255, 0);</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="btn_add">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/res/pic/ic_add_2.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>71</width>
-      <height>671</height>
+      <width>81</width>
+      <height>651</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>81</width>
+      <height>651</height>
+     </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(40, 41, 45);</string>
@@ -398,15 +429,15 @@ background-color: rgba(255, 255, 255, 0);</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>10</y>
+       <y>20</y>
        <width>79</width>
-       <height>314</height>
+       <height>311</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QWidget" name="widget_2" native="true">
         <property name="minimumSize">
@@ -436,7 +467,7 @@ image: url(:/res/pic/天猫.png);</string>
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="widget_3" native="true">
+       <widget class="QPushButton" name="btn_chat">
         <property name="minimumSize">
          <size>
           <width>51</width>
@@ -445,6 +476,9 @@ image: url(:/res/pic/天猫.png);</string>
         </property>
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/Chat.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -462,7 +496,7 @@ image: url(:/res/pic/天猫.png);</string>
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="friendWidget" native="true">
+       <widget class="QPushButton" name="btn_user">
         <property name="minimumSize">
          <size>
           <width>51</width>
@@ -472,23 +506,9 @@ image: url(:/res/pic/天猫.png);</string>
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/用户.png);</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout" rowstretch="0">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <property name="spacing">
-          <number>0</number>
-         </property>
-        </layout>
+        <property name="text">
+         <string/>
+        </property>
        </widget>
       </item>
       <item>
@@ -505,7 +525,7 @@ image: url(:/res/pic/天猫.png);</string>
        </spacer>
       </item>
       <item>
-       <widget class="QWidget" name="widget_5" native="true">
+       <widget class="QPushButton" name="btn_settings">
         <property name="minimumSize">
          <size>
           <width>51</width>
@@ -514,6 +534,9 @@ image: url(:/res/pic/天猫.png);</string>
         </property>
         <property name="styleSheet">
          <string notr="true">image: url(:/res/pic/3.1 设置.png);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>

@@ -6,7 +6,7 @@
 #include<QTcpSocket>
 #include<QFile>
 #include<QTimer>
-
+#include<tcpServer.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +24,7 @@ public:
     void removeSocket();
     void sendfile(QTcpSocket* &sock);
     void sendhead(QTcpSocket* &sock);
+    void sendGroupMesg(QJsonValue dataVal);
 signals:
     void sendSock(QTcpSocket* &sock);
 private:
@@ -39,6 +40,8 @@ private:
     QTimer timer;
     QTcpSocket* curScok;
     int fileport;//对方发送文件的端口
+    TcpMsgSever* msgServer;
+    TcpFileSever *fileServer;
 
 };
 #endif // MAINWINDOW_H

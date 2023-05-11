@@ -8,6 +8,8 @@
 #include<QFileInfo>
 #include<QTimer>
 
+
+//发送消息套接字
 class clientSock : public QObject
 {
     Q_OBJECT
@@ -15,8 +17,8 @@ public:
     explicit clientSock(QObject *parent = nullptr);
 
    void connectServer(const QString &host, const int &port);
-   void sendMsg(QString msg);
-   QString recvMsg();
+   void sendMsg(const quint8 &type, const QJsonValue &dataVal);
+   void  recvMsg();
    QString getName();
 
 signals:
@@ -25,7 +27,7 @@ void connectSucess();
 private:
     static QTcpSocket *tcpSocket;
     QString name="default";
-
+    int ID=1;
 
 };
 
@@ -49,12 +51,13 @@ signals:
 void sendFileSucess(QString fileName);
 private:
     static QTcpSocket *fileSocket;
+    int ID;
     QString fileName;
     int fileSize;
     QFile file;
     int sendSize;
     QTimer  timer;
-
+    //接受文件
     QString recvFileName;
     int recvFileSize;
     QFile recvfile;
