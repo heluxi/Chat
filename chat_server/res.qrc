@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/images/ic_app.png</file>
+        <file>res/images/background.jpg</file>
+    </qresource>
+</RCC>

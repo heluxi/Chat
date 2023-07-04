@@ -12,3 +12,4 @@ chatList::~chatList()
 {
     delete ui;
 }
+

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
+    <width>241</width>
     <height>60</height>
    </rect>
   </property>
@@ -59,6 +59,12 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="userName">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>userName</string>
         </property>
@@ -66,6 +72,11 @@
       </item>
       <item row="0" column="1">
        <widget class="QLabel" name="timeLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>TextLabel</string>
         </property>
@@ -76,6 +87,11 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="msgLabel">
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
          <string>msg</string>
         </property>

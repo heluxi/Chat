@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>emotions/8.gif</file>
+        <file>emotions/1.gif</file>
+        <file>emotions/2.gif</file>
+        <file>emotions/3.gif</file>
+        <file>emotions/4.gif</file>
+        <file>emotions/6.gif</file>
+        <file>emotions/10.gif</file>
+        <file>emotions/9.gif</file>
+        <file>emotions/11.gif</file>
+        <file>emotions/13.gif</file>
+        <file>emotions/12.gif</file>
+        <file>emotions/14.gif</file>
+        <file>emotions/15.gif</file>
+        <file>emotions/16.gif</file>
+        <file>emotions/7.gif</file>
+        <file>emotions/17.gif</file>
+        <file>emotions/18.gif</file>
+        <file>emotions/5.gif</file>
+    </qresource>
+</RCC>

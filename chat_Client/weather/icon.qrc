@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>weather_icon.png</file>
+        <file>back.jpg</file>
+        <file>icons/local.png</file>
+        <file>jsonCity/city.json</file>
+        <file>icons/refresh.png</file>
+        <file>icons/air_quality.png</file>
+        <file>icons/weather_icons/baoyu.png</file>
+        <file>icons/weather_icons/bingbao.png</file>
+        <file>icons/weather_icons/daxue.png</file>
+        <file>icons/weather_icons/dayu.png</file>
+        <file>icons/weather_icons/duoyun.png</file>
+        <file>icons/weather_icons/leiyu.png</file>
+        <file>icons/weather_icons/qing.png</file>
+        <file>icons/weather_icons/shachen.png</file>
+        <file>icons/weather_icons/wumai.png</file>
+        <file>icons/weather_icons/xiaoyu.png</file>
+        <file>icons/weather_icons/xuezhuanqing.png</file>
+        <file>icons/weather_icons/yeduoyun.png</file>
+        <file>icons/weather_icons/zhenyu.png</file>
+        <file>icons/weather_icons/zhongyu.png</file>
+    </qresource>
+</RCC>

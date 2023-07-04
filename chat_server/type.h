@@ -1,5 +1,20 @@
 #ifndef TYPE_H
 #define TYPE_H
+
+typedef enum {
+    Text,           // 普通文字消息
+    Audio,          // 语音消息
+    Picture,        // 图片消息
+    Files,          // 文件传输
+    Notice          // 通知
+} MessageType;
+
+typedef enum {
+    NewFriend,           // 新朋友
+    NewMember,           // 群组新成员
+    ExitGroup,           // 群员退群
+} NoticeType;
+
 typedef enum {
     Unknow,
     Register            = 0x10,     // 用户注册
@@ -50,4 +65,21 @@ typedef enum {
     GetOfflineMsg       = 0x80   ,   //获取离线消息
     SendFileHead
 } E_MSG_TYPE;
+
+typedef enum {
+    ConnectedHost = 0x01,
+    DisConnectedHost,
+
+    LoginSuccess,       // 登录成功
+    LoginPasswdError,   // 密码错误
+
+    OnLine,
+    OffLine,
+
+    RegisterOk,
+    RegisterFailed,
+
+    AddFriendOk,
+    AddFriendFailed,
+} E_STATUS;
 #endif // TYPE_H

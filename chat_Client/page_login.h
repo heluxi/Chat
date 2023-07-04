@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QSettings>
 #include <QCloseEvent>
-//#include "stusql.h"
-
+#include<tcp_manage.h>
+#include"setnetdialog.h"
 
 
 namespace Ui {
@@ -36,9 +36,12 @@ signals:
     void sendLoginSuccess();
     void sendRegisterSUccess();
     void sendRemeberSuccess();
-
+    void sendSokets(clientSock* sock,clientFileSock *filesock);
 private:
     Ui::Page_login *ui;
+    setnetDialog* netdlg;
+    clientSock *sock;
+    clientFileSock *filesock;
 //    stusql *m_ptrstuSql;
 //    bool rememberPassword;
 };

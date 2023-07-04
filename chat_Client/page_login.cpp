@@ -2,17 +2,52 @@
 #include "ui_page_login.h"
 #include "dlg_regiseter.h"
 #include "dlg_forget.h"
-#include "mainwindow.h"
 #include <QMessageBox>
 #include <QGraphicsDropShadowEffect>
 #include <QFile>
-#include"setnetdialog.h"
+#include<QJsonDocument>
+#include<QJsonObject>
+#include<QJsonParseError>
+#include"type.h"
+#include"mainwindow.h"
 
 Page_login::Page_login(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Page_login)
 {
     ui->setupUi(this);
+    netdlg=new setnetDialog(this);
+    sock=new clientSock();
+    filesock=new clientFileSock();
+
+    connect(netdlg,&setnetDialog::sendPortandAdd,this,[=](unsigned int port,QString ip,unsigned int fileport){
+        sock->connectServer(ip,port);
+        filesock->connectToServer(ip,fileport);
+    });
+
+    connect(sock,&clientSock::connectSucess,this,[=](){netdlg->close();});
+    connect(sock,&clientSock::signalStatus,this,[=](const quint8 status){
+        if(status==LoginSuccess)
+        {
+            this->hide();
+            emit sendLoginSuccess();
+            emit sendSokets(sock,filesock);
+//            MainWindow *MainW=new MainWindow(this);
+//            MainW->setMainSocket(sock,filesock);
+//            MainW->show();
+        }
+        else if(status==LoginPasswdError)
+        {
+             QMessageBox::warning(NULL,"Error","用户名或密码错误！！！");
+        }
+        else if(status==LoginRepeat)
+        {
+              QMessageBox::warning(NULL,"Error","重复登陆！！！");
+        }
+    });
+
+
+
 
     QFile file;
     file.setFileName(":/dlg.css");
@@ -106,8 +141,30 @@ void Page_login::on_bin_login_clicked()
             QMessageBox::warning(NULL,"Error","用户名或密码错误！！！");
         }
     }*/
-    emit sendLoginSuccess();
-    this->hide();
+    QString username=ui->le_username->text();
+    QString password=ui->le_password->text();
+    qDebug()<<password;
+    if(""==username){
+        QMessageBox::information(this,"登录","用户名不能为空");
+    }else if(""==password){
+        QMessageBox::information(this,"登录","密码不能为空");
+    }
+    else{
+        //发送登陆消息给服务器 由服务器数据库查找用户密码
+        //封装消息
+        sock->setID(username.toInt());
+        QJsonObject JsonObj;
+//        JsonObj.insert("name", username);
+//        JsonObj.insert("passwd", password);
+        JsonObj.insert("id",username.toInt());
+        qDebug()<<"id"<<username.toInt();
+        JsonObj.insert("password",password);
+        sock->sendMsg(Login,JsonObj);
+
+    }
+
+
+
 }
 
 
@@ -116,8 +173,17 @@ void Page_login::on_btn_register_clicked()
 {
 //    this->hide();
     Dlg_regiseter *reg=new Dlg_regiseter;
+
+    connect(reg,&Dlg_regiseter::userRegister,[=](QString name,QString pwd){
+
+        QJsonObject json;
+        json.insert("name",name);
+        json.insert("pwd",pwd);
+        sock->sendMsg(Register,json);
+    });
+    connect(sock,&clientSock::registerOk,reg,&Dlg_regiseter::registerok);
     reg->exec();
-    emit sendRegisterSUccess();
+
 //    auto ptr=MainWindow::getinstance();
 //    ptr->updateUserTable();
 }
@@ -126,6 +192,7 @@ void Page_login::on_btn_register_clicked()
 void Page_login::on_btn_forget_clicked()
 {
     Dlg_forget *forget=new Dlg_forget;
+
     forget->exec();
     emit sendRemeberSuccess();
 }
@@ -133,8 +200,8 @@ void Page_login::on_btn_forget_clicked()
 
 void Page_login::on_setNetBut_clicked()
 {
-    setnetDialog netdlg;
-    netdlg.exec();
+
+    netdlg->exec();
 
 }
 
