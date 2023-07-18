@@ -35,8 +35,14 @@ signals:
 //    void stayOnTop(bool);
     void signalSendMessage(const quint8 &, const QJsonValue &);
     void updateMidBarTime(int id,qint64 time,QString msg);
+    void closeWindow();
+    void fullBtnclicked();
 private slots:
     void on_pushButton_4_clicked();
+
+    void sltcloseBtnclicked();
+
+    void sltfullBtnclicked();
 
 private:
     Ui::rightw *ui;

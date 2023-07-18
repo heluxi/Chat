@@ -2,11 +2,9 @@
 #define MIDW_H
 
 #include <QWidget>
-#include "addfriendwnd.h"
 #include "contactwidget.h"
-#include "findfriendwnd.h"
 #include"creategroupwnd.h"
-//#include"creategroupdlg.h"
+
 
 namespace Ui {
 class midw;
@@ -65,8 +63,7 @@ private:
     Cell *selectedCell = nullptr;//选中的格子，即如果右边有对话框时，对应中间的格子就是这个,初始化时没有被选中的
 
     QMenu *addMenu;
-//    CreateGroupDlg *createDlg;
-//    CreateGroupWnd *newGroup;
+
 };
 
 #endif // MIDW_H

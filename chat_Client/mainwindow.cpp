@@ -7,7 +7,6 @@
 #include "tcp_manage.h"
 #include "type.h"
 #include "ui_mainwindow.h"
-#include"chatlist.h"
 #include<QFileInfo>
 #include<QDateTime>
 #include <QJsonValue>
@@ -32,19 +31,18 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    leftBar = new leftw;
-//    qDebug()<<"errorrr";
-    midBar = new midw;
-//    qDebug()<<"errorrr";
-    rightBar = new rightw;
-//    qDebug()<<"errorrr";
+    leftbar = new leftBar;
 
-//    leftBar->setFixedSize(81,832);
+    midBar = new midw;
+
+    rightBar = new rightw;
+
+    leftbar->setFixedSize(81,832);
     midBar->setFixedSize(321,832);
 
     QHBoxLayout *layout = new QHBoxLayout();
 
-    layout->addWidget(leftBar);
+    layout->addWidget(leftbar);
     layout->addWidget(midBar);
     layout->addWidget(rightBar);
     layout->setSpacing(0);
@@ -58,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
 //                this, &MainWindow::onleftBtnClicked);
 //    connect(leftBar->m_btnGroup, SIGNAL(buttonClicked(int)),
 //            this, SLOT(onBtnClicked(int)));
-    connect(leftBar->m_btnGroup, &QButtonGroup::idClicked,
+    connect(leftbar->m_btnGroup, &QButtonGroup::idClicked,
             this, &MainWindow::onleftBtnClicked);
 
     connect(midBar,&midw::openDialog,[&](Cell *cell){
@@ -81,7 +79,10 @@ MainWindow::MainWindow(QWidget *parent)
         onleftBtnClicked(1);
     });
 
-
+    connect(rightBar,&rightw::closeWindow,this,[=](){
+        this->showMinimized();
+    });
+   // connect(rightBar,&rightw::fullBtnclicked,this,&MainWindow::showMaximized);
 
 }
 
@@ -301,7 +302,7 @@ void MainWindow::sltAddChat(Cell *cell)
         jsonObj.insert("noticeType",NewFriend);
         jsonObj.insert("id",cell->id);
         jsonObj.insert("msg","你和" + QString::number(cell->id) + "已经成为好友了，开始聊天吧！");
-
+        //qDebug()<<"同意添加，右边聊天窗口显示";
         rightBar->allowSendMsg(cell->id);//允许和此用户聊天
         rightBar->msgReceived(cell,jsonObj);
 
@@ -787,15 +788,14 @@ void MainWindow::sltFileRecvFinished(quint8, QString, int)
 //}
 
 void MainWindow::onleftBtnClicked(int page)
-//void MainWindow::onleftBtnClicked(QAbstractButton* button)
 {
-//    button.
+
     midBar->MainPageChanged(page);
 
-    if(page == 0){
+    if(page == 0){//btn_chat clicked
         rightBar->restorePage();
-    }else if(page == 1){
-        rightBar->resetPage();
+    }else if(page == 1){//btn_contact clicked
+        rightBar->resetPage();//btn_settings clied
     }else if(page == 2){
         //        leftBar->chatList->restoreBtn();
         //        leftBar->contacts->restoreBtn();
@@ -803,7 +803,7 @@ void MainWindow::onleftBtnClicked(int page)
         //        rightBar->resetPage();
 
         qDebug() << "显示设置面板";
-//        settings->show();
+
     }
 }
 

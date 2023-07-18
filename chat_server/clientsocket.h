@@ -24,15 +24,13 @@ public:
 signals:
     void signalConnected();
     void signalDisConnected();
-//    void sendMessagetoClient(QJsonValue data,int ID);
     void sendMessagetoClient(const quint8 &type, const int &reveicerID, const QJsonValue &dataVal);
     void signalDownloadFile(const QJsonValue &json);
     void successLogin();
     void sendAllMsg(QJsonValue);
 
 public slots:
-    // 消息回发
-//    void SltSendMessage(const quint8 &type, const QJsonValue &json);
+
     // 消息回发
     void sendMessage(const quint8 &type, const QJsonValue &jsonVal);
 
@@ -45,8 +43,6 @@ private slots:
 
 private:
 
-    // 消息回发
-//    void sendMessage(const quint8 &type, const QJsonValue &jsonVal);
 
     void parseFriendMessages(const QByteArray &reply);
     void ParseGroupMessages(const QByteArray &reply);
@@ -93,20 +89,13 @@ public:
     void startTransferFile(QString fileName,int senderID, qint64 time,int flag = 0);
     void insertDataBase(QString filepath,QString filename);
 
-//    void StartTransferFile(QString fileName);
-//    void readFileMsg();
 
-//   void handleHeadmsg(QString data);
-//   void handleFileMsg(QByteArray dataD);
-
-//   void sendFile();
 signals:
    void signalConnected();
    void signalDisConnected();
 
    void signalRecvFinished(int id, const QJsonValue &json);
-//void headmsg(QString data);
-//void sendFileToUSer(int recvID);
+
 
    void sendMessagetoClient(const quint8 &type, const int &reveicerID, const QJsonValue &dataVal);
 
@@ -119,7 +108,7 @@ private slots:
    void sltUpdateClientProgress(qint64 numBytes);
 
 private:
-//    QTcpSocket* m_fileSocket;
+
 
     /************* Receive file *******************/
     quint64 loadSize;
@@ -151,15 +140,6 @@ private:
     qint32 m_WindowId;
     qint32 tag;//标记聊天双方是私聊还是群聊，tag=0表示私聊，tag=1表示群聊
     qint64 msgSendTime;
-
-//    QFile file;
-//    QString fileName;
-//    int fileSize;
-//    bool isFile;
-//    int recvSize;
-//    int sendSize;
-//    QTimer timer;
-//    int recvID;
 
 };
 

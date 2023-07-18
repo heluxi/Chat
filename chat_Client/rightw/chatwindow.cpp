@@ -24,8 +24,8 @@
 #include <QJsonArray>
 
 ChatWindow::ChatWindow(QWidget *parent,Cell *c) :
-    QWidget(parent),cell(c),
-    ui(new Ui::ChatWindow)
+    QWidget(parent),
+    ui(new Ui::ChatWindow),cell(c)
 {
     ui->setupUi(this);
     setWindowFlag(Qt::FramelessWindowHint);

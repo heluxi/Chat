@@ -99,7 +99,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="closeBtn">
            <property name="styleSheet">
             <string notr="true">image: url(:/res/pic/减号.png);</string>
            </property>
@@ -122,7 +122,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="fullBtn">
            <property name="styleSheet">
             <string notr="true">image: url(:/res/pic/放大.png);</string>
            </property>

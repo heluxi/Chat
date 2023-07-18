@@ -31,9 +31,9 @@ public:
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton_2;
+    QPushButton *closeBtn;
     QSpacerItem *horizontalSpacer_2;
-    QPushButton *pushButton_3;
+    QPushButton *fullBtn;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButton_4;
     QStackedWidget *stackedWidget;
@@ -72,22 +72,22 @@ public:
         horizontalSpacer = new QSpacerItem(1, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
-
-        pushButton_2 = new QPushButton(widget_10);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setStyleSheet(QString::fromUtf8("image: url(:/res/pic/\345\207\217\345\217\267.png);"));
-
-        horizontalLayout->addWidget(pushButton_2);
+        
+        closeBtn = new QPushButton(widget_10);
+        closeBtn->setObjectName("pushButton_2");
+        closeBtn->setStyleSheet(QString::fromUtf8("image: url(:/res/pic/\345\207\217\345\217\267.png);"));
+        
+        horizontalLayout->addWidget(closeBtn);
 
         horizontalSpacer_2 = new QSpacerItem(2, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
-
-        pushButton_3 = new QPushButton(widget_10);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setStyleSheet(QString::fromUtf8("image: url(:/res/pic/\346\224\276\345\244\247.png);"));
-
-        horizontalLayout->addWidget(pushButton_3);
+        
+        fullBtn = new QPushButton(widget_10);
+        fullBtn->setObjectName("pushButton_3");
+        fullBtn->setStyleSheet(QString::fromUtf8("image: url(:/res/pic/\346\224\276\345\244\247.png);"));
+        
+        horizontalLayout->addWidget(fullBtn);
 
         horizontalSpacer_3 = new QSpacerItem(1, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -126,8 +126,8 @@ public:
     {
         rightw->setWindowTitle(QCoreApplication::translate("rightw", "Form", nullptr));
         pushButton->setText(QString());
-        pushButton_2->setText(QString());
-        pushButton_3->setText(QString());
+        closeBtn->setText(QString());
+        fullBtn->setText(QString());
         pushButton_4->setText(QString());
     } // retranslateUi
 

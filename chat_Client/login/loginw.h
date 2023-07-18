@@ -1,7 +1,7 @@
 #ifndef LOGINW_H
 #define LOGINW_H
 
-#include "page_login.h"
+#include "login_main.h"
 #include "page_login_logining.h"
 #include "tcp_manage.h"
 
@@ -45,7 +45,7 @@ public slots:
     void sltGetOffLineMsg();
 
 private:
-    Page_login *loginMainPage;
+    login_main *loginMainPage;
     Page_Login_Logining *loginingPage;
     clientSock *tcpSocket;
     bool connected;

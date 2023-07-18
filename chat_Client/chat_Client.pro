@@ -9,9 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    chatlist.cpp \
     frienddlg.cpp \
-    leftw.cpp \
+    leftbar.cpp \
     main.cpp \
     mainwindow.cpp \
 #    qnchatmessage.cpp \
@@ -19,19 +18,19 @@ SOURCES += \
     tcp_manage.cpp
 
 HEADERS += \
-    chatlist.h \
     frienddlg.h \
-    leftw.h \
+    leftbar.h \
     mainwindow.h \
 #    qnchatmessage.h \
     sql_manage.h \
-    tcp_manage.h
+    tcp_manage.h\
+
 
 FORMS += \
-    chatlist.ui \
     frienddlg.ui \
-    leftw.ui \
-    mainwindow.ui \
+    leftbar.ui \
+    mainwindow.ui
+
 
 
 # Default rules for deployment.

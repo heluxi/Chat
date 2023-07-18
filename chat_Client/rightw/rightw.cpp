@@ -24,6 +24,9 @@ rightw::rightw(QWidget *parent) :
     loadingMovie->start();
     loadingLabel->setVisible(false);
 
+    connect(ui->closeBtn,&QPushButton::clicked,this,&rightw::sltcloseBtnclicked);
+    connect(ui->fullBtn,&QPushButton::clicked,this,&rightw::sltfullBtnclicked);
+
 }
 
 rightw::~rightw()
@@ -35,14 +38,17 @@ void rightw::switchPage(Cell *c)
 {
     if(c == nullptr){
         resetPage();
+        qDebug()<<"return";
         return;
     }
 
     if(hash.contains(c->id)){
+        qDebug()<<"test";
         currentPage = hash[c->id];
         ui->stackedWidget->setCurrentIndex(currentPage);
     }else{
         ChatWindow *newWindow = new ChatWindow(nullptr,c);
+        qDebug()<<"222";
 
         //ChatWindow的消息借用Rightw中转，最后传递给Mainwindow，因为发送消息的tcpsocket在Mainwindow类中
         connect(newWindow,&ChatWindow::signalSendMessage,
@@ -122,6 +128,7 @@ void rightw::msgconfirmed(QJsonValue dataVal)
 
 void rightw::msgReceived(Cell *c, QJsonValue dataVal)
 {
+
     for(int i = 0;i < chatWindowList.size();i++){
         if(c->id == chatWindowList.at(i)->getID()){
             chatWindowList.at(i)->msgReceived(dataVal);//聊天窗口添加一条消息
@@ -175,4 +182,18 @@ void rightw::on_pushButton_4_clicked()
 {
     exit(0);
 }
+
+void rightw::sltcloseBtnclicked()
+{
+    emit closeWindow();
+}
+
+void rightw::sltfullBtnclicked()
+{
+    emit fullBtnclicked();
+}
+
+
+
+
 

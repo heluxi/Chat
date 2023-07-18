@@ -6,7 +6,7 @@
 #include<QMessageBox>
 //#include <QListWidgetItem>
 
-#include "leftw.h"
+#include "leftbar.h"
 #include "midw/midw.h"
 //#include "qabstractbutton.h"
 #include "rightw/rightw.h"
@@ -73,7 +73,7 @@ private:
     //    void on_btn_max_clicked();
 
 private:
-    leftw *leftBar;
+    leftBar *leftbar;
     midw *midBar;
     rightw *rightBar;
 

@@ -1,7 +1,6 @@
 #include "midw.h"
 #include "addfriendwnd.h"
 #include "cell.h"
-#include "chatlist.h"
 #include "contactwidget.h"
 #include "findfriendwnd.h"
 #include "listwidget.h"
@@ -20,7 +19,6 @@ midw::midw(QWidget *parent) :
     ui->setupUi(this);
 
 
-//    ui->stackedWidget->setCurrentIndex(0);
     connect(ui->chatList,&ListWidget::popMenuToShow,
             this,&midw::setPopMenuCell);
     connect(ui->chatList,&ListWidget::signalOpenDialog,
@@ -31,6 +29,7 @@ midw::midw(QWidget *parent) :
         emit openDialog(cell);
     });
 
+    //添加子菜单
     addMenu = new QMenu(this);
     addMenu->addAction(tr("添加好友"));
     addMenu->addAction(tr("添加群"));
@@ -38,7 +37,7 @@ midw::midw(QWidget *parent) :
     addMenu->addAction(tr("创建群"));
     connect(addMenu,&QMenu::triggered,this,&midw::sltMenuSelected);
 
-//    connect(ui->btn_add,&MyButton::clicked,this,&midw::on_btn_add_clicked);
+
     connect(ui->btn_add,&MyButton::clicked,[&](){
         addMenu->exec(QCursor::pos());
     });
@@ -48,7 +47,6 @@ midw::midw(QWidget *parent) :
 
     ui->stackedWidget->addWidget(contactWidget);
     ui->stackedWidget->setCurrentIndex(1);//默认打开chatList列表
-//    ui->stackedWidget->setCurrentWidget(ui->chatListW);
 
 
     connect(contactWidget,&ContactWidget::signalSendMessage,
@@ -93,8 +91,6 @@ void midw::MainPageChanged(int page)
     }else if(page == 1){
         qDebug() << "显示联系人列表" ;
         ui->stackedWidget->setCurrentIndex(2);
-        qDebug()<<ui->stackedWidget->currentIndex();
-        qDebug()<<ui->stackedWidget->currentWidget();
     }else if(page == 2){
         qDebug() << "显示设置界面" ;
 

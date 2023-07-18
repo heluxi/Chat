@@ -5,6 +5,7 @@
 #include "rotatingstackedwidget.h"
 #include "myapp.h"
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -20,7 +21,7 @@ int main(int argc, char *argv[])
     //显示登陆界面
     RotatingStackedWidget launcher;
     launcher.show();
-//    MainWindow w;
+
 
     return a.exec();
 }

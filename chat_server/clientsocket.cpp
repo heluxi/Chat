@@ -23,8 +23,8 @@ ClientSocket::ClientSocket(QObject *parent,QTcpSocket* tcpSocket)
 
     if (tcpSocket == NULL) m_tcpSocket = new QTcpSocket(this);
     m_tcpSocket = tcpSocket;
+
     connect(tcpSocket,&QTcpSocket::readyRead,this,&ClientSocket::readMsg);
-//    connect(m_tcpSocket, SIGNAL(readyRead()), this, SLOT(SltReadyRead()));
     connect(m_tcpSocket, &QTcpSocket::connected, this, &ClientSocket::sltConnected);
     connect(m_tcpSocket,&QTcpSocket::disconnected,this,&ClientSocket::sltDisconnected);
 }

@@ -20,15 +20,16 @@
 
 loginw::loginw(QWidget *parent): QStackedWidget(parent)
 {
-    this->setFixedSize(870,520);
+    this->setFixedSize(970,720);
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setContentsMargins(0,0,0,0);
-//    this->setBackgroundRole(QColor(255,255,255));
     this->setStyleSheet("background-color:rgb(255,255,255);");
 
+    //状态消息提示栏
     m_notifyMsg= new QLabel(this);
-    m_notifyMsg->setFixedSize(430, 20);
-    m_notifyMsg->setStyleSheet("background-color:#09a3dc;font-size: 12px;font-family:Microsoft YaHei;border-radius:10px");
+    m_notifyMsg->setFixedSize(530, 30);
+
+    m_notifyMsg->setStyleSheet("background-color:#09a3dc;font-size: 12px;font-family:Microsoft YaHei;border-radius:8px");
     m_notifyMsg->hide();
 
 
@@ -50,25 +51,25 @@ loginw::loginw(QWidget *parent): QStackedWidget(parent)
     timer->setInterval(1000);//每隔1秒尝试重新连接服务器
     connect(timer,&QTimer::timeout,this,&loginw::slotTimeout);
 
-
-    loginMainPage = new Page_login;
-    connect(loginMainPage,&Page_login::loginSignal,this,&loginw::changePage);
-    connect(loginMainPage,&Page_login::showNotifyMsg,this,&loginw::showNotifyMsg);
-    connect(loginMainPage,&Page_login::hideNotifyMsg,this,&loginw::hideNotifyMsg);
-    connect(loginMainPage,&Page_login::closeWindow,this,&loginw::closeWindow);
-    connect(loginMainPage,&Page_login::hideWindow,this,&loginw::hideWindow);
-    connect(loginMainPage,&Page_login::rotateWindow,this,&loginw::rotateWindow);
-    connect(loginMainPage,&Page_login::openRegisterWnd,this,&loginw::openRegisterWnd);
-    connect(loginMainPage,&Page_login::openForgetPasswordWnd,
+    //登陆界面
+    loginMainPage = new login_main;
+    connect(loginMainPage,&login_main::loginSignal,this,&loginw::changePage);
+    connect(loginMainPage,&login_main::showNotifyMsg,this,&loginw::showNotifyMsg);
+    connect(loginMainPage,&login_main::hideNotifyMsg,this,&loginw::hideNotifyMsg);
+    connect(loginMainPage,&login_main::closeWindow,this,&loginw::closeWindow);
+    connect(loginMainPage,&login_main::hideWindow,this,&loginw::hideWindow);
+    connect(loginMainPage,&login_main::rotateWindow,this,&loginw::rotateWindow);
+    connect(loginMainPage,&login_main::openRegisterWnd,this,&loginw::openRegisterWnd);
+    connect(loginMainPage,&login_main::openForgetPasswordWnd,
             this,&loginw::openForgetPasswordWnd);
 
-
+    //登陆中界面
     loginingPage = new Page_Login_Logining;
     connect(loginingPage,&Page_Login_Logining::cancelSignal,this,&loginw::changePage);
     connect(loginingPage,&Page_Login_Logining::closeWindow,this,&loginw::closeWindow);
     connect(loginingPage,&Page_Login_Logining::animationFinished,this,&loginw::sltGetOffLineMsg);
     connect(this,&loginw::loginSuccess,loginingPage,&Page_Login_Logining::loginSuccess);
-    connect(loginMainPage,&Page_login::changeLoginingHead,
+    connect(loginMainPage,&login_main::changeLoginingHead,
             loginingPage,&Page_Login_Logining::updateHead);
 
 
@@ -324,15 +325,15 @@ void loginw::changePage()
 
 void loginw::showNotifyMsg(QString msg)
 {
-    this->setFixedSize(870, 520);
-    m_notifyMsg->move(0, 330);
+    this->setFixedSize(970, 720);
+    m_notifyMsg->move(0, 680);
     m_notifyMsg->setText("  " + msg);
     m_notifyMsg->show();
 }
 
 void loginw::hideNotifyMsg()
 {
-    this->setFixedSize(870, 520);
+    this->setFixedSize(970, 720);
     m_notifyMsg->hide();
 }
 

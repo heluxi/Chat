@@ -24,7 +24,7 @@ protected:
 public slots:
 
 protected slots:
-    // 继承虚函数
+    // 虚函数
     virtual void SltNewConnection() = 0;
     virtual void SltConnected() = 0;
     virtual void SltDisConnected() = 0;
@@ -39,14 +39,11 @@ public:
     ~TcpMsgServer();
 
     void newConnect();
-//    void sendToAll(QJsonValue);
 signals:
     void signalDownloadFile(const QJsonValue &json);
 
 private:
-//    QTcpServer* sockServ;
-//    QList<tcpSocket*> clnMsgList;//与客户端通信的套接字
-    // 客户端管理
+    // 客户端管理保存与客户端通信的套接字
     QVector < ClientSocket * > m_clients;
 
 public slots:
@@ -55,6 +52,7 @@ public slots:
     void SltMsgToClient(const quint8 &type, const int &receiverID, const QJsonValue &jsonVal);
 
 private slots:
+    //重写
     void SltNewConnection();
     void SltConnected();
     void SltDisConnected();

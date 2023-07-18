@@ -72,21 +72,8 @@ public:
     QLabel *loadingLabel;
     QMovie *loadingMovie;
 
-private:
-    bool open = true;
-    Cell *cell;//记录该聊天窗口对方的信息
-    int tag = 0;//记录该聊天窗口是私聊窗口还是群聊窗口，tag = 0为私聊窗口，tag = 1为群聊窗口
 
-    qint64 lastMsgTime = 0;
 
-    //文件传输
-    clientFileSock *tcpFileSocket;
-    QString fileName;
-//    QTime updateTime;
-    QElapsedTimer updateTime;
-    quint8 fileType;
-    bool busy = false;
-    BubbleInfo *curFileBubble;
 
 signals:
     void signalSendMessage(const quint8 &type, const QJsonValue &json);//发消息给服务器
@@ -117,6 +104,21 @@ private:
     Ui::ChatWindow *ui;
     Screen *screen;
     MyEmotionWidget *emoj;
+
+    bool open = true;
+    Cell *cell;//记录该聊天窗口对方的信息
+    int tag = 0;//记录该聊天窗口是私聊窗口还是群聊窗口，tag = 0为私聊窗口，tag = 1为群聊窗口
+
+    qint64 lastMsgTime = 0;
+
+    //文件传输
+    clientFileSock *tcpFileSocket;
+    QString fileName;
+    //    QTime updateTime;
+    QElapsedTimer updateTime;
+    quint8 fileType;
+    bool busy = false;
+    BubbleInfo *curFileBubble;
 };
 
 #endif // CHATWINDOW_H

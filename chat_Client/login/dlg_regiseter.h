@@ -2,7 +2,7 @@
 #define DLG_REGISETER_H
 
 #include <QDialog>
-#include "page_login.h"
+#include"login_main.h"
 
 namespace Ui {
 class Dlg_regiseter;
@@ -33,7 +33,7 @@ public slots:
     void sltRegisterOK(const QJsonValue&);
 private:
     Ui::Dlg_regiseter *ui;
-    Page_login m_dlogin;
+    login_main m_dlogin;
 
 };
 

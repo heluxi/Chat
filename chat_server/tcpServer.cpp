@@ -26,30 +26,6 @@ TcpServer::~TcpServer()
 
 
 
-//void TcpMsgServer::newConnect()
-//{
-//    QTcpSocket * sock=sockServ->nextPendingConnection();
-//    tcpSocket* clnSock=new tcpSocket(this,sock);
-
-    //当用户登陆成功
-//    connect(clnSock,&tcpSocket::successLogin,this,[=](){
-//          clnMsgList.append(clnSock);
-//        qDebug()<<"login sucess";
-//          //私发消息
-//          connect(clnSock,&tcpSocket::sendMessagetoClient,this,[=](QJsonValue dataval,int ID){
-
-//              foreach (tcpSocket* sock, clnMsgList) {
-//                  if(sock->getID()==ID)
-//                  {
-//                      clnSock->sendMessage(SendMsg,dataval);
-//                  }
-//              }
-//          });
-//          //发送全部
-//          connect(clnSock,&tcpSocket::sendAllMsg,this,&TcpMsgSever::sendToAll);
-//    });
-
-//}
 
 //启动监听
 bool TcpServer::StartListen(int port)
@@ -64,12 +40,12 @@ void TcpServer::CloseListen()
     m_tcpServer->close();
 }
 
+//******************************************
+//处理消息服务器端
+
 TcpMsgServer::TcpMsgServer(QObject *parent)
     : TcpServer{parent}
 {
-    //    sockServ=new QTcpServer(this);
-    //    sockServ->listen(QHostAddress::Any,8888);//消息端口
-    //    connect(sockServ,&QTcpServer::newConnection,this,&TcpMsgSever::newConnect);
 
 
 }
@@ -82,20 +58,15 @@ TcpMsgServer::~TcpMsgServer()
         client->closeSocket();
     }
 }
-//void TcpMsgServer::sendToAll(QJsonValue dataVal)
-//{
-////    foreach (tcpSocket *sock, clnMsgList) {
-////        sock->sendMessage(SendMsg,dataVal);
-////    }
-//}
 
 // 有新的客户端连接进来
 void TcpMsgServer::SltNewConnection()
 {
     ClientSocket *client = new ClientSocket(this, m_tcpServer->nextPendingConnection());
-    //check
-    connect(client, &ClientSocket::signalConnected, this, &TcpMsgServer::SltConnected);
-    connect(client, &ClientSocket::signalDisConnected, this, &TcpMsgServer::SltDisConnected);
+    //处理每个与客户端连接的套接字
+    //当用户成功登陆，才会加入容器
+    connect(client, &ClientSocket::signalConnected, this, &TcpMsgServer::SltConnected);//客户端登陆成功
+    connect(client, &ClientSocket::signalDisConnected, this, &TcpMsgServer::SltDisConnected);//客户端退出登陆
 }
 
 /**
