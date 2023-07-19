@@ -68,7 +68,7 @@
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);
 border-radius:30px;
-image: url(:/res/pic/天猫.png);</string>
+image: url(:/res/pic/Customer Copy.png);</string>
       </property>
       <property name="text">
        <string/>

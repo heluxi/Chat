@@ -2,7 +2,9 @@
 #include "ui_leftbar.h"
 #include"mybutton.h"
 #include"personmsgdlg.h"
+#include"myapp.h"
 #include<QVBoxLayout>
+#include<QFileInfo>
 
 leftBar::leftBar(QWidget *parent) :
     QWidget(parent),
@@ -78,7 +80,44 @@ void leftBar::on_headBtn_clicked()
     pMsgDlg=new personMsgDlg(this);
     pMsgDlg->show();
     pMsgDlg->move(30,30);
+    connect(pMsgDlg,&personMsgDlg::chanageHead,this,&leftBar::sltheadChange);
 
+
+}
+
+void leftBar::sltheadChange(QString headPath)
+{
+    //更新当前组件的头像
+    QString head=QString("border-image: url(%1);").arg(headPath);
+    ui->headBtn->setStyleSheet(head);
+
+    QFileInfo info(headPath);
+    QString fileName=info.fileName();
+
+    MyApp::m_strHeadFile=fileName;
+    QFile souceFile(headPath);
+    QFile targetFile(MyApp::m_strHeadPath+MyApp::m_strHeadFile);
+
+    if(!souceFile.open(QIODevice::ReadOnly))
+    {
+        qDebug()<<"souce文件打开失败";
+    }
+    if(!targetFile.open(QIODevice::WriteOnly))
+    {
+        qDebug()<<"target 文件打开失败";
+    }
+    QDataStream in(&souceFile);
+    QDataStream out(&targetFile);
+    out.setVersion(QDataStream::Qt_6_4);
+    while(!in.atEnd())
+    {
+        QByteArray data=souceFile.read(1024);
+        out.writeRawData(data.constData(),data.size());
+    }
+    souceFile.close();
+    souceFile.close();
+
+    //通知服务器更新头像
 
 }
 

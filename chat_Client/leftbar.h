@@ -27,6 +27,7 @@ public:
 
 private slots:
     void on_headBtn_clicked();
+    void sltheadChange(QString headPath);
 
 private:
     Ui::leftBar *ui;

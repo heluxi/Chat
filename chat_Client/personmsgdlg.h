@@ -15,6 +15,10 @@ public:
     explicit personMsgDlg(QWidget *parent = nullptr);
     ~personMsgDlg();
 
+private slots:
+    void on_headBtn_clicked();
+signals:
+    void chanageHead(QString headPath);
 private:
     Ui::personMsgDlg *ui;
 };

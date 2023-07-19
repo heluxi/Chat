@@ -143,6 +143,9 @@
          <height>75</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/res/pic/Customer Copy.png);</string>
+       </property>
        <property name="text">
         <string/>
        </property>
