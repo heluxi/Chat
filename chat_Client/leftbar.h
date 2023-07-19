@@ -6,6 +6,8 @@
 #include <QButtonGroup>
 #include"weather/wtheatherdlg.h"
 
+class personMsgDlg;
+
 class MyButton;
 namespace Ui {
 class leftBar;
@@ -23,6 +25,9 @@ public:
     void DownloadFriendHead(const int &userId);
 
 
+private slots:
+    void on_headBtn_clicked();
+
 private:
     Ui::leftBar *ui;
     wtheatherDlg WDlg;
@@ -30,6 +35,7 @@ private:
     MyButton *btn_contact;
     MyButton *btn_settings;
     QPushButton *btn_weather;
+    personMsgDlg *pMsgDlg;
 };
 
 #endif // LEFTBAR_H

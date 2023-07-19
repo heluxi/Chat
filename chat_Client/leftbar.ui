@@ -46,33 +46,6 @@
      <property name="styleSheet">
       <string notr="true">background-color: rgb(72, 72, 72);</string>
      </property>
-     <widget class="QWidget" name="headPicture" native="true">
-      <property name="geometry">
-       <rect>
-        <x>9</x>
-        <y>9</y>
-        <width>71</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>61</width>
-        <height>61</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>900</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:30px;
-image: url(:/res/pic/天猫.png);</string>
-      </property>
-     </widget>
      <widget class="QWidget" name="widget" native="true">
       <property name="geometry">
        <rect>
@@ -81,6 +54,24 @@ image: url(:/res/pic/天猫.png);</string>
         <width>120</width>
         <height>421</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="headBtn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>65</width>
+        <height>65</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border-radius:30px;
+image: url(:/res/pic/天猫.png);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

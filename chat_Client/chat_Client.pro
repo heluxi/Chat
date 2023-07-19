@@ -14,6 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
 #    qnchatmessage.cpp \
+    personmsgdlg.cpp \
     sql_manage.cpp \
     tcp_manage.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     leftbar.h \
     mainwindow.h \
 #    qnchatmessage.h \
+    personmsgdlg.h \
     sql_manage.h \
     tcp_manage.h\
 
@@ -29,7 +31,8 @@ HEADERS += \
 FORMS += \
     frienddlg.ui \
     leftbar.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    personmsgdlg.ui
 
 
 

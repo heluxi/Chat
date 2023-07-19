@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "clientsocket.h"
 #include "qabstractitemmodel.h"
 #include "qlabel.h"
 #include "qmessagebox.h"
@@ -27,60 +26,17 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    isFile=false;
 
-//    sockSer=new QTcpServer(this);
-//    sockSer->listen(QHostAddress::Any,quint16(8888));
-//    connect(sockSer,&QTcpServer::newConnection,this,&MainWindow::newConnect);
-//    connect(&timer,&QTimer::timeout,this,[=](){
-//        qDebug()<<"开始发送文件";
-//        timer.stop();
-//        sendfile(curScok);
-//    });
-//    msgServer=new TcpMsgSever(this);
-//    fileServer=new TcpFileSever(this);
-
-
-//    ui->treeWidget->setColumnCount(1);
 
     //隐藏表头
     ui->treeWidget->setHeaderHidden(true);
 
-//    QStringList l;
-//    l<<"ATAW Server";
-//    QTreeWidgetItem *qf=new QTreeWidgetItem(ui->treeWidget,l);
-//    ui->treeWidget->addTopLevelItem(qf);
 
-//    l.clear();
-//    l<<"用户信息";
-//    QTreeWidgetItem *q1=new QTreeWidgetItem(qf,l);
-//    qf->addChild(q1);
-//    //    ui->treeWidget->setItemWidget(q1,0,ui->tableWidget);
-
-//    l.clear();
-//    l<<"服务配置";
-//    QTreeWidgetItem *q2=new QTreeWidgetItem(qf,l);
-//    qf->addChild(q2);
-
-//    l.clear();
-//    l<<"用户管理";
-//    QTreeWidgetItem *q3=new QTreeWidgetItem(qf,l);
-//    qf->addChild(q3);
-
-//    l.clear();
-//    l<<"密码修改";
-//    QTreeWidgetItem *q4=new QTreeWidgetItem(qf,l);
-//    qf->addChild(q4);
-
-//    l.clear();
-//    l<<"数据备份";
-//    QTreeWidgetItem *q5=new QTreeWidgetItem(qf,l);
-//    qf->addChild(q5);
 
     ui->treeWidget->expandAll();
     ui->stackedWidget->setCurrentIndex(0);
 
-    ui->stackedWidgetMain->setCurrentIndex(0);  //
+    ui->stackedWidgetMain->setCurrentIndex(0);//设置当前显示界面为登陆界面
 
     m_model = new QStandardItemModel(this); //保存数据
 
@@ -92,18 +48,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableViewUsers->setSelectionBehavior(QTableView::SelectRows);
     connect(ui->tableViewUsers, SIGNAL(clicked(QModelIndex)), this, SLOT(SltTableClicked(QModelIndex)));
 
-    ui->lineEditBackup->setText(MyApp::m_strBackupPath);
+    ui->lineEditBackup->setText(MyApp::m_strBackupPath);//配置目录
 
     // 初始化网络
     InitNetwork();
 
     //tool
     QStatusBar *bar=this->statusBar();
-//    QLabel *lb_ip=new QLabel(QString("本机IP：") + myHelper::GetIP());
+
 // 显示系统时间
     QLabel *lb_time=new QLabel(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss ddd"));
     bar->addWidget(lb_time);        //left
-//    bar->addPermanentWidget(lb_ip); //right
+
 
     m_nTimerId = startTimer(1000);
 
@@ -114,9 +70,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//void MainWindow::readMsg()
-//{
-//}
 
 // 初始化网络
 void MainWindow::InitNetwork()
@@ -136,6 +89,8 @@ void MainWindow::InitNetwork()
     connect(fileServer, &TcpFileServer::signalUserStatus, this, &MainWindow::ShowUserStatus);
     connect(fileServer,&TcpFileServer::signalMsgToClient,
            msgServer,&TcpMsgServer::SltMsgToClient);
+
+
 
     systemTrayIcon = new QSystemTrayIcon(this);
     systemTrayIcon->setIcon(QIcon(":/res/images/ic_app.png"));
@@ -190,38 +145,6 @@ void MainWindow::removeSocket()
 
 }
 
-//void MainWindow::sendfile(QTcpSocket *&sock)
-//{
-//     qDebug()<<"send";
-//    if(!file.open(QIODevice::ReadOnly))
-//        qDebug()<<"文件打开失败";
-//    int len;
-//    do{
-
-//        char buf[4*1024]={0};
-//        len=0;
-//        len=file.read(buf,sizeof(buf));
-//        len=sock->write(buf,len);
-//        sendSize+=len;
-//    }while(len>0);
-//    if(sendSize==fileSize)
-//    {
-//        curScok=nullptr;
-//        file.close();
-//        sendSize=0;
-//        qDebug()<<"文件发送成功";
-//    }
-
-//}
-
-//void MainWindow::sendhead(QTcpSocket *&sock)
-//{
-//    //封装头部信息
-//    QString head=QString("sendfile##%1##%2").arg(fileName).arg(fileSize);
-//    sock->write(head.toUtf8());
-//    timer.start(20);
-
-//}
 
 //exit
 void MainWindow::on_btn_Exit_clicked()
@@ -323,7 +246,7 @@ void MainWindow::on_btn_quit_clicked()
 
 void MainWindow::on_btn_backUp_clicked()
 {
-    qDebug()<<" beifen";
+
     QString strNewFile = MyApp::m_strBackupPath + QString("info_%1.bak").arg(QDate::currentDate().toString("yyyy_MM_dd"));
     if (QFile::exists(strNewFile)) {
         QFile::remove(strNewFile);

@@ -22,7 +22,7 @@ ClientSocket::ClientSocket(QObject *parent,QTcpSocket* tcpSocket)
     m_id = -1;
 
     if (tcpSocket == NULL) m_tcpSocket = new QTcpSocket(this);
-    m_tcpSocket = tcpSocket;
+    m_tcpSocket = tcpSocket;//通过TcpServer 返回得到与客户端通信的套接字来初始化
 
     connect(tcpSocket,&QTcpSocket::readyRead,this,&ClientSocket::readMsg);
     connect(m_tcpSocket, &QTcpSocket::connected, this, &ClientSocket::sltConnected);
@@ -306,7 +306,6 @@ void ClientSocket::UserLogin(QJsonValue dataVal)
     if (dataVal.isObject()) {
         QJsonObject dataObj = dataVal.toObject();
         int id = dataObj.value("id").toInt();
-//        QString name = dataObj.value("name").toString();
         QString strPwd = dataObj.value("password").toString();
         qDebug()<<strPwd;
         //查询数据库验证用户和密码是否匹配
@@ -317,14 +316,13 @@ void ClientSocket::UserLogin(QJsonValue dataVal)
         //登陆成功
         if(code == 0){
             m_id = id;
-//            m_id = json.value("id").toInt();
             emit successLogin();
         }
 
 //        m_id = json.value("id").toInt();
         qDebug() << "login " << json<<m_id;
 
-        if (m_id > 0) emit signalConnected();
+        if (m_id > 0) emit signalConnected();//验证成功后 通知TcpMsgServer加入容器进行管理
         //把登陆消息返回给客户端
         sendMessage(Login,json);
     }
@@ -966,7 +964,7 @@ void ClientFileSocket::sltReadyRead()
     QDataStream in(m_tcpSocket);
     in.setVersion(QDataStream::Qt_6_4);
 
-    // 连接时的消息
+    //刚上时连接时的消息
     if (0 == bytesReceived && (-1 == m_UserId) && (-1 == m_WindowId) &&
         (m_tcpSocket->bytesAvailable() == (sizeof(qint32) * 3))){
         //客户端的TcpFileSocket在连上服务器后会首先发来三个字节的数据，分别是下面三个字段

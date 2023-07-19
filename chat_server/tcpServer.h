@@ -1,4 +1,4 @@
-#ifndef TCPSERVER_H
+ #ifndef TCPSERVER_H
 #define TCPSERVER_H
 
 #include <QObject>
@@ -73,8 +73,6 @@ signals:
     void signalMsgToClient(const quint8 &, const int &, const QJsonValue &);
     void signalRecvFinished(int id, const QJsonValue &json);
 private:
-//    QTcpServer* sockServ;
-//    QList<tcpFileSocket*> clnFileList;//与客户端通信的套接字
     // 客户端管理
     QVector < ClientFileSocket * > m_clients;
 

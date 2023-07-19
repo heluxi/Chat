@@ -1,6 +1,7 @@
 #include "leftbar.h"
 #include "ui_leftbar.h"
 #include"mybutton.h"
+#include"personmsgdlg.h"
 #include<QVBoxLayout>
 
 leftBar::leftBar(QWidget *parent) :
@@ -69,3 +70,15 @@ leftBar::~leftBar()
 {
     delete ui;
 }
+
+void leftBar::on_headBtn_clicked()
+{
+    //显示当前用户个人信息
+
+    pMsgDlg=new personMsgDlg(this);
+    pMsgDlg->show();
+    pMsgDlg->move(30,30);
+
+
+}
+

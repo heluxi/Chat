@@ -40,6 +40,7 @@ void TcpServer::CloseListen()
     m_tcpServer->close();
 }
 
+
 //******************************************
 //处理消息服务器端
 
@@ -64,10 +65,11 @@ void TcpMsgServer::SltNewConnection()
 {
     ClientSocket *client = new ClientSocket(this, m_tcpServer->nextPendingConnection());
     //处理每个与客户端连接的套接字
-    //当用户成功登陆，才会加入容器
+    //当用户成功登陆，才会加入服务容器中进行管理
     connect(client, &ClientSocket::signalConnected, this, &TcpMsgServer::SltConnected);//客户端登陆成功
     connect(client, &ClientSocket::signalDisConnected, this, &TcpMsgServer::SltDisConnected);//客户端退出登陆
 }
+
 
 /**
  * @brief TcpMsgServer::SltConnected
@@ -119,7 +121,7 @@ void TcpMsgServer::SltDisConnected()
  */
 void TcpMsgServer::SltMsgToClient(const quint8 &type, const int &receiverID, const QJsonValue &jsonVal)
 {
-    // 查找要发送过去的id
+    // 查找要发送过去的id，通过id查找到对应的套接字
     for (int i = 0; i < m_clients.size(); i++) {
         if (receiverID == m_clients.at(i)->getUserID())
         {
@@ -240,22 +242,6 @@ void TcpFileServer::SltDisConnected()
  */
 void TcpFileServer::SltClientDownloadFile(const QJsonValue &json)
 {
-//    // 根据ID寻找连接的socket
-//    if (json.isObject()) {
-//        QJsonObject jsonObj = json.toObject();
-//        qint32 nId = jsonObj.value("from").toInt(); //from(me
-//        qint32 nWid = jsonObj.value("id").toInt(); //to (friend
-//        QString fileName = jsonObj.value("msg").toString();
-//        qDebug() << "get file" << jsonObj << m_clients.size();
-//        for (int i = 0; i < m_clients.size(); i++) {
-//            if (m_clients.at(i)->CheckUserId(nId, nWid))
-//            {
-//                m_clients.at(i)->startTransferFile(fileName);
-//                return;
-//            }
-//        }
-//    }
-
     // 根据ID寻找连接的socket
     if (json.isObject()) {
         QJsonObject jsonObj = json.toObject();

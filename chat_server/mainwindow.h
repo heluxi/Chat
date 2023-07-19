@@ -26,19 +26,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-//    void readMsg();
+
     void InitNetwork();
-//    void newConnect();
+
 
     void SetUserIdentity(const int &identity);
     void removeSocket();
 
 
-//    void sendfile(QTcpSocket* &sock);
-//    void sendhead(QTcpSocket* &sock);
-//    void sendGroupMesg(QJsonValue dataVal);
 signals:
-//    void sendSock(QTcpSocket* &sock);
+
 private slots:
     void on_btn_Exit_clicked();
 
