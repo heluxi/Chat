@@ -23,6 +23,10 @@
    <iconset theme="network-server">
     <normaloff>.</normaloff>.</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(244, 244, 244);
+</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label_5">
@@ -30,6 +34,11 @@
       <font>
        <pointsize>16</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+image: url(:/网络设置.svg);
+</string>
      </property>
      <property name="text">
       <string>ATAW Chat</string>
@@ -70,6 +79,9 @@
       <font>
        <pointsize>19</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string>服务器设置</string>
@@ -240,8 +252,8 @@
        <widget class="QPushButton" name="okButton">
         <property name="minimumSize">
          <size>
-          <width>100</width>
-          <height>0</height>
+          <width>120</width>
+          <height>40</height>
          </size>
         </property>
         <property name="font">
