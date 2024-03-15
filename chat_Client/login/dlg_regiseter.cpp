@@ -12,6 +12,12 @@ Dlg_regiseter::Dlg_regiseter(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("注册");
+    ui->cb_auth->hide();
+    ui->label_4->hide();
+    ui->label_3->setText("Confirm your password");
+    ui->lb_title2->setText("Welcome to Us");
+
     QFile file;
     file.setFileName(":/register.css");
     file.open(QIODevice::ReadOnly);    //只读,true

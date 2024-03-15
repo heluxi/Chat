@@ -44,5 +44,6 @@
         <file>天气.svg</file>
         <file>转发.svg</file>
         <file>消息.svg</file>
+        <file>搜索.svg</file>
     </qresource>
 </RCC>

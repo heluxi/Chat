@@ -13,6 +13,7 @@ login_main::login_main(QWidget *parent) :
     ui(new Ui::login_main)
 {
     ui->setupUi(this);
+    //点击网络设置按钮 向loginw发送旋转窗口信号
     connect(ui->setNetBtn,&QPushButton::clicked,this,&login_main::rotateWindow);
 
 
@@ -24,7 +25,7 @@ login_main::login_main(QWidget *parent) :
         //        headPath = ":/loginwnd/defalut_head";
         //headPath=":/login.jpg";
     }
-    //设置图片
+    //登陆背景设置图片
     QPixmap *pix=new QPixmap(headPath);
     QSize sz=ui->lb_image->size();
     ui->lb_image->setPixmap(pix->scaled(sz));

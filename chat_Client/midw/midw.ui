@@ -147,6 +147,25 @@ border-radius:20px;
     <string/>
    </property>
   </widget>
+  <widget class="QFrame" name="search">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/搜索.svg);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>

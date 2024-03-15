@@ -39,16 +39,21 @@ RotatingStackedWidget::~RotatingStackedWidget()
 // 初始化旋转的窗口;
 void RotatingStackedWidget::initRotateWindow()
 {
+    //登录界面
     loginWnd = new loginw(this);
     // 这里定义了两个信号，需要自己去发送信号;
     connect(loginWnd, &loginw::rotateWindow, this, &RotatingStackedWidget::onRotateWindow);
     connect(loginWnd, &loginw::closeWindow, this, &RotatingStackedWidget::close);
     connect(loginWnd, &loginw::hideWindow, this, &RotatingStackedWidget::onHideWindow);
+
     connect(loginWnd, &loginw::openRegisterWnd, this, &RotatingStackedWidget::sltOpenRegisterWnd);
     connect(loginWnd, &loginw::openForgetPasswordWnd,
             this, &RotatingStackedWidget::sltOpenForgetPasswordWnd);
 
 
+
+
+    //网络配置界面
     netWorkSetWnd = new setnetDialog(this);
     connect(netWorkSetWnd, &setnetDialog::rotateWindow, this, &RotatingStackedWidget::onRotateWindow);
 //    connect(netWorkSetWnd, &setnetDialog::closeWindow, this, &RotatingStackedWidget::close);
@@ -56,8 +61,10 @@ void RotatingStackedWidget::initRotateWindow()
 
     connect(netWorkSetWnd,&setnetDialog::setNetwork,loginWnd,&loginw::slotTimeout);
 
+    //添加登陆界面和网络配置界面到stackwidget中
     this->addWidget(loginWnd);
     this->addWidget(netWorkSetWnd);
+
 
     // 这里宽和高都增加，是因为在旋转过程中窗口宽和高都会变化;
     this->setContentsMargins(20,100,20,100);
@@ -66,6 +73,9 @@ void RotatingStackedWidget::initRotateWindow()
 
     QTimer::singleShot(1500,this,SLOT(sltAutoLogin()));
 
+
+
+    //注册界面
     registerWnd = new Dlg_regiseter();
     registerWnd->hide();
 //    connect(registerWnd,&Dlg_regiseter::closeWindow,
@@ -78,6 +88,9 @@ void RotatingStackedWidget::initRotateWindow()
     connect(loginWnd,&loginw::signalRegisterOK,
             registerWnd,&Dlg_regiseter::sltRegisterOK);
 
+
+
+    //忘记密码界面
     forgetPasswordWnd = new Dlg_forget();
 //    connect(forgetPasswordWnd,SIGNAL(closeWindow(QPoint)),
 //            this,SLOT(sltCloseFindwordWnd(QPoint)));
@@ -85,8 +98,11 @@ void RotatingStackedWidget::initRotateWindow()
             loginWnd,&loginw::sltChangePwd);
     connect(loginWnd,&loginw::signalForgetPwdReply,
             forgetPasswordWnd,&Dlg_forget::sltForgetPwdReply);
-
+    connect(forgetPasswordWnd,&Dlg_forget::forgetCancel,this,[=](){this->show();});
     forgetPasswordWnd->hide();
+
+
+
 }
 
 // 开始旋转窗口;

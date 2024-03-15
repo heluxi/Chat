@@ -94,7 +94,6 @@ void leftBar::sltheadChange(QString headPath)
     QFileInfo info(headPath);
     QString fileName=info.fileName();
 
-    MyApp::m_strHeadFile=fileName;
     QFile souceFile(headPath);
     QFile targetFile(MyApp::m_strHeadPath+MyApp::m_strHeadFile);
 
@@ -118,6 +117,7 @@ void leftBar::sltheadChange(QString headPath)
     souceFile.close();
 
     //通知服务器更新头像
+    emit UpdateHeadPic();
 
 }
 

@@ -53,7 +53,7 @@ private:
 
     clientFileSock *globalFileSocket;
 
-    QLabel *m_notifyMsg;// 提醒信息
+    QLabel *m_notifyMsg;// 提醒信息 显示服务器连接情况
 
 protected:
     void paintEvent(QPaintEvent*);

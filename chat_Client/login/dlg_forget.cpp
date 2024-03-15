@@ -12,7 +12,8 @@ Dlg_forget::Dlg_forget(QWidget *parent) :
     ui(new Ui::Dlg_forget)
 {
     ui->setupUi(this);
-
+    this->setWindowTitle("忘记密码");
+    //setWindowFlags(Qt::FramelessWindowHint); // 去掉标题栏
     QFile file;
     file.setFileName(":/forget.css");
     file.open(QIODevice::ReadOnly);    //只读,true
@@ -59,6 +60,7 @@ void Dlg_forget::on_btn_forget_sure_clicked()
 void Dlg_forget::on_btn_forget_cancel_clicked()
 {
     //返回主界面
+    emit forgetCancel();
     this->hide();
 }
 

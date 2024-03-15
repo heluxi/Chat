@@ -44,6 +44,11 @@ void personMsgDlg::on_headBtn_clicked()
 
     QString headPath=QFileDialog::getOpenFileName(this,tr("select image"),"/",tr("Image Fles(*.png *.jpg)"));
     qDebug()<<"select image :"<<headPath;
+    if(headPath=="")
+    {
+        qDebug()<<"没有选择图片";
+        return;
+    }
     QString head=QString("border-image: url(%1);").arg(headPath);
     ui->headBtn->setStyleSheet(head);
     //qDebug()<<QFileDialog::getOpenFileUrl();

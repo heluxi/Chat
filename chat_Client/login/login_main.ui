@@ -140,38 +140,7 @@ font: 87 50pt &quot;Arial Black&quot;;
          </size>
         </property>
         <property name="text">
-         <string>remember</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QPushButton" name="btn_forget">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>200</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial Black</family>
-          <pointsize>14</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-          <underline>true</underline>
-         </font>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="text">
-         <string>forget password?</string>
+         <string>Remember</string>
         </property>
        </widget>
       </item>
@@ -305,6 +274,20 @@ font: 87 50pt &quot;Arial Black&quot;;
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="1" column="4" colspan="2">
+       <widget class="QPushButton" name="btn_forget">
+        <property name="styleSheet">
+         <string notr="true">QPushButton#btn_forget{
+    background-color:white;
+    color: rgb(91, 156, 200);
+    font: 87 14pt &quot;Arial Black&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Forget Password?</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
