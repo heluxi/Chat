@@ -33,7 +33,7 @@ loginw::loginw(QWidget *parent): QStackedWidget(parent)
     m_notifyMsg->hide();
 
 
-    //初始化TcpSocket
+    //初始化TcpSocket 并连接服务器
     tcpSocket = new clientSock();
     tcpSocket->connectServer(MyApp::m_strHostAddr, MyApp::m_nMsgPort);
     connected = false;
@@ -68,6 +68,9 @@ loginw::loginw(QWidget *parent): QStackedWidget(parent)
     connect(loginingPage,&Page_Login_Logining::cancelSignal,this,&loginw::changePage);
     connect(loginingPage,&Page_Login_Logining::closeWindow,this,&loginw::closeWindow);
     connect(loginingPage,&Page_Login_Logining::animationFinished,this,&loginw::sltGetOffLineMsg);
+
+
+
     connect(this,&loginw::loginSuccess,loginingPage,&Page_Login_Logining::loginSuccess);
     connect(loginMainPage,&login_main::changeLoginingHead,
             loginingPage,&Page_Login_Logining::updateHead);
@@ -77,7 +80,7 @@ loginw::loginw(QWidget *parent): QStackedWidget(parent)
     this->addWidget(loginingPage);
 }
 
-
+//解析当前状态
 void loginw::sltTcpStatus(const quint8 &state)
 {
     switch (state) {

@@ -21,7 +21,7 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
     if(info->sender != System){
         QStringList tmp;
 
-        //qDebug() << info->headIcon ;
+        qDebug() << info->headIcon ;
         tmp << info->headIcon << "" << "";
         headIcon = new MyButton(this,tmp,QSize(40,40),HeadBtn);
         if(info->sender == Me){
@@ -34,7 +34,7 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
 
         if(info->showAnimation){
             loadingMovie = new QMovie(this);
-            loadingMovie->setFileName(":/Icons/MainWindow/loading.gif");
+            loadingMovie->setFileName(":res/Icons/MainWindow/loading.gif");
             loadingLabel = new QLabel(this);
             loadingLabel->setMovie(loadingMovie);
             loadingLabel->setFixedSize(16,16);
@@ -45,7 +45,7 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
 
         if(info->showError){
             errorLabel = new QLabel(this);
-            errorLabel->setPixmap(QPixmap(":/Icons/MainWindow/error.png").
+            errorLabel->setPixmap(QPixmap(":res/Icons/MainWindow/error.png").
                                   scaled(20,20,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             errorLabel->setFixedSize(20,20);
         }
@@ -90,15 +90,15 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
         fileNameLabel->setText(tmpStr);
 
         if(fileType == "pdf"){
-            iconPath = ":/Icons/FileType/pdf.png";
+            iconPath = ":res/Icons/FileType/pdf.png";
         }else if(fileType == "mp4" || fileType == "avi"){
-            iconPath = ":/Icons/FileType/video.png";
+            iconPath = ":res/Icons/FileType/video.png";
         }else if(fileType == "docx"){
-            iconPath = ":/Icons/FileType/word.png";
+            iconPath = ":res/Icons/FileType/word.png";
         }else if(fileType == "png" || fileType == "jpg"){
-            iconPath = ":/Icons/FileType/picture.png";
+            iconPath = ":res/Icons/FileType/picture.png";
         }else {
-            iconPath = ":/Icons/FileType/file.png";
+            iconPath = ":res/Icons/FileType/file.png";
         }
 
         fileIconLabel = new QLabel;
@@ -188,10 +188,10 @@ QSize BubbleView::setRect()
     int fileHeight = 100;
     int pictureWidth = 150;
     int pictureHeight = 150;
-    int Blank1 = 10;//头像和气泡框之间的空白宽度
-    int Blank2 = 20;//头像和边框之间的空白宽度
-    int Blank3 = 20;//气泡框顶部和头像顶部的空白宽度
-    int Blank4 = 10;//气泡边框和内边矩形的宽度
+    int Blank1 = 20;//头像和气泡框之间的空白宽度
+    int Blank2 = 30;//头像和边框之间的空白宽度
+    int Blank3 = 30;//气泡框顶部和头像顶部的空白宽度
+    int Blank4 = 20;//气泡边框和内边矩形的宽度
     int headIconWH = 40;
 
 
@@ -200,7 +200,7 @@ QSize BubbleView::setRect()
         triangleRect = QRect(iconRect.x()-Blank1,iconRect.y()+Blank3+10,5,10);
         if(info->msgType == Files){
             frameRect = QRect(iconRect.x()-Blank1-fileWidth - Blank4*2,iconRect.y()+Blank3,
-                              fileWidth + Blank4*2,fileHeight + Blank4*2);
+                              fileWidth + Blank4*2,fileHeight + Blank4*2+50);
         }else if(info->msgType == Picture){
             QPixmap pixmap(info->msg);
             QSize pixSize = pixmap.size();
@@ -221,7 +221,7 @@ QSize BubbleView::setRect()
             QSize textSize = getRealString(info->msg);
             frameRect = QRect(iconRect.x()-Blank1-Blank4*2 - textSize.width(),iconRect.y()+Blank3,
                               textSize.width() + Blank4*2,textSize.height() + Blank4*2);
-            textRect = QRect(frameRect.x() + Blank4,frameRect.y()+Blank4,textSize.width(),textSize.height());
+            textRect = QRect(frameRect.x() + Blank4,frameRect.y()+Blank4,textSize.width()+10,textSize.height());
         }
         height = frameRect.height() + (Blank2+Blank3);
     }else if(info->sender == You){
@@ -229,7 +229,7 @@ QSize BubbleView::setRect()
         triangleRect = QRect(iconRect.x()+headIconWH+Blank1,iconRect.y()+Blank3+10,5,10);
         if(info->msgType == Files){
             frameRect = QRect(iconRect.x()+headIconWH+Blank1,iconRect.y()+Blank3,
-                              fileWidth + Blank4*2,fileHeight + Blank4*2);
+                              fileWidth + Blank4*2,fileHeight + Blank4*2+50);
         }else if(info->msgType == Picture){
             QPixmap pixmap(info->msg);
             QSize pixSize = pixmap.size();
@@ -250,12 +250,12 @@ QSize BubbleView::setRect()
             QSize textSize = getRealString(info->msg);
             frameRect = QRect(iconRect.x()+headIconWH+Blank1,iconRect.y()+Blank3,
                               textSize.width()+Blank4*2,textSize.height()+Blank4*2);
-            textRect = QRect(frameRect.x()+Blank4,frameRect.y()+Blank4,textSize.width(),textSize.height());
+            textRect = QRect(frameRect.x()+Blank4,frameRect.y()+Blank4,textSize.width()+10,textSize.height());
         }
         height = frameRect.height() + (Blank2+Blank3);
     }else if(info->sender == System){
         QSize textSize = getRealString(info->msg);
-        textRect = QRect(this->width()/2 - textSize.width()/2,10,textSize.width(),textSize.height());
+        textRect = QRect(this->width()/2 - textSize.width()/2,10,textSize.width()+5,textSize.height()+20);
         frameRect = QRect(textRect.x() - 5,textRect.y() - 3,textRect.width()+10,textRect.height()+7);
         height = frameRect.height() + 10;
     }
@@ -373,6 +373,7 @@ void BubbleView::paintEvent(QPaintEvent *)
     if(info->sender == Me || info->sender == You){//自己发送的消息
         //画头像
         //painter.drawPixmap(iconRect,headIcon);
+
         headIcon->setGeometry(iconRect.x(),iconRect.y(),iconRect.width(),iconRect.height());
 
         if(info->sender == Me){

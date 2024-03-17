@@ -13,6 +13,8 @@ typedef enum Sender{
     System = 2
 }Sender;
 
+
+// 用来定义气泡的一些信息
 class BubbleInfo : public QObject
 {
     Q_OBJECT

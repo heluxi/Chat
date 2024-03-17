@@ -52,7 +52,7 @@ private:
     QLabel *loadingLabel;
     QMovie *loadingMovie;
 
-     QList<ChatWindow*> chatWindowList;
+    QList<ChatWindow*> chatWindowList;
 
     QHash<int,int> hash;//用户对应id到聊天窗口的映射
     int cnt = 1;

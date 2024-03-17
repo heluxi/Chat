@@ -144,7 +144,7 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">image: url(:/res/pic/Customer Copy.png);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string/>

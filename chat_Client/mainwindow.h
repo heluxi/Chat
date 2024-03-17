@@ -81,7 +81,9 @@ private:
     QPoint windowPos;
     QPoint mousePos;
     QPoint dPos;
+
     Ui::MainWindow *ui;
+
     clientSock *m_tcp;
     clientFileSock *m_fileTcp;
     QFileInfo *fileInfo;

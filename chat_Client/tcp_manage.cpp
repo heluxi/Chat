@@ -11,6 +11,7 @@
 #include<QMessageBox>
 #include"myapp.h"
 
+//发送消息套接字
 
 clientSock::clientSock(QObject *parent)
     : QObject{parent}
@@ -33,7 +34,7 @@ void clientSock::connectServer(const QString &host, const int &port)
 
 }
 
-void  clientSock::  sendMsg(const quint8 &type, const QJsonValue &dataVal)
+void  clientSock::sendMsg(const quint8 &type, const QJsonValue &dataVal)
 {
 //        QString sendmsg=QString("[%1]:%2").arg(name).arg(msg);
 //        int len=tcpSocket->write(sendmsg.toUtf8());

@@ -102,8 +102,8 @@ private slots:
 
 private:
     Ui::ChatWindow *ui;
-    Screen *screen;
-    MyEmotionWidget *emoj;
+    Screen *screen;//截图窗口
+    MyEmotionWidget *emoj;//表情包窗口
 
     bool open = true;
     Cell *cell;//记录该聊天窗口对方的信息

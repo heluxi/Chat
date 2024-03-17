@@ -27,8 +27,8 @@ void RadiusProgressBar::paintEvent(QPaintEvent *)
     else if(tag == 1)
         valueStr = QString("已接收 %1%").arg(QString::number(value()));
 
-    QPixmap buttomMap = QPixmap(":/Icons/MainWindow/radius_back.png");
-    QPixmap fillMap = QPixmap(":/Icons/MainWindow/radius_front.png");
+    QPixmap buttomMap = QPixmap(":res/Icons/MainWindow/radius_back.png");
+    QPixmap fillMap = QPixmap(":res/Icons/MainWindow/radius_front.png");
 
     //画进度条
     p.drawPixmap(rect, buttomMap);

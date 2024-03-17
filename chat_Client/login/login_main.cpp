@@ -26,9 +26,9 @@ login_main::login_main(QWidget *parent) :
         //headPath=":/login.jpg";
     }
     //登陆背景设置图片
-    QPixmap *pix=new QPixmap(headPath);
-    QSize sz=ui->lb_image->size();
-    ui->lb_image->setPixmap(pix->scaled(sz));
+    //QPixmap *pix=new QPixmap(headPath);
+    //QSize sz=ui->lb_image->size();
+    //ui->lb_image->setPixmap(pix->scaled(sz));
 
 
 

@@ -469,11 +469,12 @@ void ChatWindow::sendMsg()
     BubbleInfo *info = new BubbleInfo;
     info->sender = Me;
     info->myID = MyApp::m_nId;
-    info->headIcon = MyApp::m_strHeadPath + MyApp::m_strHeadFile;//我的头像
-
+    //info->headIcon = MyApp::m_strHeadPath + MyApp::m_strHeadFile;//我的头像
+info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
     QFileInfo headFile(info->headIcon);
     if(!headFile.exists() || MyApp::m_strHeadFile.isEmpty()){
-        info->headIcon = MyApp::m_strHeadPath + "default.png";
+        //info->headIcon = MyApp::m_strHeadPath + "default.png";
+        info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
     }
     info->name = MyApp::m_strUserName;//我的名字
     info->yourID = cell->id;
@@ -514,9 +515,9 @@ void ChatWindow::sendMsg()
 
                 //在聊天界面添加气泡
                 QString msg = "我:" + info->msg;
-                                           sendTimeMsg(curTime,msg);
+                sendTimeMsg(curTime,msg);
                 info->showError = false;
-                                           ui->msgWindow->insertBubble(info);
+                ui->msgWindow->insertBubble(info);
                 writeMsgToDatabase(info);
             }else{
                 info->showError = true;
