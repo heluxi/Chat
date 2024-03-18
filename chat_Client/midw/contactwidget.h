@@ -9,6 +9,7 @@ namespace Ui {
 class ContactWidget;
 }
 
+//联系人类
 class ContactWidget : public QWidget
 {
     Q_OBJECT

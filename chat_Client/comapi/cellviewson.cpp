@@ -29,8 +29,7 @@ CellViewSon::CellViewSon(QWidget *parent,Cell *c,int tag)
         newMsg->setVisible(false);
 
         headLabel = new RoundLabel(this,cell->iconPath);
-        headLabel = new QLabel(this);
-        headLabel->setText(cell->iconPath);
+
         if(tag == 0 || tag == 2) {
             headLabel->setFixedSize(40,40);
             if(tag == 0){
@@ -186,7 +185,7 @@ void CellViewSon::paintEvent(QPaintEvent *)
                 font.setPixelSize(15);
                 painter.setPen(pen);
                 painter.setFont(font);
-                painter.drawText(w-100, 0, 100, h / 2 - 2, Qt::AlignCenter, cell->subTitle);
+                painter.drawText(w-110, 0, 100, h / 2 - 2, Qt::AlignCenter, cell->subTitle);
                 painter.drawText(70, h/2 - 5, 260, h / 2 - 2, Qt::AlignBottom, cell->msg);
             }else{
                 //绘制subtitle
@@ -194,11 +193,11 @@ void CellViewSon::paintEvent(QPaintEvent *)
                 font.setPixelSize(15);
                 painter.setPen(pen);
                 painter.setFont(font);
-                painter.drawText(w-100, 0, 100, h / 2 - 2, Qt::AlignCenter, cell->subTitle);
+                painter.drawText(w-110, 0, 100, h / 2 - 2, Qt::AlignCenter, cell->subTitle);
                 painter.drawText(70, h/2 - 5, 260, h / 2 - 2, Qt::AlignBottom, cell->msg);
 
                 if(!cell->isClicked && cell->showNewMsg){
-                    newMsg->move(w-30,h / 2 - 5);
+                    newMsg->move(w-50,h / 2 - 5);
                     newMsg->setVisible(true);
                     //qDebug() << "show" << cell->subTitle;
                 }else{

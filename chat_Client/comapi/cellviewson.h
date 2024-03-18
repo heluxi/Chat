@@ -42,10 +42,10 @@ private:
     int tag = 0;
     bool isAdmin = false;
 
-    QLabel *headIcon;
+//    QLabel *headIcon;
     QLabel *newMsg;
-//    RoundLabel *headLabel;
-    QLabel *headLabel;
+   RoundLabel *headLabel;
+//    QLabel *headLabel;
     QLabel *notice;
     QLabel *adminLabel;
     QLabel *topLabel;

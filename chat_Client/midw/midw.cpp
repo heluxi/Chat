@@ -19,8 +19,8 @@ midw::midw(QWidget *parent) :
     ui->setupUi(this);
 
     this->setFixedWidth(350);
-    ui->chatList->setFixedWidth(335);
-    ui->chatListW->setFixedWidth(335);
+    ui->chatList->setFixedWidth(350);
+    ui->chatListW->setFixedWidth(350);
     connect(ui->chatList,&ListWidget::popMenuToShow,
             this,&midw::setPopMenuCell);
     connect(ui->chatList,&ListWidget::signalOpenDialog,
@@ -114,7 +114,6 @@ void midw::InitChatList()
 
     //查询本地数据库获取我的好友
     QJsonArray myChatList = sql_manage::Instance()->getMyChatList();
-    qDebug()<<"mychatlist"<<myChatList;
     int cnt = myChatList.size();
     if(cnt == 0){
         qDebug()<<"cnt==0";
@@ -127,8 +126,8 @@ void midw::InitChatList()
         Cell *c = new Cell;
         c->id = json.value("id").toInt();
         c->name = json.value("name").toString();
-        qDebug()<<"test";
         c->iconPath = json.value("head").toString();
+        qDebug()<<c->iconPath;
         c->msg = json.value("lastMsg").toString();
         c->subTitle = json.value("lastTime").toString();
         int tag = json.value("tag").toInt();

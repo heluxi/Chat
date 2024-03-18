@@ -101,4 +101,5 @@ DISTFILES += \
     res/pic/文件夹.png \
     res/pic/用户.png \
     res/pic/表情.png \
-    res/pic/解除固定,图钉.png
+    res/pic/解除固定,图钉.png \
+    res/scrollbar.qss

@@ -469,12 +469,12 @@ void ChatWindow::sendMsg()
     BubbleInfo *info = new BubbleInfo;
     info->sender = Me;
     info->myID = MyApp::m_nId;
-    //info->headIcon = MyApp::m_strHeadPath + MyApp::m_strHeadFile;//我的头像
-info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
+    info->headIcon = MyApp::m_strHeadPath + MyApp::m_strHeadFile;//我的头像
+//info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
     QFileInfo headFile(info->headIcon);
     if(!headFile.exists() || MyApp::m_strHeadFile.isEmpty()){
-        //info->headIcon = MyApp::m_strHeadPath + "default.png";
-        info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
+        info->headIcon = MyApp::m_strHeadPath + "default.png";
+        //info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
     }
     info->name = MyApp::m_strUserName;//我的名字
     info->yourID = cell->id;

@@ -21,7 +21,6 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
     if(info->sender != System){
         QStringList tmp;
 
-        qDebug()<<"017017\n";
         qDebug() << info->headIcon ;
         tmp << info->headIcon << "" << "";
         headIcon = new MyButton(this,tmp,QSize(40,40),HeadBtn);
@@ -189,11 +188,11 @@ QSize BubbleView::setRect()
     int fileHeight = 100;
     int pictureWidth = 150;
     int pictureHeight = 150;
-    int Blank1 = 20;//头像和气泡框之间的空白宽度
-    int Blank2 = 30;//头像和边框之间的空白宽度
-    int Blank3 = 30;//气泡框顶部和头像顶部的空白宽度
+    int Blank1 = 10;//头像和气泡框之间的空白宽度
+    int Blank2 = 20;//头像和边框之间的空白宽度
+    int Blank3 = 20;//气泡框顶部和头像顶部的空白宽度
     int Blank4 = 20;//气泡边框和内边矩形的宽度
-    int headIconWH = 40;
+    int headIconWH = 50;
 
 
     if(info->sender == Me){

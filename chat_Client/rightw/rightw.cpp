@@ -8,13 +8,13 @@ rightw::rightw(QWidget *parent) :
     ui(new Ui::rightw)
 {
     ui->setupUi(this);
-
+    this->setFixedWidth(790);
     defaultPage = new DefaultWindow;
     ui->stackedWidget->addWidget(defaultPage);
     ui->stackedWidget->setCurrentIndex(0);
 
     loadingMovie = new QMovie(this);
-    loadingMovie->setFileName(":/Icons/MainWindow/loading2.gif");
+    loadingMovie->setFileName(":/res/Icons/MainWindow/loading2.gif");
 
     loadingLabel = new QLabel(this);
     loadingLabel->setMovie(loadingMovie);

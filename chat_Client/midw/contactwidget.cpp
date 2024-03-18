@@ -38,6 +38,11 @@ ContactWidget::ContactWidget(QWidget *parent) :
 //        << ":/Icons/MainWindow/group2.png"
 //        << ":/Icons/MainWindow/group3.png";
 //    ui->btn_group = new MyButton(nullptr,tmp,QSize(48,48));
+    ui->btn_group->setStyleSheet("border-image: url(:/res/Icons/MainWindow/group3.png);");
+    ui->btn_friend->setStyleSheet("border-image: url(:/res/Icons/MainWindow/contact3.png");
+    ui->btn_friend->setFixedSize(50,50);
+    ui->btn_group->setFixedSize(50,50);
+
 
     btnGroup = new QButtonGroup(this);
     btnGroup->addButton(ui->btn_friend, 0);
@@ -54,7 +59,7 @@ ContactWidget::ContactWidget(QWidget *parent) :
     connect(ui->groupList,&ListWidget::popMenuToShow,
             this,&ContactWidget::setPopMenuCell);
 
-//    this->setContentsMargins(0,0,0,0);
+    this->setContentsMargins(0,0,0,0);
 }
 
 ContactWidget::~ContactWidget()

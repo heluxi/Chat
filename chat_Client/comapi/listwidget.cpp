@@ -10,6 +10,7 @@
 #include <QFile>
 #include <string>
 #include "qevent.h"
+#include<QDateTime>
 
 ListWidget::ListWidget(QWidget *parent,int tag) :
     QListWidget(parent),tag(tag)
@@ -184,54 +185,54 @@ void ListWidget::refreshList()
     }
 }
 
-//void ListWidget::addSonItem(Cell *cell)
-//{
-//    CellViewSon *son = new CellViewSon(nullptr,cell,tag);
+void ListWidget::addSonItem(Cell *cell)
+{
+    CellViewSon *son = new CellViewSon(nullptr,cell,tag);
 
-//    if(tag == 0 || tag == 2)
-//        son->setGeometry(0,0,350,60);
-//    else if(tag == 1)
-//        son->setGeometry(0,0,200,40);
-//    son->setPopMenu(cellSonMenu);
-//    sonItems.append(son);
+    if(tag == 0 || tag == 2)
+        son->setGeometry(0,0,350,60);
+    else if(tag == 1)
+        son->setGeometry(0,0,200,40);
+    son->setPopMenu(cellSonMenu);
+    sonItems.append(son);
 
-//    //槽连接，消息传递给上层类进行具体处理
+    //槽连接，消息传递给上层类进行具体处理
 
 
-//    connect(son,SIGNAL(onSelected(Cell *)),
-//            this,SLOT(onSonSelected(Cell *)));//单元格被单击选中
-//    connect(son,SIGNAL(onRightClicked(Cell *)),
-//            this,SLOT(onCellRightClicked(Cell *)));
-//    connect(son,SIGNAL(onPopMenuToShow(Cell *, QMenu *)),
-//            this,SIGNAL(popMenuToShow(Cell *, QMenu *)));
-//    connect(son,SIGNAL(onDoubleClicked(Cell *)),
-//            this,SIGNAL(sonDoubleClicked(Cell *)));
+    connect(son,SIGNAL(onSelected(Cell *)),
+            this,SLOT(onSonSelected(Cell *)));//单元格被单击选中
+    connect(son,SIGNAL(onRightClicked(Cell *)),
+            this,SLOT(onCellRightClicked(Cell *)));
+    connect(son,SIGNAL(onPopMenuToShow(Cell *, QMenu *)),
+            this,SIGNAL(popMenuToShow(Cell *, QMenu *)));
+    connect(son,SIGNAL(onDoubleClicked(Cell *)),
+            this,SIGNAL(sonDoubleClicked(Cell *)));
 
-//    QListWidgetItem *item = new QListWidgetItem("");
-//    this->addItem(item);
-//    this->setItemWidget(item,son);
-//    item->setSizeHint(son->geometry().size());
+    QListWidgetItem *item = new QListWidgetItem("");
+    this->addItem(item);
+    this->setItemWidget(item,son);
+    item->setSizeHint(son->geometry().size());
 
-//}
+}
 
-//void ListWidget::changeSonSelectionState(Cell *c)
-//{
-//    for(CellViewSon* son: sonItems){
-//        if(son->cell != c){
-//            son->cell->isClicked = false;
-//            son->update();
-//        }
-//    }
-//}
+void ListWidget::changeSonSelectionState(Cell *c)
+{
+    for(CellViewSon* son: sonItems){
+        if(son->cell != c){
+            son->cell->isClicked = false;
+            son->update();
+        }
+    }
+}
 
-//void ListWidget::onDadOpenChanged(CellViewDad* dad)
-//{
-//    int cnt = dad->cell->childs.size();
-//    for(int i = 0;i < cnt;i++){
-//        dad->cell->childs.at(i)->isClicked = false;
-//    }
-//    refreshList();
-//}
+void ListWidget::onDadOpenChanged(CellViewDad* dad)
+{
+    int cnt = dad->cell->childs.size();
+    for(int i = 0;i < cnt;i++){
+        dad->cell->childs.at(i)->isClicked = false;
+    }
+    refreshList();
+}
 
 void ListWidget::onSonSelected(Cell *cell)
 {
@@ -249,14 +250,14 @@ void ListWidget::slt_valueChanged(int value)
     this->verticalScrollBar()->setValue(value);
 }
 
-//Cell* ListWidget::getDadCellFromName(QString *name)
-//{
-//    for(Cell *group : cells){
-//        if(!group->groupName.compare(name))
-//            return group;
-//    }
-//    return nullptr;
-//}
+Cell* ListWidget::getDadCellFromName(QString *name)
+{
+    for(Cell *group : cells){
+        if(!group->groupName.compare(*name))
+            return group;
+    }
+    return nullptr;
+}
 
 void ListWidget::onCellRightClicked(Cell *cell)
 {
@@ -283,7 +284,7 @@ void ListWidget::refreshCellTime(int id, qint64 time,QString msg)
     for(int i = 0;i < cnt;i++){
         if(cells.at(i)->id == id && (cells.at(i)->type == Cell_FriendChat
                                       || cells.at(i)->type == Cell_GroupChat)){
-//            cells.at(i)->subTitle = QDateTime::fromSecsSinceEpoch(time).toString("hh:mm:ss");
+            cells.at(i)->subTitle = QDateTime::fromSecsSinceEpoch(time).toString("hh:mm:ss");
 
             msg.replace("\n"," ");
             //qDebug() << "更新中栏格子" << msg;
@@ -298,54 +299,7 @@ void ListWidget::refreshCellTime(int id, qint64 time,QString msg)
     }
 }
 
-void ListWidget::addSonItem(Cell *cell)
-{
-    CellViewSon *son = new CellViewSon(nullptr,cell,tag);
 
-    if(tag == 0 || tag == 2)
-//        son->setGeometry(0,0,350,60);
-        son->setGeometry(0,0,321,60);
-    else if(tag == 1)
-        son->setGeometry(0,0,200,40);
-    son->setPopMenu(cellSonMenu);
-    sonItems.append(son);
-
-    //槽连接，消息传递给上层类进行具体处理
-
-
-    connect(son,&CellViewSon::onSelected,
-            this,&ListWidget::onSonSelected);//单元格被单击选中
-    connect(son,&CellViewSon::onRightClicked,
-            this,&ListWidget::onCellRightClicked);
-    connect(son,&CellViewSon::onPopMenuToShow,
-            this,&ListWidget::popMenuToShow);
-    connect(son,&CellViewSon::onDoubleClicked,
-            this,&ListWidget::sonDoubleClicked);
-
-    QListWidgetItem *item = new QListWidgetItem("");
-    this->addItem(item);
-    this->setItemWidget(item,son);
-    item->setSizeHint(son->geometry().size());
-}
-
-void ListWidget::changeSonSelectionState(Cell *c)
-{
-    for(CellViewSon* son: sonItems){
-        if(son->cell != c){
-            son->cell->isClicked = false;
-            son->update();
-        }
-    }
-}
-
-void ListWidget::onDadOpenChanged(CellViewDad *dad)
-{
-    int cnt = dad->cell->childs.size();
-    for(int i = 0;i < cnt;i++){
-        dad->cell->childs.at(i)->isClicked = false;
-    }
-    refreshList();
-}
 
 
 void ListWidget::enterEvent(QEnterEvent *e)
@@ -375,7 +329,7 @@ FloatingScrollBar::FloatingScrollBar(QWidget *parent, Qt::Orientation t)
 {
     this->setOrientation(t);
 
-    QString style_file = ":/qss/scrollbar.qss";
+    QString style_file = ":/res/scrollbar.qss";
     QFile styleFile(style_file);//路径名
     if(styleFile.open( QFile::ReadOnly )){
         QString style( styleFile.readAll() );

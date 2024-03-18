@@ -8,7 +8,7 @@ CellViewDad::CellViewDad(QWidget *parent)
     : QWidget{parent}
 {
     setWindowFlag(Qt::FramelessWindowHint);
-    setFixedSize(QSize(325,30));
+    setFixedSize(QSize(330,30));
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     iconLabel = new QLabel;

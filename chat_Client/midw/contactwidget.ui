@@ -68,8 +68,11 @@
           <height>48</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/res/Icons/MainWindow/contact3.png);</string>
+        </property>
         <property name="text">
-         <string>好友</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -94,8 +97,11 @@
           <height>50</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/res/Icons/MainWindow/group3.png);</string>
+        </property>
         <property name="text">
-         <string>群组</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -173,14 +179,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyButton</class>
-   <extends>QPushButton</extends>
-   <header>mybutton.h</header>
-  </customwidget>
-  <customwidget>
    <class>ListWidget</class>
    <extends>QListWidget</extends>
    <header>listwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MyButton</class>
+   <extends>QPushButton</extends>
+   <header>mybutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
