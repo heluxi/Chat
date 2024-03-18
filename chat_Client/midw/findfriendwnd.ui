@@ -114,7 +114,7 @@ border-radius:10px;</string>
        <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
       </property>
       <property name="text">
-       <string>reslut:</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel">

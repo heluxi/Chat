@@ -12,11 +12,18 @@ FindFriendWnd::FindFriendWnd(int tag) :
     ui(new Ui::FindFriendWnd)
 {
     ui->setupUi(this);
-
+    this->setWindowTitle("查找");
     if(tag == 0)
         ui->label->setText("找好友");
     else if(tag == 1)
         ui->label->setText("找群");
+    ui->headLabel->clear();
+    ui->idLabel->clear();
+    ui->resultLabel->clear();
+    ui->nameLabel->clear();
+    ui->idLabel->setFixedWidth(100);
+    ui->nameLabel->setFixedWidth(200);
+    ui->headLabel->setFixedSize(100,100);
 }
 
 FindFriendWnd::~FindFriendWnd()
@@ -131,7 +138,7 @@ void FindFriendWnd::SltfindFrindReply(const QJsonValue &jsonVal)
                             QFileInfo fileInfo_(headPath);
 
                             if(!fileInfo_.exists()){
-                                head = "./res/pic/用户.png";//没有收到则显示默认头像
+                                head = ":/res/Icons/MainWindow/contact3_.png";//没有收到则显示默认头像
                             }else{
                                 head = headPath;
                             }
@@ -141,12 +148,14 @@ void FindFriendWnd::SltfindFrindReply(const QJsonValue &jsonVal)
 
             ui->resultLabel->setText("查询到下列信息");
             ui->resultLabel->setVisible(true);
-            ui->idLabel->setText(QString::number(id));
+            ui->idLabel->setText("ID:"+QString::number(id));
             ui->idLabel->setVisible(true);
-            ui->nameLabel->setText(name);
+            ui->nameLabel->setText("Name:"+name);
             ui->nameLabel->setVisible(true);
             qDebug() << "head path:" << head;
-            ui->headLabel->setPixmap(head);
+            QPixmap p=head;
+            ui->headLabel->setPixmap(p);
+            ui->headLabel->setScaledContents(true);
             ui->headLabel->setVisible(true);
             if(tag == 0)
                 ui->addBtn->setText("添加好友");
