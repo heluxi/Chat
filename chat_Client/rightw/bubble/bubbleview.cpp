@@ -21,6 +21,7 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
     if(info->sender != System){
         QStringList tmp;
 
+        qDebug()<<"017017\n";
         qDebug() << info->headIcon ;
         tmp << info->headIcon << "" << "";
         headIcon = new MyButton(this,tmp,QSize(40,40),HeadBtn);
@@ -135,8 +136,8 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
         QPixmap pixmap = QPixmap(info->msg);
         if(pixmap.isNull()){
             qDebug() << "cannot find picture:" << info->msg;
-            pixmap = QPixmap(":/Icons/MainWindow/deleted.png");
-            info->msg = ":/Icons/MainWindow/deleted.png";
+            pixmap = QPixmap(":res/Icons/MainWindow/deleted.png");
+            info->msg = ":res/Icons/MainWindow/deleted.png";
         }
         //qDebug() << "picture size:" << pixmap.size();
 

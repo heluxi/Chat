@@ -18,7 +18,9 @@ midw::midw(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    this->setFixedWidth(350);
+    ui->chatList->setFixedWidth(335);
+    ui->chatListW->setFixedWidth(335);
     connect(ui->chatList,&ListWidget::popMenuToShow,
             this,&midw::setPopMenuCell);
     connect(ui->chatList,&ListWidget::signalOpenDialog,
@@ -46,7 +48,7 @@ midw::midw(QWidget *parent) :
     contactWidget = new ContactWidget;
 
     ui->stackedWidget->addWidget(contactWidget);
-    ui->stackedWidget->setCurrentIndex(1);//默认打开chatList列表
+    ui->stackedWidget->setCurrentIndex(0);//默认打开chatList列表
 
 
     connect(contactWidget,&ContactWidget::signalSendMessage,
@@ -112,8 +114,10 @@ void midw::InitChatList()
 
     //查询本地数据库获取我的好友
     QJsonArray myChatList = sql_manage::Instance()->getMyChatList();
+    qDebug()<<"mychatlist"<<myChatList;
     int cnt = myChatList.size();
     if(cnt == 0){
+        qDebug()<<"cnt==0";
         ui->stackedWidget->setCurrentIndex(0);
         return;
     }
@@ -123,6 +127,7 @@ void midw::InitChatList()
         Cell *c = new Cell;
         c->id = json.value("id").toInt();
         c->name = json.value("name").toString();
+        qDebug()<<"test";
         c->iconPath = json.value("head").toString();
         c->msg = json.value("lastMsg").toString();
         c->subTitle = json.value("lastTime").toString();

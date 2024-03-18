@@ -16,19 +16,19 @@ CellViewSon::CellViewSon(QWidget *parent,Cell *c,int tag)
 
     if(cell->type == Cell_AddFriend || cell->type == Cell_AddGroup){
         notice = new QLabel(this);
-        notice->setPixmap(QPixmap(":/Icons/MainWindow/notice.png").
+        notice->setPixmap(QPixmap(":/res/Icons/MainWindow/notice.png").
                           scaled(40,40,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
         notice->setFixedSize(40,40);
         notice->setStyleSheet("border:none;");
     }else{
         newMsg = new QLabel(this);
-        QPixmap pixmap_(":/Icons/MainWindow/newmsg.png");
+        QPixmap pixmap_(":/res/Icons/MainWindow/newmsg.png");
         newMsg->setPixmap(pixmap_.scaled(15,15,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
         newMsg->setFixedSize(15,15);
         newMsg->setStyleSheet("border:none;");
         newMsg->setVisible(false);
 
-//        headLabel = new RoundLabel(this,cell->iconPath);
+        headLabel = new RoundLabel(this,cell->iconPath);
         headLabel = new QLabel(this);
         headLabel->setText(cell->iconPath);
         if(tag == 0 || tag == 2) {
@@ -36,7 +36,7 @@ CellViewSon::CellViewSon(QWidget *parent,Cell *c,int tag)
             if(tag == 0){
                 if(cell->stayOnTop){
                     topLabel = new QLabel(this);
-                    topLabel->setPixmap(QPixmap(":/Icons/MainWindow/top_chat.png").
+                    topLabel->setPixmap(QPixmap(":/res/Icons/MainWindow/top_chat.png").
                                         scaled(25,25,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
                 }
             }
@@ -46,7 +46,7 @@ CellViewSon::CellViewSon(QWidget *parent,Cell *c,int tag)
             isAdmin = sql_manage::Instance()->isAdmin(cell->id,cell->groupid);
             if(isAdmin){
                 adminLabel = new QLabel(this);
-                adminLabel->setPixmap(QPixmap(":/Icons/MainWindow/admin.png").
+                adminLabel->setPixmap(QPixmap(":/res/Icons/MainWindow/admin.png").
                                       scaled(15,15,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             }
         }

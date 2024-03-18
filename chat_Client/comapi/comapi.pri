@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/cellviewson.h \
     $$PWD/listwidget.h \
     $$PWD/mybutton.h \
+    $$PWD/roudlabel.h \
     $$PWD/searchbar.h \
     $$PWD/type.h \
     $$PWD/myapp.h \
@@ -18,4 +19,5 @@ SOURCES += \
     $$PWD/listwidget.cpp \
     $$PWD/myapp.cpp \
     $$PWD/mybutton.cpp \
+    $$PWD/roudlabel.cpp \
     $$PWD/searchbar.cpp

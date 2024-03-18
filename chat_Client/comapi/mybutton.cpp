@@ -82,6 +82,8 @@ void MyButton::setImage(QString iconName)
         //        QPixmap pixmap = myHelper::PixmapToRound(
         //                    QPixmap("E:\\100001.png"),btnSize.width()/2);
 //        setIcon(QIcon(pixmap));
+        QPixmap pixmap=iconName;
+        setIcon(QIcon(iconName));
         setIconSize(size());
         setStyleSheet("border:none;");
     }else{

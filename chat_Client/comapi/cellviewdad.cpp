@@ -28,10 +28,10 @@ void CellViewDad::setCell(Cell *c)
 {
     cell = c;
     if(cell->isOpen){
-        iconLabel->setPixmap(QPixmap(":/Icons/MainWindow/arrowDown.png").
+        iconLabel->setPixmap(QPixmap(":/res/Icons/MainWindow/arrowDown.png").
                              scaled(iconLabel->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     }else{
-        iconLabel->setPixmap(QPixmap(":/Icons/MainWindow/arrowRight.png").
+        iconLabel->setPixmap(QPixmap(":/res/Icons/MainWindow/arrowRight.png").
                              scaled(iconLabel->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     }
 }
@@ -46,8 +46,8 @@ void CellViewDad::mousePressEvent(QMouseEvent *e)
     if(cell == nullptr) return;
     if(e->button() == Qt::LeftButton){//处理鼠标左键单击事件
         cell->isOpen = !cell->isOpen;//鼠标左键单击，改变cell的打开状态
-        if(cell->isOpen) iconLabel->setPixmap(QPixmap(":/Icons/MainWindow/arrowDown.png").scaled(iconLabel->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
-        else iconLabel->setPixmap(QPixmap(":/Icons/MainWindow/arrowRight.png").scaled(iconLabel->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+        if(cell->isOpen) iconLabel->setPixmap(QPixmap(":/res/Icons/MainWindow/arrowDown.png").scaled(iconLabel->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
+        else iconLabel->setPixmap(QPixmap(":/res/Icons/MainWindow/arrowRight.png").scaled(iconLabel->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
         qDebug() << "LeftBtn clicked on viewdad:" << cell->id << cell->name;
 
         emit onOpenStatusChanged(this);

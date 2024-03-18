@@ -127,6 +127,8 @@ void MainWindow::setMainSocket(clientSock *socket, clientFileSock *filesocket)
 void MainWindow::initUI()
 {
     //加载左栏的头像 ok
+    qDebug()<<"MainWindow initUI";
+
     midBar->InitContactList();//加载好友列表和群列表
     midBar->InitChatList();//加载中栏的历史聊天记录框
 }

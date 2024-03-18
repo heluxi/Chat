@@ -10,15 +10,15 @@ SearchBar::SearchBar(QWidget *parent, QSize p_size,int tag):
     setFixedSize(p_size);
     IconHeight = p_size.height()/2;
     icon = new QLabel;
-    icon->setPixmap(QPixmap(":/Icons/MainWindow/search.png").
+    icon->setPixmap(QPixmap(":/res/Icons/MainWindow/search.png").
                     scaled(IconHeight,IconHeight,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
     icon->setFixedSize(QSize(IconHeight,IconHeight));
     icon->setStyleSheet("border:none;");
 
     QStringList list;
-    list << ":/Icons/MainWindow/search_close.png"
-         << ":/Icons/MainWindow/search_close.png"
-         << ":/Icons/MainWindow/search_close.png";
+    list << ":/res/Icons/MainWindow/search_close.png"
+         << ":/res/Icons/MainWindow/search_close.png"
+         << ":/res/Icons/MainWindow/search_close.png";
     closeBtn = new MyButton(nullptr,list,QSize(IconHeight,IconHeight));
     closeBtn->setToolTip(tr("关闭"));
     closeBtn->setFocusPolicy(Qt::NoFocus);

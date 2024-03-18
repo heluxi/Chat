@@ -8,7 +8,7 @@
 
 
 #include "mybutton.h"
-//#include "roundlabel.h"
+#include "roudlabel.h"
 
 class CellViewSon : public QWidget
 {
