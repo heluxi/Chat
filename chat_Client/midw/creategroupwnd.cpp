@@ -8,41 +8,46 @@
 
 CreateGroupWnd::CreateGroupWnd() : QDialog ()
 {
-    QFont font = QFont("Microsoft YaHei", 18, 50, false);
+    QFont font = QFont("Microsoft YaHei", 22, 50, false);
     QFont font2 = QFont("Microsoft YaHei", 12, 48, false);
 
     this->setFixedSize(600,400);
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 
+    //提示标签栏
     m_notifyMsg= new QLabel(this);
     m_notifyMsg->setFixedSize(600, 20);
     m_notifyMsg->setStyleSheet("background-color:#09a3dc;font-size: 12px;font-family:Microsoft YaHei;");
     m_notifyMsg->hide();
 
+    //关闭按钮
     m_menuCloseBtn = new QPushButton(this);
     m_menuCloseBtn->setFlat(true);
     m_menuCloseBtn->setFixedSize(30, 32);
     m_menuCloseBtn->move(570, 0);
-    m_menuCloseBtn->setStyleSheet("QPushButton{ border-image: url(:/loginwnd/close_normal); }"
-                                  "QPushButton:hover:!pressed{ border-image: url(:/loginwnd/close_hover); }"
-                                  "QPushButton:hover:pressed{ border-image: url(:/loginwnd/close_press); border-style:none; }");
+    m_menuCloseBtn->setStyleSheet("QPushButton{ border-image: url(:/res/menu_btn/close_normal.png); }"
+                                  "QPushButton:hover:!pressed{ border-image: url(:/res/menu_btn/close_hover); }"
+                                  "QPushButton:hover:pressed{ border-image: url(:/res/menu_btn/close_press); border-style:none; }");
     connect(m_menuCloseBtn, &QPushButton::pressed, this, &CreateGroupWnd::close);
 
+    //缩放按钮
     m_menuMinBtn = new QPushButton(this);
     m_menuMinBtn->setFlat(true);
     m_menuMinBtn->setFixedSize(30, 32);
     m_menuMinBtn->move(540, 0);
-    m_menuMinBtn->setStyleSheet("QPushButton{ border-image: url(:/loginwnd/min_normal); }"
-                                "QPushButton:hover:!pressed{ border-image: url(:/loginwnd/min_hover); }"
-                                "QPushButton:hover:pressed{ border-image: url(:/loginwnd/min_press); border-style:none; }");
+    m_menuMinBtn->setStyleSheet("QPushButton{ border-image: url(:/res/menu_btn/min_normal); }"
+                                "QPushButton:hover:!pressed{ border-image: url(:/res/menu_btn/min_hover); }"
+                                "QPushButton:hover:pressed{ border-image: url(:/res/menu_btn/min_press); border-style:none; }");
     connect(m_menuMinBtn, &QPushButton::pressed, this, &CreateGroupWnd::showMinimized);
 
+    //标题标签
     welcome = new QLabel("创建群聊",this);
     welcome->setStyleSheet("color:white");
     welcome->setFont(font);
 
+    //图片logo
     logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/Icons/MainWindow/title.png").
+    logo->setPixmap(QPixmap(":/群众、用户群体.svg").
                     scaled(80,80,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
 
     nameLabel = new QLabel("输入群名称",this);
@@ -86,7 +91,7 @@ CreateGroupWnd::CreateGroupWnd() : QDialog ()
 
     this->setAutoFillBackground(true);
     QPalette palette = this->palette();
-    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/Icons/MainWindow/createGroup.png").
+    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/res/Icons/MainWindow/createGroup.png").
                                              scaled(this->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));// 使用平滑的缩放方式
     this->setPalette(palette);// 给widget加上背景图
 }

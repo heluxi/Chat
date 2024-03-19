@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>961</width>
-    <height>721</height>
+    <width>991</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
 }
 /*QPushButton{border-radius:6px;color:white;background-color:#1abc9c;}*/
 QPushButton{
-    background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(64,145,252,255),stop:1 rgba(255,255,255,255));
+    background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgb(69, 138, 197),stop:1 rgba(255,255,255,255));
 /*    color:rgb(255,255,255,255);*/
     color:white;
     border:0px groove gray;
@@ -78,6 +78,141 @@ QLineEdit{
    <property name="verticalSpacing">
     <number>0</number>
    </property>
+   <item row="0" column="0" colspan="2">
+    <widget class="QWidget" name="widget_4" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget{
+    background-color:white;
+}
+/*QPushButton{border-radius:6px;color:white;background-color:#1abc9c;}*/
+QPushButton{
+    background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(64,145,252,255),stop:1 rgba(255,255,255,255));
+/*    color:rgb(255,255,255,255);*/
+    color:white;
+    border:0px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+/*    font:16pt &quot;Candara&quot;;*/
+    font: 87 16pt &quot;Arial Black&quot;;
+}
+QPushButton#btn_forget{
+    background-color:white;
+    color: rgb(91, 156, 200);
+    font: 87 14pt &quot;Arial Black&quot;;
+}
+
+QCheckBox#cb_remember{
+    color: rgb(91, 156, 200);
+    font: 87 14pt &quot;Arial Black&quot;;
+}
+
+/*QLabel{color:#1abc9c;}*/
+QLabel#lb_title{
+    font: 87 26pt &quot;Arial Black&quot;;
+    color: rgb(91, 156, 200);
+/*    background-color: white;*/
+}
+QLabel#lb1{
+    color: rgb(91, 156, 200);
+/*    background-color: white;*/
+    font-size:24;
+    font-weight:bold;
+}
+QLabel#lb2{
+    color: rgb(91, 156, 200);
+/*    background-color: white;*/
+    font-size:24;
+    font-weight:bold;
+}
+/*QLineEdit{border: 2px solid #2ecc71;border-radius:6px;min-height:25;}*/
+QLineEdit{
+    background-color:rgb(247,247,247);
+    border:1px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+    font:14pt &quot;Candara&quot;;
+}
+</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="setNetBtn">
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>35</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/网络设置.svg);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>857</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="exitBtn">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/res/pic/删除2.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="1" column="0">
     <widget class="QLabel" name="lb_title">
      <property name="minimumSize">
@@ -111,6 +246,134 @@ font: 87 50pt &quot;Arial Black&quot;;
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>100</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="pwdEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>42</height>
+         </size>
+        </property>
+        <property name="maxLength">
+         <number>8</number>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Please input your password</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Maximum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="padLabel">
+        <property name="font">
+         <font>
+          <family>Noto Rashi Hebrew Light</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(91, 156, 200);</string>
+        </property>
+        <property name="text">
+         <string>Password</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="accountLabel">
+        <property name="font">
+         <font>
+          <family>Noto Rashi Hebrew Light</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(91, 156, 200);
+
+</string>
+        </property>
+        <property name="text">
+         <string>Account Number</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="accountEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>42</height>
+         </size>
+        </property>
+        <property name="maxLength">
+         <number>8</number>
+        </property>
+        <property name="placeholderText">
+         <string>Please input your account</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Minimum</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </widget>
    </item>
    <item row="3" column="0">
@@ -279,6 +542,8 @@ font: 87 50pt &quot;Arial Black&quot;;
        <widget class="QPushButton" name="btn_forget">
         <property name="styleSheet">
          <string notr="true">QPushButton#btn_forget{
+	text-decoration: underline;
+	font: 10pt &quot;Noto Sans&quot;;
     background-color:white;
     color: rgb(91, 156, 200);
     font: 87 14pt &quot;Arial Black&quot;;
@@ -288,134 +553,6 @@ font: 87 50pt &quot;Arial Black&quot;;
          <string>Forget Password?</string>
         </property>
        </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QWidget" name="widget_2" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>100</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>150</height>
-      </size>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item row="1" column="1">
-       <spacer name="verticalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Maximum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="padLabel">
-        <property name="font">
-         <font>
-          <family>Noto Rashi Hebrew Light</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(91, 156, 200);</string>
-        </property>
-        <property name="text">
-         <string>Password</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="accountLabel">
-        <property name="font">
-         <font>
-          <family>Noto Rashi Hebrew Light</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(91, 156, 200);
-
-</string>
-        </property>
-        <property name="text">
-         <string>Account Number</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="accountEdit">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>42</height>
-         </size>
-        </property>
-        <property name="maxLength">
-         <number>8</number>
-        </property>
-        <property name="placeholderText">
-         <string>Please input your account</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="pwdEdit">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>42</height>
-         </size>
-        </property>
-        <property name="maxLength">
-         <number>8</number>
-        </property>
-        <property name="echoMode">
-         <enum>QLineEdit::Password</enum>
-        </property>
-        <property name="placeholderText">
-         <string>Please input your password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Minimum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
@@ -435,148 +572,20 @@ font: 87 50pt &quot;Arial Black&quot;;
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);
-border-image: url(:/res/pic/matthew-kane-278419-unsplash.jpg);
+      <string notr="true">border-image: url(:/sea.jpg);
+color: rgb(126, 152, 221);
+
+ background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+font: 58pt &quot;方正魏碑_GBK&quot;;
+
 </string>
      </property>
      <property name="text">
-      <string/>
+      <string>Welcome</string>
      </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QWidget" name="widget_4" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>40</height>
-      </size>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>40</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QWidget{
-    background-color:white;
-}
-/*QPushButton{border-radius:6px;color:white;background-color:#1abc9c;}*/
-QPushButton{
-    background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(64,145,252,255),stop:1 rgba(255,255,255,255));
-/*    color:rgb(255,255,255,255);*/
-    color:white;
-    border:0px groove gray;
-    border-radius:7px;
-    padding:2px 4px;
-/*    font:16pt &quot;Candara&quot;;*/
-    font: 87 16pt &quot;Arial Black&quot;;
-}
-QPushButton#btn_forget{
-    background-color:white;
-    color: rgb(91, 156, 200);
-    font: 87 14pt &quot;Arial Black&quot;;
-}
-
-QCheckBox#cb_remember{
-    color: rgb(91, 156, 200);
-    font: 87 14pt &quot;Arial Black&quot;;
-}
-
-/*QLabel{color:#1abc9c;}*/
-QLabel#lb_title{
-    font: 87 26pt &quot;Arial Black&quot;;
-    color: rgb(91, 156, 200);
-/*    background-color: white;*/
-}
-QLabel#lb1{
-    color: rgb(91, 156, 200);
-/*    background-color: white;*/
-    font-size:24;
-    font-weight:bold;
-}
-QLabel#lb2{
-    color: rgb(91, 156, 200);
-/*    background-color: white;*/
-    font-size:24;
-    font-weight:bold;
-}
-/*QLineEdit{border: 2px solid #2ecc71;border-radius:6px;min-height:25;}*/
-QLineEdit{
-    background-color:rgb(247,247,247);
-    border:1px groove gray;
-    border-radius:7px;
-    padding:2px 4px;
-    font:14pt &quot;Candara&quot;;
-}
-</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="setNetBtn">
-        <property name="minimumSize">
-         <size>
-          <width>32</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>35</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/网络设置.svg);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>857</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="exitBtn">
-        <property name="minimumSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>32</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-image: url(:/res/pic/删除2.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
   </layout>

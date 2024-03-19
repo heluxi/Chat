@@ -7,6 +7,7 @@
 #include<QJsonObject>
 #include<QJsonParseError>
 #include "myapp.h"
+#include<QPainter>
 
 login_main::login_main(QWidget *parent) :
     QWidget(parent),
@@ -31,14 +32,13 @@ login_main::login_main(QWidget *parent) :
     //ui->lb_image->setPixmap(pix->scaled(sz));
 
 
-
     connect(ui->setNetBtn,&QPushButton::clicked,this,&login_main::rotateWindow);
     //换头像
     //connect(ui->le_username,&QLineEdit::textChanged,this,&login_main::changeHead);
 
     //return -->login
     connect(ui->pwdEdit, &QLineEdit::returnPressed, this, &login_main::on_bin_login_clicked);
-
+    ui->btn_forget->setStyleSheet("text-decoration: underline;");
 
     //设置图片阴影效果
     QGraphicsDropShadowEffect *shadow=new QGraphicsDropShadowEffect(this);
@@ -46,7 +46,14 @@ login_main::login_main(QWidget *parent) :
     shadow->setColor(QColor("#888888"));
     shadow->setBlurRadius(30);
     ui->lb_image->setGraphicsEffect(shadow);
+    ui->lb_image->setText("\n\nHi!\nWelcome!\n\n\n\n");
+    ui->lb_image->setStyleSheet("border-image: url(:/sea.jpg);color: rgb(255, 255, 255);font: 67pt 方正魏碑_GBK");
+    ui->lb_image->setAlignment(Qt::AlignCenter);
 
+    ui->bin_login->setStyleSheet("  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994   rgb(91, 156, 200),stop:1 rgba(255,255,255,255));color:white;border:0px groove gray;border-radius:7px;padding:2px 4px;font: 87 16pt Arial Black;");
+    ui->btn_register->setStyleSheet("  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994  rgb(91, 156, 200),stop:1 rgba(255,255,255,255));color:white;border:0px groove gray;border-radius:7px;padding:2px 4px;font: 87 16pt Arial Black;");
+    ui->exitBtn->setStyleSheet("  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994  rgb(91, 156, 200),stop:1 rgba(255,255,255,255));color:white;border:0px groove gray;border-radius:7px;padding:2px 4px;font: 87 16pt Arial Black;border-image: url(:/res/pic/删除2.png);");
+    ui->setNetBtn->setStyleSheet("  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994  rgb(91, 156, 200),stop:1 rgba(255,255,255,255));color:white;border:0px groove gray;border-radius:7px;padding:2px 4px;font: 87 16pt Arial Black;border-image: url(:/网络设置.svg);");
     //读取ini文件
     readcfg();
 

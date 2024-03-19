@@ -29,6 +29,8 @@ RotatingStackedWidget::RotatingStackedWidget(QWidget *parent) :
     this->setProperty("rotateValue", 0);
 
     initRotateWindow();
+
+
 }
 
 RotatingStackedWidget::~RotatingStackedWidget()

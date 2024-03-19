@@ -29,7 +29,7 @@ loginw::loginw(QWidget *parent): QStackedWidget(parent)
     m_notifyMsg= new QLabel(this);
     m_notifyMsg->setFixedSize(530, 30);
 
-    m_notifyMsg->setStyleSheet("background-color:#09a3dc;font-size: 12px;font-family:Microsoft YaHei;border-radius:8px");
+    m_notifyMsg->setStyleSheet("background-color:rgb(91, 156, 200);color: white;font-size: 12px;font-family:Microsoft YaHei;border-radius:8px");
     m_notifyMsg->hide();
 
 

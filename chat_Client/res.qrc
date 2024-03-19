@@ -137,5 +137,18 @@
         <file>res/default_head_icon.png</file>
         <file>欢迎语-copy.svg</file>
         <file>res/scrollbar.qss</file>
+        <file>res/menu_btn/set_press.png</file>
+        <file>res/menu_btn/set_normal.png</file>
+        <file>res/menu_btn/set_hover.png</file>
+        <file>res/menu_btn/min_press.png</file>
+        <file>res/menu_btn/min_normal.png</file>
+        <file>res/menu_btn/min_hover.png</file>
+        <file>res/menu_btn/close_press.png</file>
+        <file>res/menu_btn/close_normal.png</file>
+        <file>res/menu_btn/close_hover.png</file>
+        <file>群众、用户群体.svg</file>
+        <file>欢迎使用.svg</file>
+        <file>欢迎语.svg</file>
+        <file>sea.jpg</file>
     </qresource>
 </RCC>

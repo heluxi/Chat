@@ -23,8 +23,8 @@ setnetDialog::setnetDialog(QWidget *parent) :
 
     ui->portLineEdit->setStyleSheet("border-radius:15px;border:2px solid black ");
     ui->filePortEdit->setStyleSheet("border-radius:15px;border:2px solid black ");
-    ui->cancelButton->setStyleSheet("border-radius:15px; background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(64,145,252,255),stop:1 rgba(255,255,255,255));color: rgb(91, 156, 200);");
-    ui->okButton->setStyleSheet("border-radius:15px; background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgba(64,145,252,255),stop:1 rgba(255,255,255,255));color: rgb(91, 156, 200);");
+    ui->cancelButton->setStyleSheet("  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994   rgb(91, 156, 200),stop:1 rgba(255,255,255,255));color:white;border:0px groove gray;border-radius:7px;padding:2px 4px;font: 87 16pt Arial Black;");
+    ui->okButton->setStyleSheet("  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994   rgb(91, 156, 200),stop:1 rgba(255,255,255,255));color:white;border:0px groove gray;border-radius:7px;padding:2px 4px;font: 87 16pt Arial Black;");
     ui->ipcomboBox->setStyleSheet("border-radius:15px;border:2px solid black ");
     ui->okButton->setFixedSize(120,40);
     ui->cancelButton->setFixedSize(120,40);
@@ -32,7 +32,7 @@ setnetDialog::setnetDialog(QWidget *parent) :
 
     //方正魏碑_GBK
     QFont font( "TSCu_Times", 20, QFont::Normal);
-    QFont font_headline( "TSCu_Times",35, QFont::Normal);
+    QFont font_headline( "TSCu_Times",45, QFont::Normal);
     ui->label->setFont(font);
     ui->label_2->setFont(font);
     ui->label_3->setFont(font_headline);

@@ -73,6 +73,15 @@ DISTFILES += \
     icon \
     login.jpg \
     register.jpg \
+    res/menu_btn/close_hover.png \
+    res/menu_btn/close_normal.png \
+    res/menu_btn/close_press.png \
+    res/menu_btn/min_hover.png \
+    res/menu_btn/min_normal.png \
+    res/menu_btn/min_press.png \
+    res/menu_btn/set_hover.png \
+    res/menu_btn/set_normal.png \
+    res/menu_btn/set_press.png \
     res/pic/3.1 设置.png \
     res/pic/Chat.png \
     res/pic/control_01.jpg \
