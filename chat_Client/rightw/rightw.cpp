@@ -8,10 +8,13 @@ rightw::rightw(QWidget *parent) :
     ui(new Ui::rightw)
 {
     ui->setupUi(this);
-    this->setFixedWidth(790);
+    this->setFixedWidth(870);
     defaultPage = new DefaultWindow;
     ui->stackedWidget->addWidget(defaultPage);
     ui->stackedWidget->setCurrentIndex(0);
+    this->setContentsMargins(0,0,1,0);
+    ui->stackedWidget->setFixedWidth(870);
+
 
     loadingMovie = new QMovie(this);
     loadingMovie->setFileName(":/res/Icons/MainWindow/loading2.gif");

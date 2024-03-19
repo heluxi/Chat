@@ -28,17 +28,17 @@ MainWindow::MainWindow(QWidget *parent)
     this->setAttribute(Qt::WA_DeleteOnClose);
     this->setWindowFlags(Qt::FramelessWindowHint);
     fileInfo=nullptr;
-
-
-
+    this->setFixedWidth(1320);
+    ui->centralwidget->setFixedWidth(1320);
+    setWindowIcon(QIcon(":/res/Icons/MainWindow/title.png"));
     leftbar = new leftBar;
 
     midBar = new midw;
 
     rightBar = new rightw;
 
-    leftbar->setFixedSize(81,832);
-    midBar->setFixedSize(321,832);
+    leftbar->setFixedSize(83,832);
+    midBar->setFixedSize(380,832);
 
     QHBoxLayout *layout = new QHBoxLayout();
 
@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(rightBar);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
+
     ui->centralwidget->setLayout(layout);
 
 //    connect(rightBar,SIGNAL(stayOnTop(bool)),this,SLOT(stayOnTop(bool)));

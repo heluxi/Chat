@@ -25,23 +25,27 @@ ContactWidget::ContactWidget(QWidget *parent) :
     ui(new Ui::ContactWidget)
 {
     ui->setupUi(this);
+    this->setFixedWidth(345);
+    ui->stackedWidget->setFixedWidth(345);
+    ui->widget->setFixedWidth(345);
 
-//    QStringList tmp;
-//    tmp << ":/Icons/MainWindow/friend.png"
-//        << ":/Icons/MainWindow/friend2.png"
-//        << ":/Icons/MainWindow/friend3.png";
-//    ui->btn_friend = new MyButton(nullptr,tmp,QSize(48,48));
 
-//    tmp.clear();
+    ui->btn_friend->setToolTip("好友");
+    ui->btn_friend->setStyleSheet("border: none;background-color:#ebeae8");
+    ui->btn_friend->setFixedSize(40,35);
+    ui->btn_friend->NormalIcon=":/res/Icons/MainWindow/friend.png";
+    ui->btn_friend->MoveInIcon=":/res/Icons/MainWindow/friend2.png";
+    ui->btn_friend->ClickIcon=":/res/Icons/MainWindow/friend3.png";
+    ui->btn_friend->setText("");
 
-//    tmp << ":/Icons/MainWindow/group.png"
-//        << ":/Icons/MainWindow/group2.png"
-//        << ":/Icons/MainWindow/group3.png";
-//    ui->btn_group = new MyButton(nullptr,tmp,QSize(48,48));
-    ui->btn_group->setStyleSheet("border-image: url(:/res/Icons/MainWindow/group3.png);");
-    ui->btn_friend->setStyleSheet("border-image: url(:/res/Icons/MainWindow/contact3.png");
-    ui->btn_friend->setFixedSize(50,50);
-    ui->btn_group->setFixedSize(50,50);
+
+    ui->btn_group->setToolTip("群组");
+    ui->btn_group->setFixedSize(40,35);
+    ui->btn_group->NormalIcon=":/res/Icons/MainWindow/group.png";
+    ui->btn_group->MoveInIcon=":/res/Icons/MainWindow/group2.png";
+    ui->btn_group->ClickIcon=":/res/Icons/MainWindow/group3.png";
+    ui->btn_group->setText("");
+
 
 
     btnGroup = new QButtonGroup(this);

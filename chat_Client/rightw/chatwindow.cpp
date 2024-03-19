@@ -29,6 +29,9 @@ ChatWindow::ChatWindow(QWidget *parent,Cell *c) :
 {
     ui->setupUi(this);
     setWindowFlag(Qt::FramelessWindowHint);
+    this->setFixedWidth(850);
+    ui->msgWindow->setFixedWidth(850);
+    ui->widget->setFixedWidth(850);
 
 //    QStringList tmp;
 //    tmp << ":/Icons/MainWindow/arrow_close.png"
