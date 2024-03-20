@@ -45,6 +45,11 @@ void Dlg_regiseter::on_btn_register_sure_clicked()
     QString username=ui->le_reg_username->text();
     QString password=ui->le_reg_password->text();
     QString rePassword=ui->le_reg_repassword->text();
+    if(username.isEmpty()||password.isEmpty()||rePassword.isEmpty())
+    {
+        QMessageBox::information(this,"注册","输入有空!\n请重新输入");
+        return;
+    }
 //    QString aut=ui->cb_auth->currentText();
 
     if(password==rePassword){

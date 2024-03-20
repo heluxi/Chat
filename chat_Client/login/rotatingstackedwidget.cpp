@@ -17,6 +17,8 @@
 #include "qvariantanimation.h"
 #include "qwidget.h"
 #include "setnetdialog.h"
+#include<QJsonValue>
+
 
 RotatingStackedWidget::RotatingStackedWidget(QWidget *parent) :
     QStackedWidget(parent)
@@ -51,6 +53,8 @@ void RotatingStackedWidget::initRotateWindow()
     connect(loginWnd, &loginw::openRegisterWnd, this, &RotatingStackedWidget::sltOpenRegisterWnd);
     connect(loginWnd, &loginw::openForgetPasswordWnd,
             this, &RotatingStackedWidget::sltOpenForgetPasswordWnd);
+    connect(loginWnd,&loginw::signalForgetPwdReply,this,&RotatingStackedWidget::sltChangePwdReply);
+
 
 
 
@@ -96,11 +100,14 @@ void RotatingStackedWidget::initRotateWindow()
     forgetPasswordWnd = new Dlg_forget();
 //    connect(forgetPasswordWnd,SIGNAL(closeWindow(QPoint)),
 //            this,SLOT(sltCloseFindwordWnd(QPoint)));
-    connect(forgetPasswordWnd,&Dlg_forget::signalForgetPwd,
+    connect(forgetPasswordWnd,&Dlg_forget::signalChangePwd,
             loginWnd,&loginw::sltChangePwd);
-    connect(loginWnd,&loginw::signalForgetPwdReply,
-            forgetPasswordWnd,&Dlg_forget::sltForgetPwdReply);
+
+//    connect(loginWnd,&loginw::signalForgetPwdReply,
+//            forgetPasswordWnd,&Dlg_forget::sltForgetPwdReply);
+
     connect(forgetPasswordWnd,&Dlg_forget::forgetCancel,this,[=](){this->show();});
+    connect(forgetPasswordWnd,&Dlg_forget::success,this,[=](){this->show();});
     forgetPasswordWnd->hide();
 
 
@@ -226,6 +233,13 @@ void RotatingStackedWidget::sltCloseFindwordWnd(QPoint pos)
 {
     this->move(pos.x(),pos.y() - 80);
     this->show();
+}
+
+void RotatingStackedWidget::sltChangePwdReply(const QJsonValue &jsonVal)
+{
+
+    forgetPasswordWnd->sltForgetPwdReply(jsonVal);
+
 }
 
 void RotatingStackedWidget::mousePressEvent(QMouseEvent *event)

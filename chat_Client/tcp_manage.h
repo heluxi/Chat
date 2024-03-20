@@ -38,6 +38,7 @@ signals:
     //    void GetOfflineMsg(const QJsonValue &dataVal);
     void signalFindFriendReply(const QJsonValue &dataVal);
     void signalGetOfflineMsg(const QJsonValue &dataVal);
+    void signalChangePwdReply(const QJsonValue &dataVal);
 
 public slots:
     void sendMsg(const quint8 &type, const QJsonValue &dataVal);

@@ -20,6 +20,8 @@ Dlg_forget::Dlg_forget(QWidget *parent) :
     QString strQss=file.readAll();
     setStyleSheet(strQss);
 
+    ui->lb_user->setText("Account Number");
+
     //设置图片
     QPixmap *pix=new QPixmap(":/register.jpg");
     QSize sz=ui->lb_image->size();
@@ -33,27 +35,32 @@ Dlg_forget::~Dlg_forget()
 
 void Dlg_forget::on_btn_forget_sure_clicked()
 {
-//    userInfo info;
-//    auto ptr=stusql::getinstance();
+    //输入检测
+    QString number=ui->le_user->text();
+    QString newPwd=ui->le_newPassword->text();
+    QString rePwd=ui->le_Ensure->text();
+    if(number.isEmpty()||newPwd.isEmpty()||rePwd.isEmpty())
+    {
+        QMessageBox::information(this,"Warning","输入有空!\n请重新输入");
+        return;
+    }
+    if(!(newPwd==rePwd))
+    {
+        QMessageBox::information(this,"Waring","两次密码输入不一致!");
+        ui->le_newPassword->clear();
+        ui->le_Ensure->clear();
+        return;
+    }
+    //向服务器发送修改密码消息
+    QJsonObject json;
+    json.insert("id",number.toInt());
+    json.insert("oldpwd",newPwd);
+    json.insert("newpwd",newPwd);
 
-//    QString username=ui->le_user->text();
-//    QString newPassword=ui->le_newPassword->text();
-//    QString rePassword=ui->le_Ensure->text();
+    qDebug() << "开始找回密码";
+    emit signalChangePwd(json);
 
-//    if(newPassword==rePassword){
-//        info.username=username;
-//        info.password=newPassword;
-//        bool success=ptr->updateUser(info);
-//        if(success){
-//             //成功修改
-//            QMessageBox::information(this,"修改","修改成功！！！");
-//            this->hide();
-//        }
-//        else{
-//            //失败就提示
-//            QMessageBox::information(this,"修改","修改失败！！！");
-//        }
-//    }
+
 }
 
 
@@ -72,29 +79,36 @@ void Dlg_forget::sltForgetPwdReply(const QJsonValue &jsonVal)
         QString newpwd = json.value("newpwd").toString();
         if(code == 0){
             qDebug() << "修改密码成功!";
+            QMessageBox::information(this,"Sucess","修改成功!");
+
+            ui->lb_newPassword->setText("修改密码成功!");
+            ui->lb_newPassword->setStyleSheet("font:50 45pt Bahnschrift Light;color:rgb(29,123,255);");
+            ui->lb_newPassword->setFixedSize(400,100);
+
             ui->le_user->setVisible(false);
-            ui->le_newPassword->setVisible(false);
+            ui->lb_user->setVisible(false);
+            ui->lb_Ensure->setVisible(false);
+            ui->le_user->setVisible(false);
             ui->le_Ensure->setVisible(false);
+            ui->le_newPassword->setVisible(false);
 
 
-            disconnect(ui->btn_forget_sure,SIGNAL(clicked(bool)),this,SLOT(sltOKBtnClicked()));
-            ui->btn_forget_sure->setText("返回登陆");
-            connect(ui->btn_forget_sure,&QPushButton::clicked,this,[=]{this->hide();});
-        }else if(code == -1){
-            //原密码不正确
-            QMessageBox::information(this,"forget","用户名不存在！！！");
-//            this->setFixedSize(430,350);
-//            m_notifyMsg->move(0,330);
-//            m_notifyMsg->setText("该账户原密码错误!");
-//            m_notifyMsg->show();
-        }else if(code == -2){
+            ui->btn_forget_cancel->setText("返回登陆");
+            ui->btn_forget_sure->setVisible(false);
+            ui->btn_forget_cancel ->setStyleSheet("background-color:rgb(29,123,255);color:rgb(255,255,255);font:25 16pt Bahnschrift Light;border:0px groove gray;border-radius:9px;");
+            connect(ui->btn_forget_sure,&QPushButton::clicked,this,[=]{this->hide();
+                emit success();
+            });
+        }
+        else if(code == -2){
             //用户名不存在
-            QMessageBox::information(this,"forget","用户名不存在！！！");
-//            this->setFixedSize(430,350);
-//            m_notifyMsg->move(0,330);
-//            m_notifyMsg->setText("该账户不存在!");
-//            m_notifyMsg->show();
+            QMessageBox::information(this,"Error","用户名不存在！！！");
+            ui->le_newPassword->clear();
+            ui->le_Ensure->clear();
+            return;
+
         }
     }
+    return;
 }
 

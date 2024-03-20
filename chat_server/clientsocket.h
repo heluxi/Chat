@@ -64,6 +64,8 @@ private:
     void parseAddGroupReply(const QJsonValue &dataVal);
     void parseCreateGroup(const QJsonValue &dataVal);
     void parseGetOfflineMsg(const QJsonValue &dataVal);
+    void parseChangePwd(const QJsonValue &dataVal);
+
 
 private:
     QTcpSocket *m_tcpSocket;

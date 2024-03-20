@@ -19,7 +19,7 @@ class login_main : public QWidget
 public:
     explicit login_main(QWidget *parent = nullptr);
     ~login_main();
-    void savecfg();     //将信息存入配置文件
+    void savecfg(bool ischecked);     //将信息存入配置文件
     void readcfg();     //读取上一次保存的登录信息
     //    void closeEvent(QCloseEvent *event); //重写关闭事件函数
     QString getID();

@@ -730,6 +730,44 @@ QJsonObject Database::getGroupInfo(const int &id) const
     return jsonObj;
 }
 
+QJsonObject Database::changePwd(int id, QString oldpwd, QString newpwd)
+{
+    int code;
+    QJsonObject json;
+    QString strQuery = "SELECT * FROM USERINFO ";
+    strQuery.append("WHERE id=");
+    strQuery.append(QString::number(id));
+
+    QSqlQuery query(strQuery);
+    if (query.next()) {//用户名存在
+//        strQuery.append(" AND passwd= '");
+//        strQuery.append(oldpwd);
+//        strQuery.append("'");
+//        QSqlQuery query2(strQuery);
+//        if(query2.next()){//密码正确
+            code = 0;
+            QString strQuery2 = "update userInfo set passwd = '";
+            strQuery2.append(newpwd);
+            strQuery2.append("' where id =");
+            strQuery2.append(QString::number(id));
+
+            QSqlQuery query(strQuery2);
+            query.exec();
+//        }else{//密码不正确
+//            code = -1;
+//        }
+    }else{//用户名不存在
+        code = -2;
+    }
+
+    json.insert("code",code);
+    json.insert("id",id);
+    json.insert("oldpwd",oldpwd);
+    json.insert("newpwd",newpwd);
+
+    return json;
+}
+
 QJsonArray Database::getOfflineMsg(int id)
 {
     QString sql = "select * from UnreadMsg where receiverID=";

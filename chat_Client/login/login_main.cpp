@@ -8,6 +8,7 @@
 #include<QJsonParseError>
 #include "myapp.h"
 #include<QPainter>
+#include<QCheckBox>
 
 login_main::login_main(QWidget *parent) :
     QWidget(parent),
@@ -30,6 +31,10 @@ login_main::login_main(QWidget *parent) :
     //QPixmap *pix=new QPixmap(headPath);
     //QSize sz=ui->lb_image->size();
     //ui->lb_image->setPixmap(pix->scaled(sz));
+
+    //记住密码
+    connect(ui->cb_remember,&QCheckBox::stateChanged,this,&login_main::savecfg);
+
 
 
     connect(ui->setNetBtn,&QPushButton::clicked,this,&login_main::rotateWindow);
@@ -63,38 +68,26 @@ login_main::login_main(QWidget *parent) :
 login_main::~login_main()
 {
     if(ui->cb_remember->isChecked()){
-        savecfg();
+        savecfg(true);
     }
     delete ui;
 }
 
-void login_main::savecfg()
+void login_main::savecfg(bool ischecked)
 {
-    QSettings setting("./config.ini",QSettings::IniFormat);
-
-    setting.setValue("password",ui->pwdEdit->text());
-    setting.setValue("username",ui->accountEdit->text());
-    //    setting.setValue("rememberPAssword",ui->cb_remember->isChecked());
-    setting.sync();     //同步设置，将信息存储到ini里面
+    MyApp::checked=ischecked;
+    MyApp::saveConfig();
 }
 
 void login_main::readcfg()
 {
-    //记住密码
-    QSettings setting("./config.ini",QSettings::IniFormat); //设置一个用于存储ini文件
     if(MyApp::checked){
-        QString username=setting.value("username").toString();
-        QString password=setting.value("password").toString();
-        //    rememberPassword=setting.value("rememberPassword").toBool();
+        ui->accountEdit->setText(QString::number(MyApp::m_nId));
+        ui->pwdEdit->setText(MyApp::m_strPassword);
+        ui->cb_remember->setCheckState(Qt::CheckState::Checked);
 
-        ui->accountEdit->setText(username); //如果保存用户名
-        ui->pwdEdit->setText(password); //保存密码
     }
-    //    if(MyApp::autoLogin){
-    ////        ui->cb_remember->changeStatus(true);
-    //        ui->bin_login->setEnabled(false);
-    //    }
-    //    ui->cb_remember->setChecked(rememberPassword);
+
 }
 
 QString login_main::getID()

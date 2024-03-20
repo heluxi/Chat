@@ -180,6 +180,10 @@ void clientSock::recvMsg()
                 emit signalGetOfflineMsg(dataVal);
                 break;
             }
+            case ChangePasswd:
+            {
+                emit signalChangePwdReply(dataVal);
+            }
             default:
                 break;
             }

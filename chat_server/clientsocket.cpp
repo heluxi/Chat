@@ -73,6 +73,11 @@ void ClientSocket::readMsg()
 
             }
             break;
+            case ChangePasswd:
+            {
+             parseChangePwd(data);
+            }
+            break;
             case SendMsg://私发消息
             case SendFile:
             case SendPicture:
@@ -633,6 +638,21 @@ void ClientSocket::parseGetOfflineMsg(const QJsonValue &dataVal)
 
         QJsonArray jsonArr = Database::Instance()->getOfflineMsg(id);
         sendMessage(GetOfflineMsg,jsonArr);
+    }
+}
+
+void ClientSocket::parseChangePwd(const QJsonValue &dataVal)
+{
+
+    if(dataVal.isObject()){
+        //qDebug() << "xjxtest";
+        QJsonObject json = dataVal.toObject();
+        int id = json.value("id").toInt();
+        QString oldPwd = json.value("oldpwd").toString();
+        QString newPwd = json.value("newpwd").toString();
+
+        QJsonObject jsonObj = Database::Instance()->changePwd(id,oldPwd,newPwd);
+        sendMessage(ChangePasswd,jsonObj);
     }
 }
 

@@ -37,6 +37,7 @@ public slots:
     void sltOpenForgetPasswordWnd();
     void sltCloseRegisterWnd(QPoint);
     void sltCloseFindwordWnd(QPoint);
+    void sltChangePwdReply(const QJsonValue&);
 
 private:
     // 当前窗口是否正在旋转;

@@ -18,6 +18,8 @@ signals:
 //    void closeWindow();
     void signalForgetPwd(const QJsonValue &jsonVal);
     void forgetCancel();
+    void signalChangePwd(const QJsonValue &jsonVal);
+    void success();
 
 private slots:
     void on_btn_forget_sure_clicked();

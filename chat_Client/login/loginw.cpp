@@ -47,6 +47,8 @@ loginw::loginw(QWidget *parent): QStackedWidget(parent)
     connect(tcpSocket, &clientSock::signalGetOfflineMsg,
             this,&loginw::writeOffLineMsgToDatabase);
 
+    connect(tcpSocket,&clientSock::signalChangePwdReply,this,&loginw::signalForgetPwdReply);
+
     timer = new QTimer();
     timer->setInterval(1000);//每隔1秒尝试重新连接服务器
     connect(timer,&QTimer::timeout,this,&loginw::slotTimeout);
