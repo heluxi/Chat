@@ -29,6 +29,8 @@ public:
 
     Cell* isIDExist(int id);
 
+    QList<Cell*> getList();
+
 signals:
     void openDialog(Cell*);
     void signalSendMessage(const quint8 &, const QJsonValue &);
@@ -55,6 +57,8 @@ public slots:
     void sltAddFriend(Cell *cell);
 
     void deleteChatCell(int);
+    void sltupdateUserHead(const int &userId, const QString &strHead);
+
 private:
     Ui::midw *ui;
     ContactWidget *contactWidget;

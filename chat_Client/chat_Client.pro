@@ -70,6 +70,7 @@ DISTFILES += \
     CutScreen/screenimage/ima3.jpg \
     CutScreen/screenimage/ima4.jpg \
     CutScreen/screenimage/ima5.jpg \
+    background.jpg \
     icon \
     login.jpg \
     register.jpg \

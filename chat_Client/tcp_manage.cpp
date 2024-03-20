@@ -183,6 +183,12 @@ void clientSock::recvMsg()
             case ChangePasswd:
             {
                 emit signalChangePwdReply(dataVal);
+                break;
+            }
+            case UpdateHeadPic:
+            {
+                // 你的好友更新了头像
+               emit signalMessage(UpdateHeadPic, dataVal);
             }
             default:
                 break;

@@ -47,7 +47,7 @@ CreateGroupWnd::CreateGroupWnd() : QDialog ()
 
     //图片logo
     logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/群众、用户群体.svg").
+    logo->setPixmap(QPixmap(":/群组创建.svg").
                     scaled(80,80,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
 
     nameLabel = new QLabel("输入群名称",this);
@@ -91,7 +91,7 @@ CreateGroupWnd::CreateGroupWnd() : QDialog ()
 
     this->setAutoFillBackground(true);
     QPalette palette = this->palette();
-    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/res/Icons/MainWindow/createGroup.png").
+    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/backgroud3.jpg").
                                              scaled(this->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));// 使用平滑的缩放方式
     this->setPalette(palette);// 给widget加上背景图
 }

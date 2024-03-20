@@ -80,6 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
         onleftBtnClicked(1);
     });
 
+    connect(this,&MainWindow::updateUserHead,midBar,&midw::sltupdateUserHead);
     connect(rightBar,&rightw::closeWindow,this,[=](){
         this->showMinimized();
     });
@@ -120,6 +121,21 @@ void MainWindow::setMainSocket(clientSock *socket, clientFileSock *filesocket)
         m_fileTcp = filesocket;
         connect(m_fileTcp,&clientFileSock::signalFileRecvOk,
                 this,&MainWindow::sltFileRecvFinished);
+
+        connect(leftbar,&leftBar::UpdateHeadPic,this,[=](){
+
+            // 构建 Json 对象
+            QJsonObject json;
+            QFileInfo fileInfo(MyApp::m_strHeadFile);
+
+            json.insert("id",  MyApp::m_nId);
+            json.insert("head", fileInfo.fileName());
+            json.insert("friends", sql_manage::Instance()->getFriendInfo(MyApp::m_nId));
+
+            qDebug() << "upload head" << json;
+
+            m_tcp->sendMsg(UpdateHeadPic, json);
+        });
 
         initUI();
     }
@@ -192,8 +208,8 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     break;
     case UpdateHeadPic:
     {
-        // 你的好友更新了头像
-//        ParseUFriendHead(dataVal);
+         //你的好友更新了头像
+        ParseUpFriendHead(dataVal);
     }
     break;
     case AddFriend:
@@ -376,6 +392,7 @@ void MainWindow::sltCreateGroup()
 //    }
 }
 
+//好友更新了头像 去服务器下载头像
 void MainWindow::ParseUpFriendHead(const QJsonValue &dataVal)
 {
     if (!dataVal.isObject()) return;
@@ -400,9 +417,15 @@ void MainWindow::DownloadFriendHead(const int &userId, const QString &strHead)
 {
     if (QFile::exists(strHead)) return;
 
+    headupLoadSOcket=new clientFileSock(this);
+
+
+    connect(headupLoadSOcket, SIGNAL(signalConnectd()), this, SLOT(SltConnectedToServer()));
+    connect(headupLoadSOcket, SIGNAL(signamFileRecvOk(quint8,QString)), this, SLOT(SltFileRecvOk(quint8,QString)));
+    headupLoadSOcket->connectToServer(MyApp::m_strHostAddr,MyApp::m_nFilePort,-2);
     // 连接服务器，等服务器将文件下发过来
 //    ui->widgetHead->DownloadFriendHead(userId);
-//    leftBar->DownloadFriendHead(userId);
+   // leftBar->DownloadFriendHead(userId);
 
     // 延迟一点发送
 //    myHelper::Sleep(100);
@@ -773,9 +796,24 @@ void MainWindow::parseSendFileReply(const QJsonValue &dataVal)
     }
 }
 
+void MainWindow::SltUpdateUserHead(const int &userId, const QString &strHead)
+{
+    emit updateUserHead(userId,strHead);
+}
+
 void MainWindow::sltFileRecvFinished(quint8, QString, int)
 {
 
+}
+
+void MainWindow::SltConnectedToServer()
+{
+    QTimer::singleShot(1000, this, SLOT(SltBeginToSend()));
+}
+
+void MainWindow::SltBeginToSend()
+{
+//    headupLoadSOcket->sendFile(MyApp::m_strHeadFile);
 }
 
 //void MainWindow::on_btn_min_clicked()

@@ -209,6 +209,11 @@ Cell *midw::isIDExist(int id)
     return nullptr;
 }
 
+QList<Cell*> midw::getList()
+{
+    return ui->chatList->getAllCells();
+}
+
 
 void midw::updateTime(int id, qint64 time,QString msg)
 {
@@ -438,6 +443,19 @@ void midw::deleteChatCell(int id)
             return;
         }
     }
+}
+
+void midw::sltupdateUserHead(const int &userId, const QString &strHead)
+{
+    QList<Cell *> friends = ui->chatList->getAllCells();
+    foreach (Cell *cell, friends.at(0)->childs) {
+        if (cell->id == userId) {
+            cell->SetIconPath(strHead);
+        }
+    }
+
+    //ui->frindListWidget->upload();
+    ui->chatList->refreshList();
 }
 
 

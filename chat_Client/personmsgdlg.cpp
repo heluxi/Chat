@@ -2,6 +2,7 @@
 #include "ui_personmsgdlg.h"
 #include<QFileInfo>
 #include<QFileDialog>
+#include<QMessageBox>
 #include"myapp.h"
 
 personMsgDlg::personMsgDlg(QWidget *parent) :
@@ -21,10 +22,8 @@ personMsgDlg::personMsgDlg(QWidget *parent) :
     //QString headPath=MyApp::m_strHeadFile+MyApp::m_strHeadPath;
     //QFileInfo fileInfo(headPath);
     QString headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
-    QPixmap p(headPath);
-    QIcon icon(p.scaled(QSize(75,75)));
-    ui->headBtn->setIcon(icon);
-    ui->headBtn->setIconSize(QSize(75,75));
+    QString style=QString("border-image: url(%1);").arg(headPath);
+    ui->headBtn->setStyleSheet(style);
 
 
 
@@ -49,13 +48,17 @@ void personMsgDlg::on_headBtn_clicked()
         qDebug()<<"没有选择图片";
         return;
     }
+    else
+    {
+        QMessageBox::information(this,"Sucess","修改头像成功!");
+    }
     QString head=QString("border-image: url(%1);").arg(headPath);
-    //ui->headBtn->setStyleSheet(head);
+    ui->headBtn->setStyleSheet(head);
     //qDebug()<<QFileDialog::getOpenFileUrl();
-    QPixmap p(headPath);
-    QIcon icon(p.scaled(QSize(75,75)));
-    ui->headBtn->setIcon(icon);
-    ui->headBtn->setIconSize(QSize(75,75));
+//    QPixmap p(headPath);
+//    QIcon icon(p.scaled(QSize(75,75)));
+//    ui->headBtn->setIcon(icon);
+//    ui->headBtn->setIconSize(QSize(75,75));
     emit chanageHead(headPath);
 
 

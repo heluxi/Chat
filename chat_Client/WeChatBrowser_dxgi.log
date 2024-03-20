@@ -1,0 +1,80 @@
+warn:  CreateDXGIFactory2: Ignoring flags
+info:  Game: WeChatBrowser.exe
+info:  DXVK: v1.7-5-g80ac6724+
+info:  Built-in extension providers:
+info:    Win32 WSI
+info:    OpenVR
+warn:  OpenVR: Failed to locate module
+info:  Enabled instance extensions:
+info:    VK_KHR_get_surface_capabilities2
+info:    VK_KHR_surface
+info:    VK_KHR_win32_surface
+info:  Intel(R) Iris(R) Plus Graphics (ICL GT2):
+info:    Driver: 22.3.5
+info:    Vulkan: 1.3.230
+info:    Memory Heap[0]: 
+info:      Size: 11759 MiB
+info:      Flags: 0x1
+info:      Memory Type[0]: Property Flags = 0xf
+warn:  DxgiAdapter::QueryInterface: Unknown interface query
+warn:  17399d75-964e-4c03-99f8-9d4fd196dd62
+warn:  CreateDXGIFactory2: Ignoring flags
+info:  Game: WeChatBrowser.exe
+info:  DXVK: v1.7-5-g80ac6724+
+info:  Built-in extension providers:
+info:    Win32 WSI
+info:    OpenVR
+warn:  OpenVR: Failed to locate module
+info:  Enabled instance extensions:
+info:    VK_KHR_get_surface_capabilities2
+info:    VK_KHR_surface
+info:    VK_KHR_win32_surface
+info:  Intel(R) Iris(R) Plus Graphics (ICL GT2):
+info:    Driver: 22.3.5
+info:    Vulkan: 1.3.230
+info:    Memory Heap[0]: 
+info:      Size: 11759 MiB
+info:      Flags: 0x1
+info:      Memory Type[0]: Property Flags = 0xf
+warn:  DxgiAdapter::QueryInterface: Unknown interface query
+warn:  17399d75-964e-4c03-99f8-9d4fd196dd62
+warn:  CreateDXGIFactory2: Ignoring flags
+info:  Game: WeChatBrowser.exe
+info:  DXVK: v1.7-5-g80ac6724+
+info:  Built-in extension providers:
+info:    Win32 WSI
+info:    OpenVR
+warn:  OpenVR: Failed to locate module
+info:  Enabled instance extensions:
+info:    VK_KHR_get_surface_capabilities2
+info:    VK_KHR_surface
+info:    VK_KHR_win32_surface
+info:  Intel(R) Iris(R) Plus Graphics (ICL GT2):
+info:    Driver: 22.3.5
+info:    Vulkan: 1.3.230
+info:    Memory Heap[0]: 
+info:      Size: 11759 MiB
+info:      Flags: 0x1
+info:      Memory Type[0]: Property Flags = 0xf
+warn:  DxgiAdapter::QueryInterface: Unknown interface query
+warn:  17399d75-964e-4c03-99f8-9d4fd196dd62
+warn:  CreateDXGIFactory2: Ignoring flags
+info:  Game: WeChatBrowser.exe
+info:  DXVK: v1.7-5-g80ac6724+
+info:  Built-in extension providers:
+info:    Win32 WSI
+info:    OpenVR
+warn:  OpenVR: Failed to locate module
+info:  Enabled instance extensions:
+info:    VK_KHR_get_surface_capabilities2
+info:    VK_KHR_surface
+info:    VK_KHR_win32_surface
+info:  Intel(R) Iris(R) Plus Graphics (ICL GT2):
+info:    Driver: 22.3.5
+info:    Vulkan: 1.3.230
+info:    Memory Heap[0]: 
+info:      Size: 11759 MiB
+info:      Flags: 0x1
+info:      Memory Type[0]: Property Flags = 0xf
+warn:  DxgiAdapter::QueryInterface: Unknown interface query
+warn:  17399d75-964e-4c03-99f8-9d4fd196dd62

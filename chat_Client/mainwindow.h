@@ -37,6 +37,7 @@ protected:
 
 signals:
     void signalFind(QJsonObject);
+    void updateUserHead(const int &userId, const QString &strHead);
 
 private slots:
 
@@ -66,7 +67,11 @@ private:
 
     void parseSendFileReply(const QJsonValue &dataVal);
 
+    void SltUpdateUserHead(const int &userId, const QString &strHead);
+
     void sltFileRecvFinished(quint8,QString,int);
+    void SltConnectedToServer();
+    void SltBeginToSend();
 
     //    void on_btn_min_clicked();
 
@@ -86,6 +91,7 @@ private:
 
     clientSock *m_tcp;
     clientFileSock *m_fileTcp;
+    clientFileSock *headupLoadSOcket;
     QFileInfo *fileInfo;
     QString fileName;
 

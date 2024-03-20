@@ -27,6 +27,7 @@ ClientSocket::ClientSocket(QObject *parent,QTcpSocket* tcpSocket)
     connect(tcpSocket,&QTcpSocket::readyRead,this,&ClientSocket::readMsg);
     connect(m_tcpSocket, &QTcpSocket::connected, this, &ClientSocket::sltConnected);
     connect(m_tcpSocket,&QTcpSocket::disconnected,this,&ClientSocket::sltDisconnected);
+
 }
 
 void ClientSocket::closeSocket()

@@ -15,12 +15,10 @@ leftBar::leftBar(QWidget *parent) :
     //qDebug()<<headPath;
     //ui->headBtn->setStyleSheet(headPath);
     QString headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
-    QPixmap p(headPath);
+    QString head=QString("border-image: url(%1);"
+                           "background-color: rgb(255, 255, 255);border-radius:30px;").arg(headPath);
+    ui->headBtn->setStyleSheet(head);
 
-    QIcon icon(p.scaled(QSize(65,65)));
-    ui->headBtn->setIcon(icon);
-    ui->headBtn->setIconSize(QSize(65,65));
-    ui->headBtn->setStyleSheet("background-color: rgb(255, 255, 255);border-radius:30px;");
     QStringList tmp;
     tmp << ":/res/pic/Chat.png"
         << ":/Icons/MainWindow/chat2.png"

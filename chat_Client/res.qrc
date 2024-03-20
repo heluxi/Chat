@@ -150,5 +150,11 @@
         <file>欢迎使用.svg</file>
         <file>欢迎语.svg</file>
         <file>sea.jpg</file>
+        <file>background.jpg</file>
+        <file>backgroud2.jpg</file>
+        <file>background3.jpeg</file>
+        <file>backgroud3.jpg</file>
+        <file>群组创建.svg</file>
+        <file>群组+.svg</file>
     </qresource>
 </RCC>

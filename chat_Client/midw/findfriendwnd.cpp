@@ -13,6 +13,9 @@ FindFriendWnd::FindFriendWnd(int tag) :
 {
     ui->setupUi(this);
     this->setWindowTitle("查找");
+    this->setFixedSize(600,400);
+    this->setStyleSheet("");
+    ui->widget_2->move(13,20);
     if(tag == 0)
         ui->label->setText("找好友");
     else if(tag == 1)
@@ -24,6 +27,11 @@ FindFriendWnd::FindFriendWnd(int tag) :
     ui->idLabel->setFixedWidth(100);
     ui->nameLabel->setFixedWidth(200);
     ui->headLabel->setFixedSize(100,100);
+    this->setAutoFillBackground(true);
+    QPalette palette = this->palette();
+    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/backgroud3.jpg").
+                                              scaled(this->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));// 使用平滑的缩放方式
+    this->setPalette(palette);// 给widget加上背景图
 }
 
 FindFriendWnd::~FindFriendWnd()

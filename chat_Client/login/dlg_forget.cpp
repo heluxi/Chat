@@ -21,7 +21,8 @@ Dlg_forget::Dlg_forget(QWidget *parent) :
     setStyleSheet(strQss);
 
     ui->lb_user->setText("Account Number");
-
+    ui->le_newPassword->setEchoMode(QLineEdit::PasswordEchoOnEdit);
+    ui->le_Ensure->setEchoMode(QLineEdit::PasswordEchoOnEdit);
     //设置图片
     QPixmap *pix=new QPixmap(":/register.jpg");
     QSize sz=ui->lb_image->size();
