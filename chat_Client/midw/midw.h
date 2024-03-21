@@ -59,6 +59,7 @@ public slots:
     void deleteChatCell(int);
     void sltupdateUserHead(const int &userId, const QString &strHead);
 
+
 private:
     Ui::midw *ui;
     ContactWidget *contactWidget;

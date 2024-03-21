@@ -67,6 +67,7 @@ public:
     void loadMsgFromDatabase();//从数据库中加载聊天记录
     void startLoadingAnimation();
 
+    void changeBackground(QString color);
     GroupList *groupList;
 
     QLabel *loadingLabel;

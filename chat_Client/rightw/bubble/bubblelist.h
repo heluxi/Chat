@@ -20,6 +20,7 @@ public:
     void wapeOut();
 
     void msgConfirmed(qint64 time);
+    void setStyle(QString color);
 
     BubbleInfo* findBubble(int senderID,qint64 time);
 

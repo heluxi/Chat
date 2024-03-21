@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    customwidget.cpp \
     frienddlg.cpp \
     leftbar.cpp \
     main.cpp \
@@ -16,15 +17,21 @@ SOURCES += \
 #    qnchatmessage.cpp \
     personmsgdlg.cpp \
     sql_manage.cpp \
+    systemmessagedialog.cpp \
+    systemsetting.cpp \
     tcp_manage.cpp
 
 HEADERS += \
+    customwidget.h \
     frienddlg.h \
     leftbar.h \
     mainwindow.h \
 #    qnchatmessage.h \
+    myHelper.h \
     personmsgdlg.h \
     sql_manage.h \
+    systemmessagedialog.h \
+    systemsetting.h \
     tcp_manage.h\
 
 
@@ -32,7 +39,9 @@ FORMS += \
     frienddlg.ui \
     leftbar.ui \
     mainwindow.ui \
-    personmsgdlg.ui
+    personmsgdlg.ui \
+    systemmessagedialog.ui \
+    systemsetting.ui
 
 
 

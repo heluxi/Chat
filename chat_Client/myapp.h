@@ -32,6 +32,10 @@ public:
     static QString m_strPassword;       // 用户密码
     static QString m_strHeadFile;       // 头像文件
 
+    static QString m_backgroundColor;   //聊天背景颜色
+    static QString m_leftBubleColor;    //左边气泡颜色
+    static QString m_rightBubleColor;   //右边气泡颜色
+
     static int     m_nId;
     static bool    checked;
     static bool    autoLogin;

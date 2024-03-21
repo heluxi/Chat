@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include <QFileInfo>
 #include "rightw/bubble/bubbleinfo.h"
+#include"myapp.h"
 
 BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
     : QWidget(parent),info(info)
@@ -377,11 +378,13 @@ void BubbleView::paintEvent(QPaintEvent *)
         headIcon->setGeometry(iconRect.x(),iconRect.y(),iconRect.width(),iconRect.height());
 
         if(info->sender == Me){
-            QColor color_frame("#abcee5");
+//            QColor color_frame("#abcee5");
+            QColor color_frame=MyApp::m_rightBubleColor;
             painter.setBrush(QBrush(color_frame));
 
         }else{
-            QColor color_frame(Qt::white);
+//            QColor color_frame(Qt::white);
+            QColor color_frame=MyApp::m_leftBubleColor;
             painter.setBrush(QBrush(color_frame));
         }
 

@@ -1,0 +1,82 @@
+info:  D3D11CoreCreateDevice: Probing D3D_FEATURE_LEVEL_11_1
+info:  D3D11CoreCreateDevice: Using feature level D3D_FEATURE_LEVEL_11_1
+info:  Device properties:
+info:    Device name:     : Intel(R) Iris(R) Plus Graphics (ICL GT2)
+info:    Driver version   : 22.3.5
+info:  Enabled device extensions:
+info:    VK_EXT_custom_border_color
+info:    VK_EXT_depth_clip_enable
+info:    VK_EXT_host_query_reset
+info:    VK_EXT_robustness2
+info:    VK_EXT_shader_demote_to_helper_invocation
+info:    VK_EXT_shader_stencil_export
+info:    VK_EXT_shader_viewport_index_layer
+info:    VK_EXT_transform_feedback
+info:    VK_EXT_vertex_attribute_divisor
+info:    VK_KHR_create_renderpass2
+info:    VK_KHR_depth_stencil_resolve
+info:    VK_KHR_draw_indirect_count
+info:    VK_KHR_driver_properties
+info:    VK_KHR_image_format_list
+info:    VK_KHR_sampler_mirror_clamp_to_edge
+info:    VK_KHR_swapchain
+info:  Device features:
+info:    robustBufferAccess                     : 1
+info:    fullDrawIndexUint32                    : 1
+info:    imageCubeArray                         : 1
+info:    independentBlend                       : 1
+info:    geometryShader                         : 1
+info:    tessellationShader                     : 1
+info:    sampleRateShading                      : 1
+info:    dualSrcBlend                           : 1
+info:    logicOp                                : 1
+info:    multiDrawIndirect                      : 1
+info:    drawIndirectFirstInstance              : 1
+info:    depthClamp                             : 1
+info:    depthBiasClamp                         : 1
+info:    fillModeNonSolid                       : 1
+info:    depthBounds                            : 0
+info:    multiViewport                          : 1
+info:    samplerAnisotropy                      : 1
+info:    textureCompressionBC                   : 1
+info:    occlusionQueryPrecise                  : 1
+info:    pipelineStatisticsQuery                : 1
+info:    vertexPipelineStoresAndAtomics         : 1
+info:    fragmentStoresAndAtomics               : 1
+info:    shaderImageGatherExtended              : 1
+info:    shaderStorageImageExtendedFormats      : 1
+info:    shaderStorageImageReadWithoutFormat    : 0
+info:    shaderStorageImageWriteWithoutFormat   : 1
+info:    shaderClipDistance                     : 1
+info:    shaderCullDistance                     : 1
+info:    shaderFloat64                          : 0
+info:    shaderInt64                            : 1
+info:    variableMultisampleRate                : 1
+info:  VK_EXT_conditional_rendering
+info:    conditionalRendering                   : 1
+info:  VK_EXT_custom_border_color
+info:    customBorderColors                     : 1
+info:    customBorderColorWithoutFormat         : 1
+info:  VK_EXT_depth_clip_enable
+info:    depthClipEnable                        : 1
+info:  VK_EXT_host_query_reset
+info:    hostQueryReset                         : 1
+info:  VK_EXT_memory_priority
+info:    memoryPriority                         : 0
+info:  VK_EXT_robustness2
+info:    robustBufferAccess2                    : 1
+info:    robustImageAccess2                     : 1
+info:    nullDescriptor                         : 0
+info:  VK_EXT_shader_demote_to_helper_invocation
+info:    shaderDemoteToHelperInvocation         : 1
+info:  VK_EXT_transform_feedback
+info:    transformFeedback                      : 1
+info:    geometryStreams                        : 1
+info:  VK_EXT_vertex_attribute_divisor
+info:    vertexAttributeInstanceRateDivisor     : 1
+info:    vertexAttributeInstanceRateZeroDivisor : 1
+info:  Queue families:
+info:    Graphics : 0
+info:    Transfer : 0
+info:  DXVK: Read 0 valid state cache entries
+info:  DXVK: Using 5 compiler threads

@@ -120,6 +120,13 @@ void BubbleList::msgConfirmed(qint64 time)
     }
 }
 
+void BubbleList::setStyle(QString color)
+{
+   QString style=QString("background-color: rgb(%1);").arg(color);
+    qDebug()<<style;
+    //setStyleSheet(style);
+}
+
 BubbleInfo *BubbleList::findBubble(int senderID, qint64 time)
 {
     int cnt = bubbles.size();

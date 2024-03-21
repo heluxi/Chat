@@ -156,5 +156,54 @@
         <file>backgroud3.jpg</file>
         <file>群组创建.svg</file>
         <file>群组+.svg</file>
+        <file>res/common/ic_weather.png</file>
+        <file>res/common/ic_user.png</file>
+        <file>res/common/ic_user_add.png</file>
+        <file>res/common/ic_sysmen.png</file>
+        <file>res/common/ic_smile.png</file>
+        <file>res/common/ic_setting.png</file>
+        <file>res/common/ic_record.png</file>
+        <file>res/common/ic_picture.png</file>
+        <file>res/common/ic_notes.png</file>
+        <file>res/common/ic_min.png</file>
+        <file>res/common/ic_min_white.png</file>
+        <file>res/common/ic_menu_down.png</file>
+        <file>res/common/ic_login_cfg.png</file>
+        <file>res/common/ic_lock.png</file>
+        <file>res/common/ic_font.png</file>
+        <file>res/common/ic_file.png</file>
+        <file>res/common/ic_cut.png</file>
+        <file>res/common/ic_color.png</file>
+        <file>res/common/ic_close.png</file>
+        <file>res/common/ic_close_white.png</file>
+        <file>res/common/ic_calendar.png</file>
+        <file>res/common/ic_arrow_down.png</file>
+        <file>res/common/aio_arrow_right.png</file>
+        <file>res/common/aio_arrow_down.png</file>
+        <file>res/robot.png</file>
+        <file>res/images/robot.png</file>
+        <file>res/images/ic_zip.png</file>
+        <file>res/images/ic_warning.png</file>
+        <file>res/images/ic_user.png</file>
+        <file>res/images/ic_uncheck.png</file>
+        <file>res/images/ic_set_hover.png</file>
+        <file>res/images/ic_question.png</file>
+        <file>res/images/ic_mainsetting.png</file>
+        <file>res/images/ic_info.png</file>
+        <file>res/images/ic_group.png</file>
+        <file>res/images/ic_friend.png</file>
+        <file>res/images/ic_file.png</file>
+        <file>res/images/ic_check_normal.png</file>
+        <file>res/images/ic_check_hover.png</file>
+        <file>res/images/ic_chat.png</file>
+        <file>res/images/ic_app.png</file>
+        <file>res/images/group_normal.png</file>
+        <file>res/images/group_hover.png</file>
+        <file>res/images/conversation_normal.png</file>
+        <file>res/images/conversation_hover.png</file>
+        <file>res/images/contacts.png</file>
+        <file>res/images/contacts_hover.png</file>
+        <file>res/images/applay.png</file>
+        <file>res/images/applay_hover.png</file>
     </qresource>
 </RCC>

@@ -22,6 +22,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QJsonArray>
+#include"myapp.h"
 
 ChatWindow::ChatWindow(QWidget *parent,Cell *c) :
     QWidget(parent),
@@ -32,6 +33,12 @@ ChatWindow::ChatWindow(QWidget *parent,Cell *c) :
     this->setFixedWidth(850);
     ui->msgWindow->setFixedWidth(850);
     ui->widget->setFixedWidth(850);
+
+    //每次读取聊天的背景颜色
+    QString color=MyApp::m_backgroundColor;
+    QString style=QString("background-color:%1").arg(color);
+    qDebug()<<style;
+    ui->msgWindow->setStyleSheet(style);
 
 //    QStringList tmp;
 //    tmp << ":/Icons/MainWindow/arrow_close.png"
@@ -459,6 +466,13 @@ void ChatWindow::loadMsgFromDatabase()
             emit updateMidBarTime(id,info->time,msg);
         }
     }
+}
+
+void ChatWindow::changeBackground(QString color)
+{
+    qDebug()<<"change....";
+    //QString style=QString("background-color: rgb(%1);").arg(color);
+    //ui->msgWindow->setStyle(color);
 }
 
 void ChatWindow::stopLoadingAnimation()

@@ -66,6 +66,16 @@ leftBar::leftBar(QWidget *parent) :
     m_btnGroup->addButton(btn_contact, 1);
     m_btnGroup->addButton(btn_settings, 2);
 
+    connect(btn_settings,&QPushButton::clicked,this,[=](){
+
+        sysSet.show();
+
+    });
+
+    connect(&sysSet,&SystemSetting::changeBackgroundColor,this,&leftBar::changeBackgroundColor);
+    connect(&sysSet,&SystemSetting::changeleftBuble,this,&leftBar::changeleftBuble);
+    connect(&sysSet,&SystemSetting::changerightBuble,this,&leftBar::changerightBuble);
+
     connect(btn_weather,&MyButton::clicked,this,[=](){
 
         WDlg.show();

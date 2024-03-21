@@ -2,6 +2,7 @@
 #include "rightw/chatwindow.h"
 #include "rightw/defaultwindow.h"
 #include "ui_rightw.h"
+#include"myapp.h"
 
 rightw::rightw(QWidget *parent) :
     QWidget(parent),
@@ -29,6 +30,8 @@ rightw::rightw(QWidget *parent) :
 
     connect(ui->closeBtn,&QPushButton::clicked,this,&rightw::sltcloseBtnclicked);
     connect(ui->fullBtn,&QPushButton::clicked,this,&rightw::sltfullBtnclicked);
+    connect(ui->pushButton,&QPushButton::clicked,this,&rightw::sltOnTopBtnclicked);
+
 
 }
 
@@ -196,6 +199,42 @@ void rightw::sltfullBtnclicked()
     emit fullBtnclicked();
 }
 
+void rightw::sltOnTopBtnclicked()
+{
+    qDebug()<<"设置置顶";
+    if(isOntop)
+    {
+        //取消置顶
+        isOntop=false;
+        setWindowFlags(this->windowFlags() &~Qt::WindowStaysOnTopHint);
+    }else{
+        //设置置顶
+        isOntop=true;
+       setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
+    }
+
+}
+
+void rightw::sltchangeBackgroundColor(QString color)
+{
+
+    MyApp::m_backgroundColor=color;
+    //保存设置
+    MyApp::saveConfig();
+}
+
+void rightw::sltchangeleftBuble(QString color)
+{
+    MyApp::m_leftBubleColor=color;
+    MyApp::saveConfig();
+
+}
+
+void rightw::sltchangerightBuble(QString color)
+{
+    MyApp::m_rightBubleColor=color;
+    MyApp::saveConfig();
+}
 
 
 

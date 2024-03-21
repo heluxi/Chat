@@ -37,12 +37,17 @@ signals:
     void updateMidBarTime(int id,qint64 time,QString msg);
     void closeWindow();
     void fullBtnclicked();
-private slots:
+public slots:
     void on_pushButton_4_clicked();
 
     void sltcloseBtnclicked();
 
     void sltfullBtnclicked();
+    void sltOnTopBtnclicked();
+
+    void sltchangeBackgroundColor(QString color);
+    void sltchangeleftBuble(QString color);
+    void sltchangerightBuble(QString color);
 
 private:
     Ui::rightw *ui;
@@ -57,6 +62,7 @@ private:
     QHash<int,int> hash;//用户对应id到聊天窗口的映射
     int cnt = 1;
     int currentPage = 0;
+    bool isOntop=false;
 };
 
 #endif // RIGHTW_H

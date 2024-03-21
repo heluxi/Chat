@@ -36,6 +36,12 @@ bool    MyApp::sendWay              = false;
 int     MyApp::m_nWinX              = 0;
 int     MyApp::m_nWinY              = 0;
 
+
+//个性化设置
+QString MyApp::m_backgroundColor="white";   //聊天背景颜色
+QString MyApp::m_leftBubleColor="white";    //左边气泡颜色
+QString MyApp::m_rightBubleColor="#abcee5";   //右边气泡颜色
+
 // 初始化
 void MyApp::initApp(const QString &appPath)
 {
@@ -86,6 +92,9 @@ void MyApp::createSettingFile()
         settings.setValue("MsgPort",  m_nMsgPort);
         settings.setValue("FilePort",  m_nFilePort);
         settings.setValue("GroupPort",  m_nGroupPort);
+        settings.setValue("BackGroundColor",m_backgroundColor);
+        settings.setValue("leftBubleColor",m_leftBubleColor);
+        settings.setValue("rightBubleColor",m_rightBubleColor);
         settings.endGroup();
 
         /*应用程序设置*/
@@ -94,6 +103,9 @@ void MyApp::createSettingFile()
         settings.setValue("autoLogin", autoLogin);
         settings.setValue("sendWay", sendWay);
         settings.endGroup();
+
+
+
 
         settings.sync();
 
@@ -119,6 +131,9 @@ void MyApp::readSettingFile()
     m_nMsgPort    = settings.value("MsgPort").toInt();
     m_nFilePort   = settings.value("FilePort").toInt();
     m_nGroupPort  = settings.value("GroupPort").toInt();
+    m_backgroundColor=settings.value("BackGroundColor").toString();
+    m_leftBubleColor=settings.value("leftBubleColor").toString();
+    m_rightBubleColor=settings.value("rightBubleColor").toString();
     settings.endGroup();
 
     settings.beginGroup("Application");
@@ -235,6 +250,9 @@ void MyApp::saveConfig()
     settings.setValue("MsgPort",  m_nMsgPort);
     settings.setValue("FilePort",  m_nFilePort);
     settings.setValue("GroupPort",  m_nGroupPort);
+    settings.setValue("BackGroundColor",m_backgroundColor);
+    settings.setValue("leftBubleColor",m_leftBubleColor);
+    settings.setValue("rightBubleColor",m_rightBubleColor);
     settings.endGroup();
 
     /*应用程序设置*/

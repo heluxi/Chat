@@ -59,6 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
 //            this, SLOT(onBtnClicked(int)));
     connect(leftbar->m_btnGroup, &QButtonGroup::idClicked,
             this, &MainWindow::onleftBtnClicked);
+    connect(leftbar,&leftBar::changeBackgroundColor,rightBar,&rightw::sltchangeBackgroundColor);
+    connect(leftbar,&leftBar::changeleftBuble,rightBar,&rightw::sltchangeleftBuble);
+    connect(leftbar,&leftBar::changerightBuble,rightBar,&rightw::sltchangerightBuble);
 
     connect(midBar,&midw::openDialog,[&](Cell *cell){
         if(cell == nullptr){

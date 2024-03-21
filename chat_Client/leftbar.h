@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QWidget>
 #include <QButtonGroup>
+#include<systemsetting.h>
 #include"weather/wtheatherdlg.h"
 
 class personMsgDlg;
@@ -30,6 +31,9 @@ private slots:
     void sltheadChange(QString headPath);
 signals :
     void  UpdateHeadPic();
+    void changeBackgroundColor(QString color);
+    void changeleftBuble(QString color);
+    void changerightBuble(QString color);
 
 private:
     Ui::leftBar *ui;
@@ -39,6 +43,8 @@ private:
     MyButton *btn_settings;
     QPushButton *btn_weather;
     personMsgDlg *pMsgDlg;
+    SystemSetting sysSet;
+
 };
 
 #endif // LEFTBAR_H
