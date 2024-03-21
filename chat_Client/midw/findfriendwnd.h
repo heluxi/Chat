@@ -3,6 +3,9 @@
 
 #include <QDialog>
 #include "cell.h"
+#include <QLabel>
+#include <QPushButton>
+#include <QMouseEvent>
 
 namespace Ui {
 class FindFriendWnd;
@@ -34,6 +37,10 @@ private:
 
     int tag;//tag 0 添加好友 tag 1 添加群
     int friendID;
+    QPushButton* m_menuCloseBtn;         // 菜单栏关闭按钮
+    QPushButton* m_menuMinBtn;           // 菜单栏最小化按钮
+    QLabel *welcome;
+    QLabel *logo;
 
     Cell *cell;
 };

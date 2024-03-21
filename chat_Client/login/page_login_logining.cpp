@@ -11,11 +11,7 @@ Page_Login_Logining::Page_Login_Logining(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //QString headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
-    //qDebug() << "headPath:" << headPath;
-    //QFileInfo fileInfo(headPath);
-    //if(!fileInfo.exists() || MyApp::m_strHeadFile.isEmpty())
-       // headPath = "";
+
     QPixmap *pix=new QPixmap(":/欢迎语-copy.svg");
 
     ui->lb_head->setPixmap(pix->scaled(400,400));
@@ -23,7 +19,7 @@ Page_Login_Logining::Page_Login_Logining(QWidget *parent) :
 
     m_loginingTimer = new QTimer(this);
     QObject::connect(m_loginingTimer, &QTimer::timeout, this, &Page_Login_Logining::changePoints);
-    m_loginingTimer->start(1000);
+    m_loginingTimer->start(2000);
 
 }
 
@@ -67,7 +63,7 @@ void Page_Login_Logining::updateHead()
     QFileInfo fileInfo(headPath);
     if(!fileInfo.exists() || MyApp::m_strHeadFile.isEmpty())
 //        headPath = ":/loginwnd/defalut_head";
-        headPath=":/login.jpg";
+        headPath=":/res/default_head_icon.png";
 
     //设置图片
     QPixmap *pix=new QPixmap(headPath);

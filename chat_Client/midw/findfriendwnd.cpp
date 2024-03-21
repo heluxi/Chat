@@ -12,10 +12,48 @@ FindFriendWnd::FindFriendWnd(int tag) :
     ui(new Ui::FindFriendWnd)
 {
     ui->setupUi(this);
+
+    QFont font = QFont("Microsoft YaHei", 22, 50, false);
+    QFont font2 = QFont("Microsoft YaHei", 12, 48, false);
+     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     this->setWindowTitle("查找");
     this->setFixedSize(600,400);
     this->setStyleSheet("");
+
+    //关闭按钮
+    m_menuCloseBtn = new QPushButton(this);
+    m_menuCloseBtn->setFlat(true);
+    m_menuCloseBtn->setFixedSize(30, 32);
+    m_menuCloseBtn->move(570, 0);
+    m_menuCloseBtn->setStyleSheet("QPushButton{ border-image: url(:/res/menu_btn/close_normal.png); }"
+                                  "QPushButton:hover:!pressed{ border-image: url(:/res/menu_btn/close_hover); }"
+                                  "QPushButton:hover:pressed{ border-image: url(:/res/menu_btn/close_press); border-style:none; }");
+    connect(m_menuCloseBtn, &QPushButton::pressed, this, &FindFriendWnd::close);
+
+    //缩放按钮
+    m_menuMinBtn = new QPushButton(this);
+    m_menuMinBtn->setFlat(true);
+    m_menuMinBtn->setFixedSize(30, 32);
+    m_menuMinBtn->move(540, 0);
+    m_menuMinBtn->setStyleSheet("QPushButton{ border-image: url(:/res/menu_btn/min_normal); }"
+                                "QPushButton:hover:!pressed{ border-image: url(:/res/menu_btn/min_hover); }"
+                                "QPushButton:hover:pressed{ border-image: url(:/res/menu_btn/min_press); border-style:none; }");
+    connect(m_menuMinBtn, &QPushButton::pressed, this, &FindFriendWnd::showMinimized);
+
+
     ui->widget_2->move(13,20);
+    ui->addBtn->move(465,210);
+    ui->searchBut->move(465,15);
+    ui->lineEdit->setStyleSheet("background:transparent;color:white;border:1px solid white;border-style:outset");
+    ui->addBtn->setStyleSheet("QPushButton{border:1px solid #86949e;background-color:#f4f4f4;border-radius:3px}"
+                              "QPushButton:hover{background-color:#bee7fd;}"
+                              "QPushButton:pressed{background-color:#f4f4f4}");
+    ui->searchBut->setStyleSheet("QPushButton{border:1px solid #86949e;background-color:#f4f4f4;border-radius:3px}"
+                                 "QPushButton:hover{background-color:#bee7fd;}"
+                                 "QPushButton:pressed{background-color:#f4f4f4}");
+    ui->addBtn->setFont(font2);
+    ui->searchBut->setFont(font2);
+
     if(tag == 0)
         ui->label->setText("找好友");
     else if(tag == 1)
@@ -162,6 +200,8 @@ void FindFriendWnd::SltfindFrindReply(const QJsonValue &jsonVal)
             ui->nameLabel->setVisible(true);
             qDebug() << "head path:" << head;
             QPixmap p=head;
+            ui->headLabel->setFixedSize(110,100);
+            ui->headLabel->move(15,140);
             ui->headLabel->setPixmap(p);
             ui->headLabel->setScaledContents(true);
             ui->headLabel->setVisible(true);
