@@ -15,7 +15,7 @@ FindFriendWnd::FindFriendWnd(int tag) :
 
     QFont font = QFont("Microsoft YaHei", 22, 50, false);
     QFont font2 = QFont("Microsoft YaHei", 12, 48, false);
-     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     this->setWindowTitle("查找");
     this->setFixedSize(600,400);
     this->setStyleSheet("");
@@ -133,14 +133,14 @@ void FindFriendWnd::on_addBtn_clicked()
             }
         }
     }else if(tag == 1){
-        bool flag = sql_manage::Instance()->isInGroup(friendID);
-        if(flag){
-            QMessageBox::information(this,"错误","您已经加入该群了");
-        }else{
+//        bool flag = sql_manage::Instance()->isInGroup(friendID);
+//        if(flag){
+//            QMessageBox::information(this,"错误","您已经加入该群了");
+//        }else{
 //            msgLabel->setVisible(true);
             ui->addBtn->setVisible(false);
             emit signalSendMessage(AddGroup, json);
-        }
+//        }
     }
 
 

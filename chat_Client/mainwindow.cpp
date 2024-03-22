@@ -220,7 +220,7 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
         parseAddFriendReply(dataVal);
     }
     break;
-    case AddGroup:
+    case AddGroup://群主才会收到这条消息请求
     {
         parseAddGroupReply(dataVal);
     }
@@ -715,11 +715,15 @@ void MainWindow::parseCreateGroupReply(const QJsonValue &dataVal)
     if (dataVal.isObject()) {
         QJsonObject dataObj = dataVal.toObject();
 
-        int nId = dataObj.value("id").toInt();  //groupid
+        int nId = dataObj.value("group").toInt();  //groupid
         // 未查询到该用户
         if (-1 == nId) {
-            QMessageBox::information(this, "CreateGroup","该群组已经添加!");
+            QMessageBox::information(nullptr, "CreateGroup","该群组已经添加!");
             return;
+        }else{
+            QString message="创建成功!\n 您的群ID为:"+QString::number(nId);
+
+            QMessageBox::information(nullptr,"CreateGroup",message);
         }
 
         Cell *cell = new Cell;

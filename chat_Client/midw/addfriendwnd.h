@@ -31,7 +31,7 @@ private slots:
 private:
     Ui::addFriendWnd *ui;
 
-
+    QFont font;
 
     Cell *cell;
 };

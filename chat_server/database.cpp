@@ -567,36 +567,7 @@ QJsonObject Database::createGroup(const int &adminID, const QString &name, qint6
 
 QJsonArray Database::getGroupUsers(const int &groupId)
 {
-//    QString strQuery = ("SELECT [id],[name] FROM UserInfo WHERE ");
-//    strQuery.append(" id=(SELECT [id] FROM GroupInfo WHERE groupId=");
-//    strQuery.append(QString::number(groupId));
-//    strQuery.append(") AND status=");
-//    strQuery.append(QString::number(OffLine));
 
-//    strQuery = "SELECT [userId] FROM GroupInfo WHERE groupId=";
-//    strQuery.append(QString::number(groupId));
-
-//    QJsonArray jsonArr;
-//    QSqlQuery query(strQuery);
-//    jsonArr.append(groupId);
-//    // 查询
-//    while (query.next()) {
-//        int nId = query.value(0).toInt();
-//        strQuery = "SELECT [name],[head],[status] FROM UserInfo WHERE id=";
-//        strQuery.append(QString::number(nId));
-
-//        QSqlQuery queryUser(strQuery);
-//        if (queryUser.next()) {
-//            QJsonObject jsonObj;
-//            jsonObj.insert("id", nId);
-//            jsonObj.insert("name", queryUser.value(0).toString());
-//            jsonObj.insert("head", queryUser.value(1).toString());
-//            jsonObj.insert("status", queryUser.value(2).toInt());
-//            jsonArr.append(jsonObj);
-//        }
-//    }
-
-//    return jsonArr;
 
     QString strQuery = ("SELECT [userID] FROM GroupUser WHERE groupID=");
     strQuery.append(QString::number(groupId));

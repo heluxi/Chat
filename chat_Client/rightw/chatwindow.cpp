@@ -526,6 +526,7 @@ void ChatWindow::sendMsg()
                     emit signalSendMessage(SendMsg,json);
                 }else if(tag == 1){
                     //群聊消息
+                    qDebug()<<"发送群聊信息";
                     json.insert("groupName",cell->name);//发送群消息得带上群的名字
                     emit signalSendMessage(SendGroupMsg,json);
                 }

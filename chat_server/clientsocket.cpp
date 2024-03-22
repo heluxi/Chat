@@ -65,9 +65,10 @@ void ClientSocket::readMsg()
             QJsonValue data=jsonObj.value("data");
             qDebug()<<"recv from client"<<sendID<<jsonObj;
             switch (type) {
-            case SendGroupMsg:
-//                emit sendAllMsg(data);
+            case SendGroupMsg://群发消息
+            {
                 ParseGroupMessages(reply);
+            }
             break;
             case SendFileOk:
             {
@@ -125,7 +126,7 @@ void ClientSocket::readMsg()
                 parseAddGroup(data);
             }
             break;
-            case AddGroupRequist:
+            case AddGroupRequist://群主同意请求
             {
                 parseAddGroupReply(data);
             }
@@ -251,25 +252,46 @@ void ClientSocket::ParseGroupMessages(const QByteArray &reply)
             // 查询该群组里面的在线好友
             QJsonArray jsonArr = Database::Instance()->getGroupUsers(nGroupId);
             if (jsonArr.size() < 2) return;
-            for (int i = 1; i < jsonArr.size(); i++) {
+//            for (int i = 1; i < jsonArr.size(); i++) {
+//                QJsonObject json = jsonArr.at(i).toObject();
+//                int nStatus = json.value("status").toInt();
+//                int nUserId = json.value("id").toInt();
+
+//                // 只给在线的好友转发消息
+//                if (OnLine == nStatus && m_id != nUserId) {
+//                    // 重组消息
+//                    QJsonObject jsonMsg;
+//                    jsonMsg.insert("group", nGroupId);
+//                    jsonMsg.insert("groupHead",groupHead);
+//                    jsonMsg.insert("id", m_id);
+//                    jsonMsg.insert("time",time);
+//                    jsonMsg.insert("name", name);//发送该条群聊消息的人的名字
+//                    jsonMsg.insert("to", nUserId);
+//                    jsonMsg.insert("msg", strMsg);
+//                    jsonMsg.insert("head", Database::Instance()->getUserHead(m_id));
+
+//                    emit sendMessagetoClient(quint8(nType), nUserId, jsonMsg);
+//                }
+//            }
+            for (int i = 0; i < jsonArr.size(); i++) {
                 QJsonObject json = jsonArr.at(i).toObject();
-                int nStatus = json.value("status").toInt();
                 int nUserId = json.value("id").toInt();
 
-                // 只给在线的好友转发消息
-                if (OnLine == nStatus && m_id != nUserId) {
+                if (m_id != nUserId) {
                     // 重组消息
                     QJsonObject jsonMsg;
                     jsonMsg.insert("group", nGroupId);
                     jsonMsg.insert("groupHead",groupHead);
-                    jsonMsg.insert("id", m_id);
+                    jsonMsg.insert("id", m_id);//发送该条群聊消息的人的ID
                     jsonMsg.insert("time",time);
-                    jsonMsg.insert("name", name);//发送该条群聊消息的人的名字
                     jsonMsg.insert("to", nUserId);
                     jsonMsg.insert("msg", strMsg);
+                    jsonMsg.insert("tag",1);
+
+                    jsonMsg.insert("name", name);//发送该条群聊消息的人的名字
                     jsonMsg.insert("head", Database::Instance()->getUserHead(m_id));
 
-                    emit sendMessagetoClient(quint8(nType), nUserId, jsonMsg);
+                    Q_EMIT sendMessagetoClient(quint8(nType), nUserId, jsonMsg);
                 }
             }
         }

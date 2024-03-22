@@ -205,5 +205,6 @@
         <file>res/images/contacts_hover.png</file>
         <file>res/images/applay.png</file>
         <file>res/images/applay_hover.png</file>
+        <file>添加好友.svg</file>
     </qresource>
 </RCC>

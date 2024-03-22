@@ -107,6 +107,7 @@ void clientSock::recvMsg()
             {
                 Q_EMIT signalMessage(SendGroupMsg, dataVal);
             }
+            break;
             case SendPicture:
             {
                 Q_EMIT signalMessage(SendPicture, dataVal);
@@ -170,7 +171,7 @@ void clientSock::recvMsg()
                 emit signalMessage(AddGroup, dataVal);
             }
             break;
-            case AddGroupRequist:
+            case AddGroupRequist://添加群聊成功
             {
                 emit signalMessage(AddGroupRequist, dataVal);
             }

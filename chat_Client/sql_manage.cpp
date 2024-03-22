@@ -194,10 +194,10 @@ bool sql_manage::isAdmin(int id, int groupID)
 
 void sql_manage::AddGroup(const int &id, const int &userId, const QString &name)
 {
-    QString strQuery = "SELECT [id] FROM MYGROUP ";
+    QString strQuery = "SELECT [id] FROM MyGroup ";
     strQuery.append("WHERE id=");
     strQuery.append(QString::number(id));
-    strQuery.append(" AND userId=");
+    strQuery.append(" AND admin=");
     strQuery.append(QString::number(userId));
 
     QSqlQuery query(strQuery, userdb);
@@ -208,7 +208,7 @@ void sql_manage::AddGroup(const int &id, const int &userId, const QString &name)
     }
 
     // 根据新ID重新创建用户
-    query.prepare("INSERT INTO MYGROUP (id, userId, name) "
+    query.prepare("INSERT INTO MyGroup (id, admin, name) "
                   "VALUES (?, ?, ?);");
     query.bindValue(0, id);
     query.bindValue(1, userId);

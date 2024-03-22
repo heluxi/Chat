@@ -10,23 +10,65 @@ addFriendWnd::addFriendWnd(Cell *cell) :
     ui(new Ui::addFriendWnd)
 {
     ui->setupUi(this);
-
+    this->setStyleSheet("background-color: rgb(85, 85, 85);");
+    ui->widget_2->setStyleSheet("background-color: rgba(255, 255, 255, 124);border-radius:10px;");
+//    ui->msgLabel->setStyleSheet("border-image: url(:/添加好友.svg);");
+//    ui->msgLabel->setFixedSize(50,50);
+    setWindowFlags(Qt::WindowCloseButtonHint);
     this->cell = cell;
+    QPalette palette = this->palette();
+    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/backgroud3.jpg").
+                                              scaled(this->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));// 使用平滑的缩放方式
+    this->setPalette(palette);// 给widget加上背景图
+    ui->idLabel->setText("ID:"+QString::number(cell->id));
+    ui->userName->setText("Name:"+cell->name);
+    ui->idLabel->setFixedWidth(200);
+    ui->userName->setFixedWidth(200);
+    font = QFont("Microsoft YaHei", 12, 50, false);
+    ui->idLabel->setFont(font);
+    ui->userName->setFont(font);
 
-    ui->idLabel->setText(QString::number(cell->id));
-    ui->userName->setText(cell->name);
+    bool tag = cell->done;
+
+    if(tag){
+        ui->msgLabel->setText("已处理该请求");
+        ui->msgLabel->setFont(font);
+        ui->msgLabel->setStyleSheet("color:#0081ef");
+
+    }else{
+        ui->msgLabel->setText("未处理的请求");
+        ui->msgLabel->setFont(font);
+        ui->msgLabel->setStyleSheet("color:#0081ef");
+    }
+
+
+//    ui->head->setPalette();
 
     if(cell->type == Cell_AddFriend)
+    {
         setWindowTitle("申请添加好友");
+        ui->timeLabel->setText("申请添加好友");
+    }
     else if(cell->type == Cell_AddGroup)
+    {
+
         setWindowTitle("申请加入群：" + QString::number(cell->groupid));
+        ui->timeLabel->setText("申请加入群：" + QString::number(cell->groupid));
+    }
+
+    ui->agreeBtn->setStyleSheet("QPushButton{border:1px solid #86949e;background-color:#f4f4f4;border-radius:3px}"
+                                "QPushButton:hover{background-color:#bee7fd;}"
+                                "QPushButton:pressed{background-color:#f4f4f4}");
+
+    ui->rejectBtn->setStyleSheet("QPushButton{border:1px solid #86949e;background-color:#f4f4f4;border-radius:3px}"
+                                 "QPushButton:hover{background-color:#bee7fd;}"
+                                 "QPushButton:pressed{background-color:#f4f4f4}");
 }
 
 addFriendWnd::~addFriendWnd()
 {
     delete ui;
 }
-
 
 
 
