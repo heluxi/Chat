@@ -141,22 +141,26 @@ void ClientSocket::readMsg()
                 ParseGetMyFriend(data);
             }
             break;
-//            case GetMyGroups:
-//            {
-//                ParseGetMyGroups(dataVal);
-//            }
-//            break;
-
-//            case RefreshFriends:
-//            {
-//                ParseRefreshFriend(dataVal);
-//            }
-//            break;
-//            case RefreshGroups:
-//            {
-//                ParseRefreshGroups(dataVal);
-//            }
-//            break;
+            case GetMyGroups:
+            {
+                ParseGetMyGroups(data);
+            }
+            break;
+            case GetGroupMembers:
+            {
+                parseGetGroupMembers(data);
+            }
+            break;
+            case RefreshFriends:
+            {
+                parseRefreshFriend(data);
+            }
+            break;
+            case RefreshGroups:
+            {
+                parseRefreshGroups(data);
+            }
+            break;
             case Login:
                 UserLogin(data);
                 break;
@@ -465,6 +469,20 @@ void ClientSocket::ParseGetMyFriend(const QJsonValue &dataVal)
     sendMessage(GetMyFriends, jsonArray);
 }
 
+void ClientSocket::ParseGetMyGroups(const QJsonValue &dataVal)
+{
+    QJsonArray jsonArray;
+    // data 的 value 是数组
+    if (dataVal.isObject()) {
+        QJsonObject jsonObj = dataVal.toObject();
+        // 群组ID
+        int nId = jsonObj.value("id").toInt();
+        jsonArray = Database::Instance()->getGroupUsers(nId);
+    }
+
+    sendMessage(GetMyGroups, jsonArray);
+}
+
 void ClientSocket::parseFindFriend(const QJsonValue &dataVal)
 {
     if(dataVal.isObject()){
@@ -677,6 +695,56 @@ void ClientSocket::parseChangePwd(const QJsonValue &dataVal)
         QJsonObject jsonObj = Database::Instance()->changePwd(id,oldPwd,newPwd);
         sendMessage(ChangePasswd,jsonObj);
     }
+}
+
+void ClientSocket::parseGetMyGroups(const QJsonValue &dataVal)
+{
+
+}
+
+void ClientSocket::parseGetGroupMembers(const QJsonValue &dataVal)
+{
+    if (dataVal.isObject()) {
+        QJsonObject jsonObj = dataVal.toObject();
+        // 群组ID
+        int nId = jsonObj.value("id").toInt();
+        int groupID = jsonObj.value("groupid").toInt();
+        qDebug() << nId << "请求获取" << groupID << "的成员";
+
+            QJsonArray jsonArray = Database::Instance()->getGroupUsers(groupID);
+        sendMessage(GetGroupMembers,jsonArray);
+    }
+}
+
+void ClientSocket::parseRefreshFriend(const QJsonValue &dataVal)
+{
+    QJsonArray jsonArray;
+    // data 的 value 是数组
+    if (dataVal.isArray()) {
+        QJsonArray array = dataVal.toArray();
+        int nSize = array.size();
+        for (int i = 0; i < nSize; ++i) {
+            int nId = array.at(i).toInt();
+            jsonArray.append(Database::Instance()->getUserStatus(nId));
+        }
+    }
+
+    sendMessage(RefreshFriends, jsonArray);
+}
+
+void ClientSocket::parseRefreshGroups(const QJsonValue &dataVal)
+{
+    QJsonArray jsonArray;
+    // data 的 value 是数组
+    if (dataVal.isObject()) {
+        QJsonObject jsonObj = dataVal.toObject();
+        // 群组ID
+        int nId = jsonObj.value("id").toInt();
+        jsonArray = Database::Instance()->getGroupUsers(nId);
+    }
+
+    sendMessage(RefreshGroups, jsonArray);
+
 }
 
 

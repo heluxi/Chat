@@ -208,13 +208,19 @@ void sql_manage::AddGroup(const int &id, const int &userId, const QString &name)
     }
 
     // 根据新ID重新创建用户
-    query.prepare("INSERT INTO MyGroup (id, admin, name) "
-                  "VALUES (?, ?, ?);");
+    const QString head=MyApp::m_strHeadPath+"0.png";
+    qDebug()<<"defalut head"+head;
+    // 根据新ID重新创建用户
+    query.prepare("INSERT INTO MyGroup (id, admin, name,head) "
+                  "VALUES (?, ?, ?,?);");
     query.bindValue(0, id);
     query.bindValue(1, userId);
     query.bindValue(2, name);
-
-    query.exec();
+    query.bindValue(3,head);
+    if( query.exec())
+    {
+       qDebug()<<"插入成功";
+    }
 }
 
 QJsonObject sql_manage::getFriendInfo(int id) const

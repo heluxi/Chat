@@ -64,6 +64,7 @@ private:
     void parseFriendMessageReply(const QJsonValue &dataVal);
     void parseGroupMessageReply(const QJsonValue &dataVal);
     void parseCreateGroupReply(const QJsonValue &dataVal);
+    void parseGetGroupMembersReply(const QJsonValue &dataVal);
 
     void parseSendFileReply(const QJsonValue &dataVal);
 

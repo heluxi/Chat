@@ -49,6 +49,8 @@ ChatWindow::ChatWindow(QWidget *parent,Cell *c) :
     connect(ui->msgWindow,&BubbleList::signalSendMessage,
             this,&ChatWindow::signalSendMessage);
 
+    ui->listbtn->setToolTip("显示群员列表");
+    ui->listbtn->setFixedSize(50,35);
 
     groupList = new GroupList;
 
@@ -932,25 +934,15 @@ void ChatWindow::on_listbtn_clicked()
         groupList->setFixedWidth(0);
         groupList->setVisible(false);
         open = !open;
-        QStringList tmp;
-        tmp << ":/Icons/MainWindow/arrow_open.png"
-            << ":/Icons/MainWindow/arrow_open2.png"
-            << ":/Icons/MainWindow/arrow_open.png";
-        ui->listbtn->changeIconSet(tmp);
-        ui->listbtn->setImage(ui->listbtn->MoveInIcon);
-        ui->listbtn->setToolTip("显示群员列表");
+
     }else{
+        qDebug()<<"显示群成员列表";
         groupList->setFixedWidth(200);
         groupList->setVisible(true);
         groupList->memberList->resetCellState();
         groupList->memberList->refreshList();
         open = !open;
-        QStringList tmp;
-        tmp << ":/Icons/MainWindow/arrow_close.png"
-            << ":/Icons/MainWindow/arrow_close2.png"
-            << ":/Icons/MainWindow/arrow_close.png";
-        ui->listbtn->changeIconSet(tmp);
-        ui->listbtn->setImage(ui->listbtn->MoveInIcon);
+
         ui->listbtn->setToolTip("关闭群员列表");
     }
 }

@@ -145,6 +145,7 @@ void ListWidget::refreshList()
                 group->titleLabel->setText(cell->groupName);
                 group->subTitleLabel->setText(QString("[%1/%2]").arg(onLineCnt).arg(cell->childs.size()));
             }else{
+                //群列表
                 group->titleLabel->setText(QString("%1[%2/%2]").arg(cell->groupName).arg(cell->childs.size()));
                 group->subTitleLabel->setText("");
             }

@@ -261,17 +261,17 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     break;
     case GetGroupMembers:
     {
-//        parseGetGroupMembersReply(dataVal);
+        parseGetGroupMembersReply(dataVal);
     }
     break;
     case RefreshFriends:
     {
-        //ParseRefreshFriendsReply(dataVal);
+//        ParseRefreshFriendsReply(dataVal);
     }
     break;
     case RefreshGroups:
     {
-        //ParseRefreshGroupFriendsReply(dataVal);
+//        ParseRefreshGroupFriendsReply(dataVal);
     }
     break;
     case SendMsg:
@@ -771,6 +771,13 @@ void MainWindow::parseCreateGroupReply(const QJsonValue &dataVal)
 
 
     }
+}
+
+void MainWindow::parseGetGroupMembersReply(const QJsonValue &dataVal)
+{
+    qDebug() << "收到服务器发来的群成员: "
+             << dataVal;
+    rightBar->refreshGroupList(dataVal);
 }
 
 void MainWindow::parseSendFileReply(const QJsonValue &dataVal)

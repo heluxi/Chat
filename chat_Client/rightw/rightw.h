@@ -31,6 +31,8 @@ public:
     void msgReceived(Cell *c,QJsonValue dataVal);//这是服务器转发给我的消息，是我的好友或者群发给我的消息
 
     void addNewUserToGroupList(int groupID,Cell *newUser);//新用户入群
+
+    void refreshGroupList(QJsonValue dataVal);
 signals:
 //    void stayOnTop(bool);
     void signalSendMessage(const quint8 &, const QJsonValue &);

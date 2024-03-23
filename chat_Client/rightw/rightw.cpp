@@ -3,6 +3,7 @@
 #include "rightw/defaultwindow.h"
 #include "ui_rightw.h"
 #include"myapp.h"
+#include<QJsonArray>
 
 rightw::rightw(QWidget *parent) :
     QWidget(parent),
@@ -180,6 +181,26 @@ void rightw::addNewUserToGroupList(int groupID, Cell *newUser)
         if(groupID == chatWindowList.at(i)->getID()){
             chatWindowList.at(i)->addCellToGroupList(newUser);
             return;
+        }
+    }
+}
+
+void rightw::refreshGroupList(QJsonValue dataVal)
+{
+    if (dataVal.isArray()) {
+        QJsonArray array = dataVal.toArray();
+        int cnt = array.size();
+        if(cnt > 0){
+            QJsonObject json = array.at(0).toObject();//提取群号
+            int groupid = json.value("groupid").toInt();
+
+            for(int i = 0;i < chatWindowList.size();i++){
+                if(groupid == chatWindowList.at(i)->getID()){
+                    chatWindowList.at(i)->refreshGroupList(dataVal);//刷新聊天窗口的群列表
+                    qDebug() << "群聊窗口" << groupid << "正在刷新群员列表" ;
+                    return;
+                }
+            }
         }
     }
 }

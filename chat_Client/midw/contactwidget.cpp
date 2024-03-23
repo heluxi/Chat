@@ -19,6 +19,7 @@
 #include <QJsonArray>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include"mybutton.h"
 
 ContactWidget::ContactWidget(QWidget *parent) :
     QWidget(parent),
@@ -31,26 +32,27 @@ ContactWidget::ContactWidget(QWidget *parent) :
 
 
     ui->btn_friend->setToolTip("好友");
-    ui->btn_friend->setStyleSheet("border: none;background-color:#ebeae8");
+    ui->btn_friend->setStyleSheet("border: none;background-color:#ebeae8;border-image: url(:/res/Icons/MainWindow/contact3.png);");
     ui->btn_friend->setFixedSize(40,35);
-    ui->btn_friend->NormalIcon=":/res/Icons/MainWindow/friend.png";
-    ui->btn_friend->MoveInIcon=":/res/Icons/MainWindow/friend2.png";
-    ui->btn_friend->ClickIcon=":/res/Icons/MainWindow/friend3.png";
+//    ui->btn_friend->NormalIcon=":/res/Icons/MainWindow/friend.png";
+//    ui->btn_friend->MoveInIcon=":/res/Icons/MainWindow/friend2.png";
+//    ui->btn_friend->ClickIcon=":/res/Icons/MainWindow/friend3.png";
     ui->btn_friend->setText("");
 
 
     ui->btn_group->setToolTip("群组");
     ui->btn_group->setFixedSize(40,35);
-    ui->btn_group->NormalIcon=":/res/Icons/MainWindow/group.png";
-    ui->btn_group->MoveInIcon=":/res/Icons/MainWindow/group2.png";
-    ui->btn_group->ClickIcon=":/res/Icons/MainWindow/group3.png";
+    ui->btn_group->setStyleSheet("border-image: url(:/res/Icons/MainWindow/group3.png);");
+//    ui->btn_group->NormalIcon=":/res/Icons/MainWindow/group.png";
+//    ui->btn_group->MoveInIcon=":/res/Icons/MainWindow/group2.png";
+//    ui->btn_group->ClickIcon=":/res/Icons/MainWindow/group3.png";
     ui->btn_group->setText("");
 
 
 
     btnGroup = new QButtonGroup(this);
     btnGroup->addButton(ui->btn_friend, 0);
-    ui->btn_friend->onBtnClicked();
+//    ui->btn_friend->onBtnClicked();
     btnGroup->addButton(ui->btn_group, 1);
     connect(btnGroup, &QButtonGroup::idClicked, this, &ContactWidget::onSwitchPage);
 
@@ -490,12 +492,12 @@ void ContactWidget::onSwitchPage(int page)
 {
     if(page == 0){
         //qDebug() << "显示好友列表";
-        ui->btn_friend->onBtnClicked();
-        ui->btn_group->restoreBtn();
+//        ui->btn_friend->onBtnClicked();
+//        ui->btn_group->restoreBtn();
     }else if(page == 1){
         //qDebug() << "显示群列表";
-        ui->btn_friend->restoreBtn();
-        ui->btn_group->onBtnClicked();
+//        ui->btn_friend->restoreBtn();
+//        ui->btn_group->onBtnClicked();
     }
 
     ui->stackedWidget->setCurrentIndex(page);

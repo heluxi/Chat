@@ -61,7 +61,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="MyButton" name="btn_friend">
+       <widget class="QPushButton" name="btn_friend">
         <property name="minimumSize">
          <size>
           <width>48</width>
@@ -90,7 +90,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="MyButton" name="btn_group">
+       <widget class="QPushButton" name="btn_group">
         <property name="minimumSize">
          <size>
           <width>50</width>
@@ -182,11 +182,6 @@
    <class>ListWidget</class>
    <extends>QListWidget</extends>
    <header>listwidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>MyButton</class>
-   <extends>QPushButton</extends>
-   <header>mybutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

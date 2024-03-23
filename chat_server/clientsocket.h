@@ -66,7 +66,11 @@ private:
     void parseGetOfflineMsg(const QJsonValue &dataVal);
     void parseChangePwd(const QJsonValue &dataVal);
 
+    void parseGetMyGroups(const QJsonValue &dataVal);
+    void parseGetGroupMembers(const QJsonValue &dataVal);
 
+    void parseRefreshFriend(const QJsonValue &dataVal);
+    void parseRefreshGroups(const QJsonValue &dataVal);
 private:
     QTcpSocket *m_tcpSocket;
     int m_id;
