@@ -78,6 +78,7 @@ private:
     //    void on_btn_max_clicked();
 
 private:
+    //将程序主窗口分为三个部分
     leftBar *leftbar;
     midw *midBar;
     rightw *rightBar;

@@ -37,6 +37,8 @@ signals:
     void updateMidBarTime(int id,qint64 time,QString msg);
     void closeWindow();
     void fullBtnclicked();
+    void  exitApp();
+
 public slots:
     void on_pushButton_4_clicked();
 

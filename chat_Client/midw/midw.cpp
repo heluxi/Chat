@@ -8,7 +8,7 @@
 #include "qwidget.h"
 #include "sql_manage.h"
 #include "ui_midw.h"
-
+#include<QSqlQuery>
 #include <QJsonArray>
 #include <QMessageBox>
 
@@ -73,6 +73,36 @@ midw::midw(QWidget *parent) :
 
 midw::~midw()
 {
+    qDebug()<<"midw析构函数的调用";
+    QString sqlQuery = "update myFriend set tag = 0;";
+    QString sqlQuery2 = "update myGroup set tag = 0;";
+    QSqlQuery query;
+    query.exec(sqlQuery);
+    query.exec(sqlQuery2);
+
+    QList<Cell*> cells = ui->chatList->getAllCells();
+    int cnt = cells.size();
+    for(int i = 0;i < cnt;i++){
+        if(cells.at(i)->type == Cell_FriendChat){
+            QString sqlQuery = "update myFriend set tag = 1, lastMsg = '";
+            sqlQuery.append(cells.at(i)->msg + "', lastTime = '");
+            sqlQuery.append(cells.at(i)->subTitle + "'");
+            sqlQuery.append(" where id=");
+            sqlQuery.append(QString::number(cells.at(i)->id));
+
+            query.exec(sqlQuery);
+            //qDebug() << "sql error:" << query.lastError().text();
+        }else if(cells.at(i)->type == Cell_GroupChat){
+            QString sqlQuery = "update myGroup set tag = 1, lastMsg = '";
+            sqlQuery.append(cells.at(i)->msg + "', lastTime = '");
+            sqlQuery.append(cells.at(i)->subTitle + "'");
+            sqlQuery.append(" where id=");
+            sqlQuery.append(QString::number(cells.at(i)->id));
+
+            query.exec(sqlQuery);
+            //qDebug() << "sql error:" << query.lastError().text();
+        }
+    }
     delete ui;
 }
 
@@ -114,7 +144,7 @@ void midw::InitChatList()
             this,SLOT(onSonMenuSelected(QAction*)));
     ui->chatList->setSonPopMenu(sonMenu);
 
-    //查询本地数据库获取我的好友
+    //查询本地数据库获取我的好友和群聊
     QJsonArray myChatList = sql_manage::Instance()->getMyChatList();
     int cnt = myChatList.size();
     if(cnt == 0){
@@ -130,6 +160,7 @@ void midw::InitChatList()
         c->name = json.value("name").toString();
         c->iconPath = json.value("head").toString();
         qDebug()<<c->iconPath;
+        qDebug()<<json.value("lastMsg").toString();
         c->msg = json.value("lastMsg").toString();
         c->subTitle = json.value("lastTime").toString();
         int tag = json.value("tag").toInt();

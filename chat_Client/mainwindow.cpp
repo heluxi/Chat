@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     leftbar->setFixedSize(83,832);
     midBar->setFixedSize(380,832);
 
-    QHBoxLayout *layout = new QHBoxLayout();
+    QHBoxLayout *layout = new QHBoxLayout(this);
 
     layout->addWidget(leftbar);
     layout->addWidget(midBar);
@@ -88,12 +88,19 @@ MainWindow::MainWindow(QWidget *parent)
         this->showMinimized();
     });
    // connect(rightBar,&rightw::fullBtnclicked,this,&MainWindow::showMaximized);
-
+    connect(rightBar,&rightw::exitApp,this,[=](){
+        delete midBar;
+    });
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+#if 0
+    delete leftBar;
+    delete midBar;
+    delete rightBar;
+#endif
 }
 
 void MainWindow::setMainSocket(clientSock *socket, clientFileSock *filesocket)

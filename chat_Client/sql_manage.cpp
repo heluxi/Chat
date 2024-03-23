@@ -302,7 +302,7 @@ QJsonArray sql_manage::getMyChatList() const
 {
     QJsonArray  myChatList;
 
-    QString strQuery = "SELECT * FROM MyFriend where tag = 0";//表示上次关闭时已打开
+    QString strQuery = "SELECT * FROM MyFriend where tag = 1";//表示上次关闭时已打开
     QSqlQuery query(strQuery);
     while(query.next()){
        QJsonObject json;
@@ -316,7 +316,8 @@ QJsonArray sql_manage::getMyChatList() const
        myChatList.append(json);
     }
 
-    QString strQuery2 = "SELECT * FROM MyGroup where tag = 0";//表示上次关闭时已打开
+    QString strQuery2 = "SELECT * FROM MyGroup where tag = 1";//表示上次关闭时已打开
+//    QString strQuery2 = "SELECT * FROM MyGroup ";
     QSqlQuery query2(strQuery2);
     while(query2.next()){
        QJsonObject json;
