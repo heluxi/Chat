@@ -395,7 +395,7 @@ void ContactWidget::onSonMenuSelected(QAction *action)
 
         //删除联系人列表中的该格子
         ui->friendList->removeCell(popMenuCell);
-
+        ui->friendList->refreshList();
         //删除中栏中的格子
         emit deleteChat(id);
 //        myHelper::Sleep(500);

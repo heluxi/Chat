@@ -95,6 +95,8 @@ void ListWidget::insertCell(Cell *cell)
 
 void ListWidget::removeCell(Cell *cell)
 {
+
+    qDebug()<<cell->type;
     if(cell->type == Cell_GroupDrawer || cell->type == Cell_FriendDrawer){
         cells.removeOne(cell);
     }else if(cell->type == Cell_FriendChat || cell->type == Cell_GroupChat){
@@ -105,14 +107,17 @@ void ListWidget::removeCell(Cell *cell)
         if(tag == 2){
             foreach(Cell *group,cells){
                 if(!group->groupName.compare(cell->groupName)){
+                      qDebug()<<"删除中......";
                     group->childs.removeOne(cell);
                     break;
                 }
             }
         }else if(tag == 1){
+
             cells.removeOne(cell);
         }
     }
+    cells.removeOne(cell);
     refreshList();
 }
 

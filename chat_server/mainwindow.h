@@ -11,7 +11,7 @@
 #include<tcpServer.h>
 #include <QStandardItemModel>   //保存数据
 #include "qtmetamacros.h"
-
+#include<QLabel>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -71,7 +71,8 @@ private:
     bool isFile;
     int recvSize;
     int sendSize;
-    QTimer timer;
+    QTimer *timer;
+    QLabel *lb_time;
     QTcpSocket* curScok;
     int fileport;//对方发送文件的端口
 
@@ -83,6 +84,7 @@ private:
 
     // 系统菜单
     QSystemTrayIcon *systemTrayIcon;
+
 
 protected:
     int m_nTimerId;

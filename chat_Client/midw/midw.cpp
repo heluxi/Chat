@@ -22,6 +22,7 @@ midw::midw(QWidget *parent) :
     ui->chatList->setFixedWidth(345);
     ui->chatListW->setFixedWidth(345);
     ui->stackedWidget->setFixedWidth(345);
+    ui->stackedWidget->setFixedHeight(830);
 
     connect(ui->chatList,&ListWidget::popMenuToShow,
             this,&midw::setPopMenuCell);

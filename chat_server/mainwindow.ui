@@ -14,7 +14,8 @@
    <string>ATAW Server</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: rgb(255, 255, 255);
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_7">
@@ -123,8 +124,13 @@
                <bold>false</bold>
               </font>
              </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(91, 156, 200);
+
+</string>
+             </property>
              <property name="text">
-              <string>UesrName</string>
+              <string>UserName</string>
              </property>
             </widget>
            </item>
@@ -136,6 +142,11 @@
                <pointsize>18</pointsize>
                <italic>true</italic>
               </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(91, 156, 200);
+
+</string>
              </property>
              <property name="text">
               <string>Password</string>
@@ -180,13 +191,21 @@
                 </property>
                 <property name="font">
                  <font>
-                  <family>Verdana</family>
-                  <pointsize>15</pointsize>
-                  <bold>true</bold>
+                  <family>Arial Black</family>
+                  <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(63, 188, 188);</string>
+                 <string notr="true">  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgb(69, 138, 197),stop:1 rgba(255,255,255,255));
+/*    color:rgb(255,255,255,255);*/
+    color:white;
+    border:0px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+/*    font:16pt &quot;Candara&quot;;*/
+    font: 87 16pt &quot;Arial Black&quot;;</string>
                 </property>
                 <property name="text">
                  <string>Sign in</string>
@@ -216,13 +235,21 @@
                 </property>
                 <property name="font">
                  <font>
-                  <family>Verdana</family>
-                  <pointsize>15</pointsize>
-                  <bold>true</bold>
+                  <family>Arial Black</family>
+                  <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(63, 188, 188);</string>
+                 <string notr="true">  background-color:qlineargradient(spread:pad,x1:0.52,y1:1,x2:0.54,y2:0,stop:0.0112994 rgb(69, 138, 197),stop:1 rgba(255,255,255,255));
+/*    color:rgb(255,255,255,255);*/
+    color:white;
+    border:0px groove gray;
+    border-radius:7px;
+    padding:2px 4px;
+/*    font:16pt &quot;Candara&quot;;*/
+    font: 87 16pt &quot;Arial Black&quot;;</string>
                 </property>
                 <property name="text">
                  <string>Exit</string>
@@ -258,16 +285,15 @@
           </property>
           <property name="font">
            <font>
-            <family>URW Bookman</family>
+            <family>Arial Black</family>
             <pointsize>40</pointsize>
-            <italic>true</italic>
-            <bold>true</bold>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-color: rgb(16, 200, 217);
-</string>
+           <string notr="true">font: 87 40pt &quot;Arial Black&quot;;
+    color: rgb(91, 156, 200);</string>
           </property>
           <property name="text">
            <string>ATAW Server</string>
@@ -286,7 +312,7 @@ color: rgb(16, 200, 217);
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">image: url(:/res/images/background.jpg);
+           <string notr="true">image: url(:/res/images/login.jpg);
 background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="frameShape">
@@ -329,6 +355,10 @@ background-color: rgb(255, 255, 255);</string>
        </layout>
       </widget>
       <widget class="QWidget" name="MainWidget">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(40, 40, 40);
+color: rgb(255, 255, 255);</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="2" column="0">
          <widget class="QTreeWidget" name="treeWidget">
@@ -345,8 +375,7 @@ background-color: rgb(255, 255, 255);</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(225, 229, 202);
-</string>
+           <string notr="true">background-color: rgb(2, 69, 115);</string>
           </property>
           <column>
            <property name="text">
@@ -434,6 +463,9 @@ background-color: rgb(255, 255, 255);</string>
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(2, 69, 115);</string>
+          </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="2">
             <spacer name="horizontalSpacer_6">
@@ -450,6 +482,12 @@ background-color: rgb(255, 255, 255);</string>
            </item>
            <item row="0" column="1">
             <widget class="QLabel" name="label_4">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <family>TSCu_Times</family>
@@ -457,18 +495,33 @@ background-color: rgb(255, 255, 255);</string>
                <bold>true</bold>
               </font>
              </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
              <property name="styleSheet">
-              <string notr="true">color:rgb(0, 170, 170)</string>
+              <string notr="true">color: rgb(226, 232, 236);
+
+
+</string>
              </property>
              <property name="text">
-              <string>ATAW Server</string>
+              <string>ATAW  Server</string>
              </property>
             </widget>
            </item>
            <item row="0" column="3">
             <widget class="QLabel" name="label">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-image: url(:/res/images/admin.png);</string>
+             </property>
              <property name="text">
-              <string>head</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -482,10 +535,11 @@ background-color: rgb(255, 255, 255);</string>
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: rgb(163, 132, 111);</string>
+              <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(39, 128, 189);</string>
              </property>
              <property name="text">
-              <string>quit</string>
+              <string>退出</string>
              </property>
             </widget>
            </item>
@@ -513,15 +567,18 @@ background-color: rgb(255, 255, 255);</string>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
             <widget class="AnimationStackedWidget" name="stackedWidget">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(40, 40, 40);</string>
+             </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page">
               <layout class="QGridLayout" name="gridLayout_9">
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox">
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(225, 229, 202);</string>
+                  <string notr="true">background-color: rgb(57, 57, 57)</string>
                  </property>
                  <property name="title">
                   <string>userInfo</string>
@@ -533,7 +590,11 @@ background-color: rgb(255, 255, 255);</string>
              <widget class="QWidget" name="page_2">
               <layout class="QGridLayout" name="gridLayout_13">
                <item row="0" column="0">
-                <widget class="QTextBrowser" name="textBrowser"/>
+                <widget class="QTextBrowser" name="textBrowser">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(57, 57, 57)</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -541,21 +602,15 @@ background-color: rgb(255, 255, 255);</string>
               <layout class="QGridLayout" name="gridLayout_16">
                <item row="0" column="0">
                 <widget class="QWidget" name="widget_5" native="true">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(57, 57, 57)</string>
+                 </property>
                  <layout class="QGridLayout" name="gridLayout_15">
-                  <item row="0" column="0">
-                   <widget class="QTableView" name="tableViewUsers">
-                    <property name="minimumSize">
-                     <size>
-                      <width>422</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="1">
                    <widget class="QGroupBox" name="groupBox_2">
                     <property name="styleSheet">
-                     <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+                     <string notr="true">background-color: rgb(138, 138, 138);
+color: rgb(255, 255, 255);</string>
                     </property>
                     <property name="title">
                      <string>UserManage</string>
@@ -565,6 +620,10 @@ background-color: rgb(255, 255, 255);</string>
                       <layout class="QGridLayout" name="gridLayout_4">
                        <item row="1" column="0">
                         <widget class="QPushButton" name="pushButton_3">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(39, 128, 189);</string>
+                         </property>
                          <property name="text">
                           <string>PushButton</string>
                          </property>
@@ -572,6 +631,10 @@ background-color: rgb(255, 255, 255);</string>
                        </item>
                        <item row="0" column="0">
                         <widget class="QPushButton" name="btn_Insert">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(39, 128, 189);</string>
+                         </property>
                          <property name="text">
                           <string>Add</string>
                          </property>
@@ -579,6 +642,10 @@ background-color: rgb(255, 255, 255);</string>
                        </item>
                        <item row="0" column="1">
                         <widget class="QPushButton" name="btn_Refresh">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(39, 128, 189);</string>
+                         </property>
                          <property name="text">
                           <string>Refresh</string>
                          </property>
@@ -586,6 +653,10 @@ background-color: rgb(255, 255, 255);</string>
                        </item>
                        <item row="1" column="1">
                         <widget class="QPushButton" name="pushButton_5">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(39, 128, 189);</string>
+                         </property>
                          <property name="text">
                           <string>PushButton</string>
                          </property>
@@ -627,6 +698,39 @@ background-color: rgb(255, 255, 255);</string>
                      </item>
                      <item row="1" column="0">
                       <layout class="QGridLayout" name="gridLayout_3">
+                       <item row="1" column="1">
+                        <widget class="QLineEdit" name="lineEditAddUser"/>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_5">
+                         <property name="text">
+                          <string>UserName</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QLabel" name="label_7">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="5" column="0">
+                        <widget class="QLabel" name="label_8">
+                         <property name="text">
+                          <string>TextLabel</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="6" column="1">
+                        <widget class="QLineEdit" name="lineEdit_5"/>
+                       </item>
+                       <item row="5" column="1">
+                        <widget class="QLineEdit" name="lineEdit_4"/>
+                       </item>
+                       <item row="4" column="1">
+                        <widget class="QLineEdit" name="lineEdit_3"/>
+                       </item>
                        <item row="2" column="0">
                         <widget class="QLabel" name="label_6">
                          <property name="text">
@@ -641,45 +745,22 @@ background-color: rgb(255, 255, 255);</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="1" column="1">
-                        <widget class="QLineEdit" name="lineEditAddUser"/>
-                       </item>
-                       <item row="5" column="0">
-                        <widget class="QLabel" name="label_8">
-                         <property name="text">
-                          <string>TextLabel</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="4" column="0">
-                        <widget class="QLabel" name="label_7">
-                         <property name="text">
-                          <string>TextLabel</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="0">
-                        <widget class="QLabel" name="label_5">
-                         <property name="text">
-                          <string>UserName</string>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="2" column="1">
                         <widget class="QLineEdit" name="lineEditAddPasswd"/>
-                       </item>
-                       <item row="4" column="1">
-                        <widget class="QLineEdit" name="lineEdit_3"/>
-                       </item>
-                       <item row="5" column="1">
-                        <widget class="QLineEdit" name="lineEdit_4"/>
-                       </item>
-                       <item row="6" column="1">
-                        <widget class="QLineEdit" name="lineEdit_5"/>
                        </item>
                       </layout>
                      </item>
                     </layout>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QTableView" name="tableViewUsers">
+                    <property name="minimumSize">
+                     <size>
+                      <width>422</width>
+                      <height>0</height>
+                     </size>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -688,6 +769,9 @@ background-color: rgb(255, 255, 255);</string>
               </layout>
              </widget>
              <widget class="QWidget" name="page_4">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(57, 57, 57)</string>
+              </property>
               <layout class="QGridLayout" name="gridLayout_17">
                <item row="1" column="2">
                 <spacer name="horizontalSpacer_9">
@@ -717,6 +801,9 @@ background-color: rgb(255, 255, 255);</string>
                </item>
                <item row="1" column="1">
                 <widget class="QGroupBox" name="groupBox_3">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(171, 171, 171);</string>
+                 </property>
                  <property name="title">
                   <string>passWord</string>
                  </property>
@@ -893,6 +980,9 @@ background-color: rgb(255, 255, 255);</string>
               </layout>
              </widget>
              <widget class="QWidget" name="page_5">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(57, 57, 57)</string>
+              </property>
               <layout class="QGridLayout" name="gridLayout_12">
                <item row="0" column="0">
                 <layout class="QHBoxLayout" name="horizontalLayout_2">

@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>res/images/ic_app.png</file>
         <file>res/images/background.jpg</file>
+        <file>res/images/login.jpg</file>
+        <file>res/images/admin.png</file>
     </qresource>
 </RCC>

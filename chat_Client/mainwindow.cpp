@@ -37,8 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     rightBar = new rightw;
 
-    leftbar->setFixedSize(83,832);
-    midBar->setFixedSize(380,832);
+    leftbar->setFixedSize(83,890);
+    midBar->setFixedSize(380,890);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
 

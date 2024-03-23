@@ -57,9 +57,15 @@ MainWindow::MainWindow(QWidget *parent)
     QStatusBar *bar=this->statusBar();
 
 // 显示系统时间
-    QLabel *lb_time=new QLabel(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss ddd"));
+    lb_time=new QLabel(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss ddd"));
     bar->addWidget(lb_time);        //left
-
+    timer=new QTimer(this);
+    connect(timer, &QTimer::timeout, [=]() {
+        QDateTime time = QDateTime::currentDateTime();
+        QString text = time.toString("yyyy-MM-dd hh:mm:ss");
+        lb_time->setText(text);
+    });
+    timer->start(1000); // 每秒更新一次
 
     m_nTimerId = startTimer(1000);
 
