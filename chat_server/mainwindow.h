@@ -12,6 +12,9 @@
 #include <QStandardItemModel>   //保存数据
 #include "qtmetamacros.h"
 #include<QLabel>
+#include"modifdialog.h"
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -61,6 +64,14 @@ private slots:
 
     void on_btn_Insert_clicked();
 
+    void on_btn_delete_clicked();
+
+    void on_btn_modif_clicked();
+
+
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTcpServer *sockSer;//用于监听
@@ -84,6 +95,8 @@ private:
 
     // 系统菜单
     QSystemTrayIcon *systemTrayIcon;
+
+    modifDialog *modifDlg;
 
 
 protected:

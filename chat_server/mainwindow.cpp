@@ -56,6 +56,9 @@ MainWindow::MainWindow(QWidget *parent)
     //tool
     QStatusBar *bar=this->statusBar();
 
+
+    modifDlg=new modifDialog(this);
+
 // 显示系统时间
     lb_time=new QLabel(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss ddd"));
     bar->addWidget(lb_time);        //left
@@ -192,10 +195,14 @@ void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
         ui->stackedWidget->setCurrentWidget(ui->page_2);
     }else if(item->text(column)=="用户管理"){
         ui->stackedWidget->setCurrentWidget(ui->page_3);
-    }    else if(item->text(column)=="密码修改"){
+        on_btn_Refresh_clicked();
+    }    else if(item->text(column)=="用户查询"){
         ui->stackedWidget->setCurrentWidget(ui->page_4);
     }    else if(item->text(column)=="数据备份"){
         ui->stackedWidget->setCurrentWidget(ui->page_5);
+    }else if(item->text(column)=="用户信息")
+        {
+
     }
 }
 
@@ -292,7 +299,7 @@ void MainWindow::on_btn_backUndo_clicked()
     }
 }
 
-
+//用户管理
 void MainWindow::on_btn_Refresh_clicked()
 {
     QJsonArray jsonArry = Database::Instance()->getAllUsers();
@@ -335,6 +342,57 @@ void MainWindow::on_btn_Insert_clicked()
     QMessageBox::information(this, tr("提示"), -1 == nId ? tr("用户添加失败") : tr("用户添加成功！"));
     if (-1 != nId) {
         on_btn_Refresh_clicked();
+        ui->lineEditAddPasswd->clear();
+        ui->lineEditPasswd->clear();
     }
+}
+
+
+void MainWindow::on_btn_delete_clicked()
+{
+
+    int id=ui->lineEditID->text().toInt();
+    int code=Database::Instance()->deleteUsers(id);
+    if(code==-1)
+    {
+        QMessageBox::warning(nullptr,"提示","用户不存在!");
+
+        return;
+    }else{
+        QMessageBox::information(nullptr,"提示","删除成功!");
+        ui->lineEditAddPasswd->clear();
+        ui->lineEditPasswd->clear();
+        ui->lineEditID->clear();
+        return;
+    }
+
+}
+
+
+void MainWindow::on_btn_modif_clicked()
+{
+
+    modifDlg->show();
+
+
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    int id=ui->idslineEdit->text().toInt();
+    QJsonObject obj=Database::Instance()->getUserInfo(id);
+    if(obj.value("code").toInt()==-1)
+    {
+        ui->msgLable->setText("未查找到该用户!\n用户可能不存在!\n");
+    }else{
+
+        QString name=obj.value("name").toString();
+        QString pad=obj.value("passwd").toString();
+        int status=obj.value("status").toInt();
+        QString sta=(OnLine==status?"在线":"离线");
+        ui->msgLable->setText("name:"+name+"\n"+"password:"+pad+"\n"+"状态:"+sta);
+    }
+
 }
 

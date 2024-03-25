@@ -14,6 +14,7 @@ SOURCES += \
     database.cpp \
     main.cpp \
     mainwindow.cpp \
+    modifdialog.cpp \
     myapp.cpp \
     tcpServer.cpp
 
@@ -22,12 +23,14 @@ HEADERS += \
     clientsocket.h \
     database.h \
     mainwindow.h \
+    modifdialog.h \
     myapp.h \
     tcpServer.h \
     type.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    modifdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -72,9 +72,14 @@ public:
     int getGroupAdmin(int groupid);
 
     QJsonObject changePwd(int id,QString oldpwd,QString newpwd);
+    QJsonObject changePassword(int id,QString old,QString newpwd);
 
     //获取离线消息
     QJsonArray getOfflineMsg(int id);
+
+
+
+    int deleteUsers(const int&userId);
 
 signals:
 

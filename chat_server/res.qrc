@@ -4,5 +4,33 @@
         <file>res/images/background.jpg</file>
         <file>res/images/login.jpg</file>
         <file>res/images/admin.png</file>
+        <file>res/images/if_users.png</file>
+        <file>res/images/ic_warning.png</file>
+        <file>res/images/ic_refresh.png</file>
+        <file>res/images/ic_question.png</file>
+        <file>res/images/ic_ok.png</file>
+        <file>res/images/ic_key.png</file>
+        <file>res/images/ic_info.png</file>
+        <file>res/images/ic_home.png</file>
+        <file>res/images/ic_goods.png</file>
+        <file>res/images/ic_find.png</file>
+        <file>res/images/ic_exit.png</file>
+        <file>res/images/ic_excel.png</file>
+        <file>res/images/ic_edit.png</file>
+        <file>res/images/ic_delete.png</file>
+        <file>res/images/ic_data_udo.png</file>
+        <file>res/images/ic_data_backup.png</file>
+        <file>res/images/ic_cancel.png</file>
+        <file>res/images/ic_backup.png</file>
+        <file>res/images/ic_add.png</file>
+        <file>res/images/app.png</file>
+        <file>res/common/ic_min.png</file>
+        <file>res/common/ic_min_white.png</file>
+        <file>res/common/ic_close.png</file>
+        <file>res/common/ic_close_white.png</file>
+        <file>res/common/ic_arrow_down.png</file>
+        <file>res/common/aio_arrow_right.png</file>
+        <file>res/common/aio_arrow_down.png</file>
+        <file>res/qss/default.css</file>
     </qresource>
 </RCC>

@@ -705,7 +705,7 @@ QJsonObject Database::changePwd(int id, QString oldpwd, QString newpwd)
 {
     int code;
     QJsonObject json;
-    QString strQuery = "SELECT * FROM USERINFO ";
+    QString strQuery = "SELECT * FROM userInfo ";
     strQuery.append("WHERE id=");
     strQuery.append(QString::number(id));
 
@@ -727,6 +727,45 @@ QJsonObject Database::changePwd(int id, QString oldpwd, QString newpwd)
 //        }else{//密码不正确
 //            code = -1;
 //        }
+    }else{//用户名不存在
+        code = -2;
+    }
+
+    json.insert("code",code);
+    json.insert("id",id);
+    json.insert("oldpwd",oldpwd);
+    json.insert("newpwd",newpwd);
+
+    return json;
+}
+
+QJsonObject Database::changePassword(int id, QString oldpwd, QString newpwd)
+{
+
+    int code;
+    QJsonObject json;
+    QString strQuery = "SELECT * FROM userInfo ";
+    strQuery.append("WHERE id=");
+    strQuery.append(QString::number(id));
+
+    QSqlQuery query(strQuery);
+    if (query.next()) {//用户名存在
+                strQuery.append(" AND passwd= '");
+                strQuery.append(oldpwd);
+                strQuery.append("'");
+                QSqlQuery query2(strQuery);
+                if(query2.next()){//密码正确
+        code = 0;
+        QString strQuery2 = "update userInfo set passwd = '";
+        strQuery2.append(newpwd);
+        strQuery2.append("' where id =");
+        strQuery2.append(QString::number(id));
+
+        QSqlQuery query(strQuery2);
+        query.exec();
+                }else{//密码不正确
+                    code = -1;
+                }
     }else{//用户名不存在
         code = -2;
     }
@@ -768,6 +807,31 @@ QJsonArray Database::getOfflineMsg(int id)
     query.exec(sql);
 
     return jsonArr;
+}
+
+int Database::deleteUsers(const int &userId)
+{
+    int code;
+    QJsonObject json;
+    QString strQuery = "SELECT * FROM userInfo ";
+    strQuery.append("WHERE id=");
+    strQuery.append(QString::number(userId));
+
+    QSqlQuery query(strQuery);
+    if (query.next()) {//用户名存在
+
+        QString strQuery2 = "delete from userInfo where id =";
+
+        strQuery2.append(QString::number(userId));
+
+        QSqlQuery query(strQuery2);
+        query.exec();
+        code=0;
+    }else{//用户名不存在
+        code = -1;
+    }
+
+    return code;
 }
 
 void Database::queryAll()
