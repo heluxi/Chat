@@ -373,126 +373,12 @@ background-color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="2" column="0">
-         <widget class="QTreeWidget" name="treeWidget">
-          <property name="minimumSize">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>150</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(2, 69, 115);</string>
-          </property>
-          <column>
-           <property name="text">
-            <string notr="true">ATAW Server</string>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>16</pointsize>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="icon">
-            <iconset resource="res.qrc">
-             <normaloff>:/res/images/ic_app.png</normaloff>:/res/images/ic_app.png</iconset>
-           </property>
-          </column>
-          <item>
-           <property name="text">
-            <string>用户查询</string>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="icon">
-            <iconset resource="res.qrc">
-             <normaloff>:/res/images/ic_find.png</normaloff>:/res/images/ic_find.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>用户信息</string>
-           </property>
-           <property name="font">
-            <font>
-             <family>Noto Sans Adlam</family>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="background">
-            <brush brushstyle="NoBrush">
-             <color alpha="255">
-              <red>255</red>
-              <green>255</green>
-              <blue>255</blue>
-             </color>
-            </brush>
-           </property>
-           <property name="icon">
-            <iconset resource="res.qrc">
-             <normaloff>:/res/images/if_users.png</normaloff>:/res/images/if_users.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>服务配置</string>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="icon">
-            <iconset resource="res.qrc">
-             <normaloff>:/res/images/ic_backup.png</normaloff>:/res/images/ic_backup.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>用户管理</string>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="icon">
-            <iconset resource="res.qrc">
-             <normaloff>:/res/images/ic_goods.png</normaloff>:/res/images/ic_goods.png</iconset>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>数据备份</string>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="icon">
-            <iconset resource="res.qrc">
-             <normaloff>:/res/images/ic_data_backup.png</normaloff>:/res/images/ic_data_backup.png</iconset>
-           </property>
-          </item>
-         </widget>
-        </item>
         <item row="0" column="0" colspan="2">
          <widget class="QWidget" name="widget_3" native="true">
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>35</height>
+            <height>50</height>
            </size>
           </property>
           <property name="font">
@@ -501,10 +387,39 @@ color: rgb(255, 255, 255);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(2, 69, 115);</string>
+           <string notr="true">background-color: rgb(16, 104, 154);</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="2">
+           <item row="0" column="0">
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-image: url(:/res/images/admin.png);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
             <spacer name="horizontalSpacer_6">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -517,7 +432,29 @@ color: rgb(255, 255, 255);</string>
              </property>
             </spacer>
            </item>
-           <item row="0" column="1">
+           <item row="0" column="5">
+            <widget class="QPushButton" name="btn_quit">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+               <pointsize>12</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(39, 128, 189);</string>
+             </property>
+             <property name="text">
+              <string>退出系统</string>
+             </property>
+             <property name="icon">
+              <iconset resource="res.qrc">
+               <normaloff>:/res/images/ic_exit.png</normaloff>:/res/images/ic_exit.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
             <widget class="QLabel" name="label_4">
              <property name="minimumSize">
               <size>
@@ -546,56 +483,27 @@ color: rgb(255, 255, 255);</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="3">
-            <widget class="QLabel" name="label">
+           <item row="0" column="1">
+            <widget class="QFrame" name="frame_2">
              <property name="minimumSize">
               <size>
-               <width>50</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">border-image: url(:/res/images/admin.png);</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QPushButton" name="btn_quit">
-             <property name="font">
-              <font>
-               <family>Verdana</family>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(39, 128, 189);</string>
-             </property>
-             <property name="text">
-              <string>退出系统</string>
-             </property>
-             <property name="icon">
-              <iconset resource="res.qrc">
-               <normaloff>:/res/images/ic_exit.png</normaloff>:/res/images/ic_exit.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <spacer name="horizontalSpacer_7">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
                <width>40</width>
-               <height>20</height>
+               <height>0</height>
               </size>
              </property>
-            </spacer>
+             <property name="toolTipDuration">
+              <number>8</number>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-image: url(:/res/images/ic_app.png);</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -612,7 +520,7 @@ background-color: rgb(39, 128, 189);</string>
               <string notr="true">background-color: rgb(40, 40, 40);</string>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page">
               <layout class="QGridLayout" name="gridLayout_9">
@@ -624,6 +532,16 @@ background-color: rgb(39, 128, 189);</string>
                  <property name="title">
                   <string>userInfo</string>
                  </property>
+                 <widget class="QTableView" name="tableView">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>801</width>
+                    <height>461</height>
+                   </rect>
+                  </property>
+                 </widget>
                 </widget>
                </item>
               </layout>
@@ -904,7 +822,7 @@ background-color: rgb(39, 128, 189);</string>
                    </property>
                   </widget>
                  </widget>
-                 <widget class="QWidget" name="">
+                 <widget class="QWidget" name="layoutWidget">
                   <property name="geometry">
                    <rect>
                     <x>10</x>
@@ -1077,6 +995,146 @@ background-color: rgb(39, 128, 189);</string>
               </layout>
              </widget>
             </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QWidget" name="widget_8" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPushButton" name="searchBtn">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>用户查询</string>
+             </property>
+             <property name="icon">
+              <iconset resource="res.qrc">
+               <normaloff>:/res/images/ic_find.png</normaloff>:/res/images/ic_find.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="userBtn">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>群组信息</string>
+             </property>
+             <property name="icon">
+              <iconset resource="res.qrc">
+               <normaloff>:/res/images/if_users.png</normaloff>:/res/images/if_users.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="serverBtn">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>服务配置</string>
+             </property>
+             <property name="icon">
+              <iconset resource="res.qrc">
+               <normaloff>:/res/images/ic_backup.png</normaloff>:/res/images/ic_backup.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manageBtn">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>用户管理</string>
+             </property>
+             <property name="icon">
+              <iconset resource="res.qrc">
+               <normaloff>:/res/images/admin.png</normaloff>:/res/images/admin.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="dataBtn">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>数据备份</string>
+             </property>
+             <property name="icon">
+              <iconset resource="res.qrc">
+               <normaloff>:/res/images/ic_data_backup.png</normaloff>:/res/images/ic_data_backup.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>35</width>
+               <height>35</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>261</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>

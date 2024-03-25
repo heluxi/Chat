@@ -9,7 +9,7 @@
 #include "database.h"
 #include "myapp.h"
 #include "type.h"
-
+#include"iconhelper.h"
 #include<QJsonParseError>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -28,12 +28,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    //隐藏表头
-    ui->treeWidget->setHeaderHidden(true);
+//    //隐藏表头
+//    ui->treeWidget->setHeaderHidden(true);
 
 
 
-    ui->treeWidget->expandAll();
+//    ui->treeWidget->expandAll();
     ui->stackedWidget->setCurrentIndex(0);
 
     ui->stackedWidgetMain->setCurrentIndex(0);//设置当前显示界面为登陆界面
@@ -154,6 +154,101 @@ void MainWindow::removeSocket()
 
 }
 
+//初始化导航栏菜单
+void MainWindow::initButtons()
+{
+        //设置弱属性以便应用样式
+        ui->widget_8->setProperty("flag", "left");
+
+        IconHelper::StyleColor styleColor;
+        styleColor.defaultBorder = true;
+        styleColor.position = "left";
+        styleColor.iconSize = 25;
+        styleColor.iconWidth = 25;
+        styleColor.iconHeight = 25;
+        styleColor.borderWidth = 3;
+        styleColor.borderColor = "#A279C5";
+        styleColor.setColor("#292929", "#B6D7E3", "#10689A", "#F0F0F0");
+        QString position = styleColor.position;
+        quint32 btnWidth = styleColor.btnWidth;
+        quint32 btnHeight = styleColor.btnHeight;
+        quint32 borderWidth = styleColor.borderWidth;
+
+        //根据不同的位置计算边框
+        QString strBorder;
+        if (position == "top") {
+            strBorder = QString("border-width:%1px 0px 0px 0px;padding-top:%1px;padding-bottom:%2px;")
+                            .arg(borderWidth).arg(borderWidth * 2);
+        } else if (position == "right") {
+            strBorder = QString("border-width:0px %1px 0px 0px;padding-right:%1px;padding-left:%2px;")
+                            .arg(borderWidth).arg(borderWidth * 2);
+        } else if (position == "bottom") {
+            strBorder = QString("border-width:0px 0px %1px 0px;padding-bottom:%1px;padding-top:%2px;")
+                            .arg(borderWidth).arg(borderWidth * 2);
+        } else if (position == "left") {
+            strBorder = QString("border-width:0px 0px 0px %1px;padding-left:%1px;padding-right:%2px;")
+                            .arg(borderWidth).arg(borderWidth * 2);
+        }
+
+        //如果图标是左侧显示则需要让没有选中的按钮左侧也有加深的边框,颜色为背景颜色
+        //如果图标在文字上面而设置的边框是 top bottom 也需要启用加深边框
+        QStringList qss;
+        if (styleColor.defaultBorder) {
+            qss << QString("QWidget[flag=\"%1\"] QAbstractButton{border-style:solid;border-radius:0px;%2border-color:%3;color:%4;background:%5;}")
+                       .arg(position).arg(strBorder).arg(styleColor.normalBgColor).arg(styleColor.normalTextColor).arg(styleColor.normalBgColor);
+        } else {
+            qss << QString("QWidget[flag=\"%1\"] QAbstractButton{border-style:none;border-radius:0px;padding:5px;color:%2;background:%3;}")
+                       .arg(position).arg(styleColor.normalTextColor).arg(styleColor.normalBgColor);
+        }
+
+        //悬停+按下+选中
+        qss << QString("QWidget[flag=\"%1\"] QAbstractButton:hover{border-style:solid;%2border-color:%3;color:%4;background:%5;}")
+                   .arg(position).arg(strBorder).arg(styleColor.borderColor).arg(styleColor.hoverTextColor).arg(styleColor.hoverBgColor);
+        qss << QString("QWidget[flag=\"%1\"] QAbstractButton:pressed{border-style:solid;%2border-color:%3;color:%4;background:%5;}")
+                   .arg(position).arg(strBorder).arg(styleColor.borderColor).arg(styleColor.pressedTextColor).arg(styleColor.pressedBgColor);
+        qss << QString("QWidget[flag=\"%1\"] QAbstractButton:checked{border-style:solid;%2border-color:%3;color:%4;background:%5;}")
+                   .arg(position).arg(strBorder).arg(styleColor.borderColor).arg(styleColor.checkedTextColor).arg(styleColor.checkedBgColor);
+
+        //窗体背景颜色+按钮背景颜色
+        qss << QString("QWidget#%1{background:%2;}")
+                   .arg(ui->widget_8->objectName()).arg(styleColor.normalBgColor);
+        qss << QString("QWidget>QAbstractButton{border-width:0px;background-color:%1;color:%2;}")
+                   .arg(styleColor.normalBgColor).arg(styleColor.normalTextColor);
+        qss << QString("QWidget>QAbstractButton:hover{background-color:%1;color:%2;}")
+                   .arg(styleColor.hoverBgColor).arg(styleColor.hoverTextColor);
+        qss << QString("QWidget>QAbstractButton:pressed{background-color:%1;color:%2;}")
+                   .arg(styleColor.pressedBgColor).arg(styleColor.pressedTextColor);
+        qss << QString("QWidget>QAbstractButton:checked{background-color:%1;color:%2;}")
+                   .arg(styleColor.checkedBgColor).arg(styleColor.checkedTextColor);
+
+        //按钮宽度高度
+        if (btnWidth > 0) {
+            qss << QString("QWidget>QAbstractButton{min-width:%1px;}").arg(btnWidth);
+        }
+        if (btnHeight > 0) {
+            qss << QString("QWidget>QAbstractButton{min-height:%1px;}").arg(btnHeight);
+        }
+
+        //设置样式表
+        ui->widget_8->setStyleSheet(qss.join(""));
+
+
+        //默认选中某个按钮
+        ui->searchBtn->click();
+}
+
+void MainWindow::initBtn(QButtonGroup *btnGroup, bool textBesideIcon)
+{
+        QList<QAbstractButton *> btns = btnGroup->buttons();
+        foreach (QAbstractButton *btn, btns) {
+            QToolButton *b = (QToolButton *)btn;
+            //关联按钮单击事件
+            connect(b, SIGNAL(clicked(bool)), this, SLOT(btnClicked()));
+            b->setCheckable(true);
+            b->setToolButtonStyle(textBesideIcon ? Qt::ToolButtonTextBesideIcon : Qt::ToolButtonTextUnderIcon);
+        }
+}
+
 
 //exit
 void MainWindow::on_btn_Exit_clicked()
@@ -182,29 +277,10 @@ void MainWindow::on_btn_Login_clicked()
 //    SetUserIdentity(identity);
 
     ui->stackedWidgetMain->setCurrentIndex(1);
+    initButtons();
 }
 
 
-void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
-{
-    if(item->text(column)=="用户信息"){
-//        qDebug()<<item->text(column);
-        ui->stackedWidget->setCurrentWidget(ui->page);
-    }
-    else if(item->text(column)=="服务配置"){
-        ui->stackedWidget->setCurrentWidget(ui->page_2);
-    }else if(item->text(column)=="用户管理"){
-        ui->stackedWidget->setCurrentWidget(ui->page_3);
-        on_btn_Refresh_clicked();
-    }    else if(item->text(column)=="用户查询"){
-        ui->stackedWidget->setCurrentWidget(ui->page_4);
-    }    else if(item->text(column)=="数据备份"){
-        ui->stackedWidget->setCurrentWidget(ui->page_5);
-    }else if(item->text(column)=="用户信息")
-        {
-
-    }
-}
 
 void MainWindow::SltTableClicked(const QModelIndex &index)
 {
@@ -256,7 +332,7 @@ void MainWindow::on_btn_quit_clicked()
     ui->stackedWidgetMain->setCurrentIndex(0);
 }
 
-
+//备份数据库
 void MainWindow::on_btn_backUp_clicked()
 {
 
@@ -264,17 +340,18 @@ void MainWindow::on_btn_backUp_clicked()
     if (QFile::exists(strNewFile)) {
         QFile::remove(strNewFile);
     }
-    bool bOk = QFile::copy(MyApp::m_strDatabasePath + "info.db", strNewFile);
+    bool bOk = QFile::copy(MyApp::m_strDatabasePath + "server.db", strNewFile);
     QMessageBox::information(this,"backup", bOk ? tr("数据备份成功") : tr("数据备份失败"));
 }
 
+//备份还原
 
 void MainWindow::on_btn_backUndo_clicked()
 {
     if (QMessageBox::Accepted == QMessageBox::question(this,"Undo", tr("是否还原数据库，该操作不可逆，请确认?")))
     {
         Database::Instance()->closeDb();
-        bool bOk = QFile::remove(MyApp::m_strDatabasePath + "info.db");
+        bool bOk = QFile::remove(MyApp::m_strDatabasePath + "server.db");
         if (bOk) {
             QString strFile = QFileDialog::getOpenFileName(this, tr("选择还原文件"),
                                                            MyApp::m_strBackupPath,
@@ -282,11 +359,11 @@ void MainWindow::on_btn_backUndo_clicked()
             if (strFile.isEmpty()) {
                 QMessageBox::information(this,"undo", tr("备份文件选择错误，还原终止！"));
                 // 加载数据库
-                Database::Instance()->openDb(MyApp::m_strDatabasePath + "info.db");
+                Database::Instance()->openDb(MyApp::m_strDatabasePath + "server.db");
                 return;
             }
 
-            bOk = QFile::copy(strFile, MyApp::m_strDatabasePath + "info.db");
+            bOk = QFile::copy(strFile, MyApp::m_strDatabasePath + "server.db");
             QMessageBox::information(this,"undo", bOk ? tr("数据还原成功！") : tr("数据还原失败！"));
         }
         else
@@ -295,7 +372,7 @@ void MainWindow::on_btn_backUndo_clicked()
         }
 
         // 重新打开数据库
-        Database::Instance()->openDb(MyApp::m_strDatabasePath + "info.db");
+        Database::Instance()->openDb(MyApp::m_strDatabasePath + "server.db");
     }
 }
 
@@ -377,6 +454,11 @@ void MainWindow::on_btn_modif_clicked()
 
 }
 
+void MainWindow::btnClicked()
+{
+
+}
+
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -388,11 +470,94 @@ void MainWindow::on_pushButton_clicked()
     }else{
 
         QString name=obj.value("name").toString();
-        QString pad=obj.value("passwd").toString();
         int status=obj.value("status").toInt();
         QString sta=(OnLine==status?"在线":"离线");
-        ui->msgLable->setText("name:"+name+"\n"+"password:"+pad+"\n"+"状态:"+sta);
+        ui->msgLable->setText("Name:"+name+"\n"+"ID:"+QString::number(id)+"\n"+"状态:"+sta);
     }
 
+}
+
+
+void MainWindow::on_serverBtn_clicked()
+{
+     ui->stackedWidget->setCurrentWidget(ui->page_2);
+}
+
+
+void MainWindow::on_searchBtn_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_4);
+}
+
+
+void MainWindow::on_dataBtn_clicked()
+{
+     ui->stackedWidget->setCurrentWidget(ui->page_5);
+}
+
+
+void MainWindow::on_manageBtn_clicked()
+{
+     ui->stackedWidget->setCurrentWidget(ui->page_3);
+     on_btn_Refresh_clicked();
+}
+
+
+void MainWindow::on_userBtn_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page);
+     m_model2 = new QStandardItemModel(this); //保存数据
+
+     ui->tableView->setModel(m_model2);  //显示数据
+
+     // 设置几张表格的属性不可编辑
+     ui->tableView->setEditTriggers(QTableView::NoEditTriggers);
+     // 设置几张表格的属性选择整行
+     ui->tableView->setSelectionBehavior(QTableView::SelectRows);
+     QJsonArray jsonArry = Database::Instance()->getGroupALlInfo();
+
+     m_model2->clear();
+     m_model2->setColumnCount(5);
+     m_model2->setRowCount(jsonArry.size());
+     m_model2->setHorizontalHeaderLabels(QStringList() << "群号" << "群名" << "群主ID" << "群成员" << "创建时间");
+
+     for (int i = 0; i < jsonArry.size(); i++) {
+        QJsonObject jsonObj = jsonArry.at(i).toObject();
+
+        m_model2->setData(m_model2->index(i, 0), jsonObj.value("id").toInt());
+        m_model2->setData(m_model2->index(i, 1), jsonObj.value("name").toString());
+        m_model2->setData(m_model2->index(i, 2), jsonObj.value("adminID").toInt());
+        m_model2->setData(m_model2->index(i, 3), jsonObj.value("memberCnt").toInt());
+        m_model2->setData(m_model2->index(i, 4), jsonObj.value("createTime").toString());
+     }
+
+     ui->tableView->setColumnWidth(4, 150);
+}
+
+
+void MainWindow::on_toolButton_triggered(QAction *arg1)
+{
+    QString directory = QFileDialog::getExistingDirectory(nullptr, QObject::tr("Open Directory"),
+                                                          QDir::homePath());
+
+    if (!directory.isEmpty()) {
+        // 用户选择了一个目录，directory 变量包含了目录路径
+        // 在这里处理目录
+        ui->lineEditBackup->setText(directory);
+    }
+}
+
+
+void MainWindow::on_toolButton_clicked()
+{
+
+    QString directory = QFileDialog::getExistingDirectory(nullptr, QObject::tr("Open Directory"),
+                                                          QDir::homePath());
+
+    if (!directory.isEmpty()) {
+        // 用户选择了一个目录，directory 变量包含了目录路径
+        // 在这里处理目录
+        ui->lineEditBackup->setText(directory);
+    }
 }
 

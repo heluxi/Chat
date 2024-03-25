@@ -77,7 +77,7 @@ public:
     //获取离线消息
     QJsonArray getOfflineMsg(int id);
 
-
+   QJsonArray getGroupALlInfo() const;
 
     int deleteUsers(const int&userId);
 

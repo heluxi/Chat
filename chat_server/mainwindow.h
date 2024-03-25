@@ -13,7 +13,7 @@
 #include "qtmetamacros.h"
 #include<QLabel>
 #include"modifdialog.h"
-
+#include<QButtonGroup>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +35,8 @@ public:
 
     void SetUserIdentity(const int &identity);
     void removeSocket();
+    void initButtons();
+    void initBtn(QButtonGroup *btnGroup, bool textBesideIcon);
 
 
 signals:
@@ -44,7 +46,7 @@ private slots:
 
     void on_btn_Login_clicked();
 
-    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+//    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
 
     void SltTableClicked(const QModelIndex &index);
 
@@ -68,9 +70,23 @@ private slots:
 
     void on_btn_modif_clicked();
 
-
+    void btnClicked();
 
     void on_pushButton_clicked();
+
+    void on_serverBtn_clicked();
+
+    void on_searchBtn_clicked();
+
+    void on_dataBtn_clicked();
+
+    void on_manageBtn_clicked();
+
+    void on_userBtn_clicked();
+
+    void on_toolButton_triggered(QAction *arg1);
+
+    void on_toolButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -92,12 +108,14 @@ private:
     TcpFileServer *fileServer;
 
     QStandardItemModel *m_model;    //保存数据
+      QStandardItemModel *m_model2;    //保存数据
 
     // 系统菜单
     QSystemTrayIcon *systemTrayIcon;
 
     modifDialog *modifDlg;
 
+    QList<int> icons;
 
 protected:
     int m_nTimerId;

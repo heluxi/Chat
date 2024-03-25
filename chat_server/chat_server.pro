@@ -12,6 +12,7 @@ SOURCES += \
 #    animationstackedwidget.cpp \
     clientsocket.cpp \
     database.cpp \
+    iconhelper.cpp \
     main.cpp \
     mainwindow.cpp \
     modifdialog.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
 #    animationstackedwidget.h \
     clientsocket.h \
     database.h \
+    iconhelper.h \
     mainwindow.h \
     modifdialog.h \
     myapp.h \

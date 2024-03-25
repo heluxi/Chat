@@ -809,6 +809,32 @@ QJsonArray Database::getOfflineMsg(int id)
     return jsonArr;
 }
 
+QJsonArray Database::getGroupALlInfo() const
+{
+    QString strQuery = "SELECT * FROM GroupInfo order by id ";
+
+    QJsonArray jsonArr;
+
+    QJsonObject jsonObj;
+    // 查询数据库
+    QSqlQuery query(strQuery);
+    // 构建用户的所有信息,不包括密码
+    while (query.next()) {
+
+        jsonObj.insert("id", query.value("id").toInt());
+        jsonObj.insert("name", query.value("name").toString());
+        jsonObj.insert("adminID", query.value("adminID").toInt());
+        jsonObj.insert("memberCnt", query.value("memberCnt").toInt());
+        jsonObj.insert("createTime", query.value("createTime").toString());
+
+        jsonArr.append(jsonObj);
+    }
+
+
+
+    return jsonArr;
+}
+
 int Database::deleteUsers(const int &userId)
 {
     int code;
