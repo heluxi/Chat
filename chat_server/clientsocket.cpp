@@ -54,6 +54,7 @@ void ClientSocket::readMsg()
       // 解析未发生错误
     if((!document.isNull())&&(QJsonParseError::NoError==jsonError.error))
     {
+
         // JSON 文档为对象
         if(document.isObject())
         {
@@ -129,6 +130,7 @@ void ClientSocket::readMsg()
             case AddGroupRequist://群主同意请求
             {
                 parseAddGroupReply(data);
+                qDebug()<<"群主同意";
             }
             break;
             case CreateGroup:
@@ -612,6 +614,11 @@ void ClientSocket::parseAddGroupReply(const QJsonValue &dataVal)
         query.bindValue(2, time);
 
         query.exec();
+
+
+        QString s=QString("update groupInfo set memberCnt=memberCnt+1 where id=%1").arg(groupID);
+        QSqlQuery query2(s);
+        query2.next();
 
         //通知发送请求的用户
         QJsonObject jsonObj = Database::Instance()->getGroupInfo(groupID);

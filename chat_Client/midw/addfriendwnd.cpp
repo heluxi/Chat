@@ -122,7 +122,10 @@ void addFriendWnd::on_agreeBtn_clicked()
         json.insert("time",QDateTime::currentDateTime().toString("yyyy-MM-dd  hh:mm:ss"));
         emit signalAddFriend(AddGroupRequist,json);
 
-//        myHelper::Sleep(100);
+        //延时发送
+        QTime dieTime = QTime::currentTime().addMSecs(100);
+        while( QTime::currentTime() < dieTime )
+            QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 
         //通知中栏添加与该群的聊天格子(如果已存在则只更新格子)
         Cell *c = new Cell;
