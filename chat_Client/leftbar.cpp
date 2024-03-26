@@ -5,7 +5,9 @@
 #include"myapp.h"
 #include<QVBoxLayout>
 #include<QFileInfo>
-
+#include"headedit.h"
+#include"myHelper.h"
+#include"type.h"
 leftBar::leftBar(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::leftBar)
@@ -15,9 +17,23 @@ leftBar::leftBar(QWidget *parent) :
     //qDebug()<<headPath;
     //ui->headBtn->setStyleSheet(headPath);
     QString headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
+    qDebug()<<headPath<<"....\n";
+//    //头像不存在就是默认头像
+//    QFileInfo fileInfo(headPath);
+//    if(!fileInfo.exists() || MyApp::m_strHeadFile.isEmpty()){
+//        MyApp::m_strHeadFile = "default.png";
+//        headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
+//    }
+
     QString head=QString("border-image: url(%1);"
                            "background-color: rgb(255, 255, 255);border-radius:30px;").arg(headPath);
     ui->headBtn->setStyleSheet(head);
+
+
+
+
+
+
 
     QStringList tmp;
     tmp << ":/res/pic/Chat.png"
@@ -132,8 +148,13 @@ void leftBar::sltheadChange(QString headPath)
     souceFile.close();
     souceFile.close();
 
+
     //通知服务器更新头像
     emit UpdateHeadPic();
+
+//    myHelper::Sleep(1000);
+    headedit.show();
+
 
 }
 

@@ -13,8 +13,8 @@ Dlg_regiseter::Dlg_regiseter(QWidget *parent) :
     ui->setupUi(this);
 
     this->setWindowTitle("注册");
-    ui->cb_auth->hide();
-    ui->label_4->hide();
+//    ui->cb_auth->hide();
+//    ui->label_4->hide();
     ui->label_3->setText("Confirm your password");
     ui->lb_title2->setText("Welcome to Us");
 
@@ -62,30 +62,7 @@ void Dlg_regiseter::on_btn_register_sure_clicked()
         ui->le_reg_username->clear();
         ui->le_reg_password->clear();
 
-//        emit userRegister(username,password);
 
-//        if(ptr->user_isExit(username)){
-//            QMessageBox::information(this,"注册","该用户已经注册过");
-//            this->hide();
-//        }
-//        else{
-            //数据库添加用户名和密码
-
-//            info.username=username;
-//            info.password=password;
-//            info.aut=aut;
-//            bool is_Exit=ptr->addUser(info);
-//            if(is_Exit){
-//                 //成功注册
-//                QMessageBox::information(this,"注册","注册成功！！！");
-//                this->hide();
-//            }
-//            else{
-//                //失败就提示
-//                QMessageBox::information(this,"注册","注册失败！！！");
-//            }
-//        }
-//    }
     }
 
     else{
@@ -120,20 +97,8 @@ void Dlg_regiseter::sltRegisterOK(const QJsonValue &jsonVal)
         ui->le_reg_password->setVisible(false);
         ui->le_reg_repassword->setVisible(false);
         emit registSuccess();
+        this->close();
 
-//        nameLabel->setGeometry(80,120,250,30);
-//        nameLabel->setText(name + ",欢迎使用.");
-
-//        idLabel->setGeometry(80,170,350,30);
-//        idLabel->setVisible(true);
-//        idLabel->setText("您的id为: " + QString::number(id));
-
-//        passwordLabel->setGeometry(80,210,250,30);
-//        passwordLabel->setText("密码为: " + pwd);
-
-//        okBtn->setText("返回登陆");
-//        disconnect(okBtn,SIGNAL(clicked(bool)),this,SLOT(sltBtnClicked()));
-//        connect(okBtn,SIGNAL(clicked(bool)),this,SLOT(closeWnd()));
     }
 }
 

@@ -301,6 +301,22 @@ void TcpFileServer::SltClientDownloadFile(const QJsonValue &json)
             }
         }
     }
+//    // 根据ID寻找连接的socket
+//    if (json.isObject()) {
+//        QJsonObject jsonObj = json.toObject();
+//        qint32 nId = jsonObj.value("from").toInt();
+//        qint32 nWid = jsonObj.value("id").toInt();;
+//        QString fileName = jsonObj.value("msg").toString();
+//        qint64 time =QDateTime::currentMSecsSinceEpoch();
+//        qDebug() << "get file" << jsonObj << m_clients.size();
+//        for (int i = 0; i < m_clients.size(); i++) {
+//            if (m_clients.at(i)->CheckUserId(nId, nWid))
+//            {
+//                m_clients.at(i)->startTransferFile(fileName,nId,time);
+//                return;
+//            }
+//        }
+//    }
 }
 
 

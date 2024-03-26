@@ -8,7 +8,7 @@
 #include "type.h"
 #include "rightw/bubble/bubbleinfo.h"
 #include "sql_manage.h"
-
+#include"myHelper.h"
 #include <QDateTime>
 #include <QDebug>
 #include <QJsonArray>
@@ -112,9 +112,10 @@ void loginw::sltTcpStatus(const quint8 &state)
         //全局收发文件的socket,比如用户获取自己的头像，好友和群的头像等
         globalFileSocket = new clientFileSock();
         globalFileSocket->connectToServer(MyApp::m_strHostAddr,MyApp::m_nFilePort,-2);
+
         connect(globalFileSocket,&clientFileSock::signalFileRecvOk,
                 this,&loginw::sltFileRecvFinished);
-        //        myHelper::Sleep(1000);
+        myHelper::Sleep(1000);
 
         //如果头像不存在，则向服务器获取头像
         if (!QFile::exists(MyApp::m_strHeadPath + MyApp::m_strHeadFile) || MyApp::m_strHeadFile.isEmpty()) {
@@ -130,7 +131,7 @@ void loginw::sltTcpStatus(const quint8 &state)
 
             tcpSocket->sendMsg(GetPicture, json);
 
-            //            myHelper::Sleep(500);
+            myHelper::Sleep(500);
         }
 
         emit loginSuccess();

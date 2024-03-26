@@ -1,5 +1,3 @@
-
-//#include"mainwindow.h"
 #include <QApplication>
 #include"sql_manage.h"
 #include "rotatingstackedwidget.h"
@@ -21,6 +19,7 @@ int main(int argc, char *argv[])
     //显示登陆界面
     RotatingStackedWidget launcher;
     launcher.show();
+
 
 
     return a.exec();

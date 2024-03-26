@@ -286,6 +286,22 @@ QJsonArray sql_manage::getMyFriends() const
     return myFriends;
 }
 
+QJsonArray sql_manage::GetMyFriend() const
+{
+    QJsonArray  myFriends;
+
+    QString strQuery = "SELECT [id] FROM MyFriend ";
+//    strQuery.append("WHERE userId=");
+//    strQuery.append(QString::number(userId));
+
+    QSqlQuery query(strQuery, userdb);
+    while (query.next()) {
+       myFriends.append(query.value("id").toInt());
+    }
+
+    return myFriends;
+}
+
 QJsonArray sql_manage::getMyGroups() const
 {
     QJsonArray  myGroup;

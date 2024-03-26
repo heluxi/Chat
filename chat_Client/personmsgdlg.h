@@ -2,6 +2,8 @@
 #define PERSONMSGDLG_H
 
 #include <QDialog>
+#include"headedit.h"
+
 
 namespace Ui {
 class personMsgDlg;
@@ -17,10 +19,14 @@ public:
 
 private slots:
     void on_headBtn_clicked();
+
+
 signals:
     void chanageHead(QString headPath);
 private:
     Ui::personMsgDlg *ui;
+    headEdit headeditDlg;
+
 };
 
 #endif // PERSONMSGDLG_H

@@ -110,6 +110,7 @@ signals:
 private slots:
    // 文件接收
    void sltReadyRead();
+
    // 发送
    void sltUpdateClientProgress(qint64 numBytes);
 

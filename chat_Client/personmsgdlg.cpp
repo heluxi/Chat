@@ -29,7 +29,6 @@ personMsgDlg::personMsgDlg(QWidget *parent) :
 
 
 
-
 }
 
 personMsgDlg::~personMsgDlg()
@@ -41,6 +40,7 @@ void personMsgDlg::on_headBtn_clicked()
 {
 
 
+
     QString headPath=QFileDialog::getOpenFileName(this,tr("select image"),"/",tr("Image Fles(*.png *.jpg)"));
     qDebug()<<"select image :"<<headPath;
     if(headPath=="")
@@ -50,6 +50,7 @@ void personMsgDlg::on_headBtn_clicked()
     }
     else
     {
+
         QMessageBox::information(this,"Sucess","修改头像成功!");
     }
     QString head=QString("border-image: url(%1);").arg(headPath);
@@ -60,6 +61,7 @@ void personMsgDlg::on_headBtn_clicked()
 //    ui->headBtn->setIcon(icon);
 //    ui->headBtn->setIconSize(QSize(75,75));
     emit chanageHead(headPath);
+
 
 
 }

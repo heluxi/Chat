@@ -158,7 +158,7 @@ void ContactWidget::InitList()
             QString headPath = MyApp::m_strHeadPath + QString::number(c->id) + ".png";
             QFileInfo fileInfo_(headPath);
             if(!fileInfo_.exists()){
-                c->iconPath = ":/Icons/MainWindow/default_head_icon.png";//没有收到则显示默认头像
+                c->iconPath = ":/res/default_head_icon.png";//没有收到则显示默认头像
             }else{
                 c->iconPath = headPath;
                 QSqlQuery query;
@@ -246,7 +246,7 @@ void ContactWidget::InitList()
             QString headPath = MyApp::m_strHeadPath + QString::number(c->id) + ".png";
             QFileInfo fileInfo_(headPath);
             if(!fileInfo_.exists()){
-                c->iconPath = ":/Icons/MainWindow/default_head_icon.png";//没有收到则显示默认头像
+                c->iconPath = ":/群众、用户群体.svg";//没有收到则显示默认头像
             }else{
                 c->iconPath = headPath;
                 QSqlQuery query;

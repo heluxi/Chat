@@ -10,37 +10,41 @@ CONFIG += c++17
 
 SOURCES += \
     customwidget.cpp \
+    cutdialog.cpp \
     frienddlg.cpp \
+    headedit.cpp \
     leftbar.cpp \
     main.cpp \
     mainwindow.cpp \
 #    qnchatmessage.cpp \
     personmsgdlg.cpp \
+    photoshotdialog.cpp \
     sql_manage.cpp \
-    systemmessagedialog.cpp \
     systemsetting.cpp \
     tcp_manage.cpp
 
 HEADERS += \
     customwidget.h \
+    cutdialog.h \
     frienddlg.h \
+    headedit.h \
     leftbar.h \
     mainwindow.h \
 #    qnchatmessage.h \
     myHelper.h \
     personmsgdlg.h \
+    photoshotdialog.h \
     sql_manage.h \
-    systemmessagedialog.h \
     systemsetting.h \
     tcp_manage.h\
 
 
 FORMS += \
     frienddlg.ui \
+    headedit.ui \
     leftbar.ui \
     mainwindow.ui \
     personmsgdlg.ui \
-    systemmessagedialog.ui \
     systemsetting.ui
 
 

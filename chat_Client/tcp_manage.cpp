@@ -358,8 +358,10 @@ void clientFileSock::sendFile(QString fileName,qint64 time, quint8 type)
         return;
    }
    // 文件总大小
-   ullSendTotalBytes=qint64(fileToSend->size());//获取要发送的文件大小
 
+   ullSendTotalBytes=qint64(fileToSend->size());//获取要发送的文件大小
+   qDebug()<<"文件名"<<fileName;
+   qDebug()<<"文件总大小:"+QString::number(ullRecvTotalBytes);
    //文件数据流
    QDataStream sendOut(&outBlock,QIODevice::WriteOnly);
    sendOut.setVersion(QDataStream::Qt_6_4);
@@ -540,6 +542,49 @@ void clientFileSock::finishSendFile()
 void clientFileSock::setUserId(const int &id)
 {
    ID=id;
+}
+
+void clientFileSock::StartTransferFile(QString fileName)
+{
+   qDebug()<<"正在上传头像到服务器.....";
+   // 如果没有连接服务器，重新连接下
+   if (!fileSocket->isOpen()) {
+        connectToServer(MyApp::m_strHostAddr, MyApp::m_nFilePort, ID);
+   }
+
+   // 要发送的文件
+   fileToSend = new QFile(fileName);
+
+   if (!fileToSend->open(QFile::ReadOnly))
+   {
+        qDebug() << "open file error!";
+        return;
+   }
+
+   // 文件总大小
+   ullSendTotalBytes = fileToSend->size();
+
+   // 文件数据流
+   QDataStream sendOut(&outBlock, QIODevice::WriteOnly);
+   sendOut.setVersion(QDataStream::Qt_6_4);
+
+   // 当前文件名，不包含路径
+   QString currentFileName = fileName.right(fileName.size() - fileName.lastIndexOf('/')-1);
+
+   // 依次写入总大小信息空间，文件名大小信息空间，文件名
+   sendOut << qint64(0) << qint64(0) << currentFileName;
+
+   // 这里的总大小是文件名大小等信息和实际文件大小的总和
+   ullSendTotalBytes += outBlock.size();
+
+   // 返回outBolock的开始，用实际的大小信息代替两个qint64(0)空间
+   sendOut.device()->seek(0);
+   sendOut << ullSendTotalBytes << qint64((outBlock.size() - sizeof(qint64)*2));
+
+   // 发送完头数据后剩余数据的大小
+   bytesToWrite = ullSendTotalBytes - fileSocket->write(outBlock);
+
+   outBlock.resize(0);
 }
 
 void clientFileSock::sltUpdateClientProgress(qint64 numBytes)

@@ -16,6 +16,7 @@
 #include"myapp.h"
 #include "sql_manage.h"
 #include "cell.h"
+#include"myHelper.h"
 
 
 
@@ -132,6 +133,7 @@ void MainWindow::setMainSocket(clientSock *socket, clientFileSock *filesocket)
         connect(m_fileTcp,&clientFileSock::signalFileRecvOk,
                 this,&MainWindow::sltFileRecvFinished);
 
+
         connect(leftbar,&leftBar::UpdateHeadPic,this,[=](){
 
             // 构建 Json 对象
@@ -140,11 +142,15 @@ void MainWindow::setMainSocket(clientSock *socket, clientFileSock *filesocket)
 
             json.insert("id",  MyApp::m_nId);
             json.insert("head", fileInfo.fileName());
-            json.insert("friends", sql_manage::Instance()->getFriendInfo(MyApp::m_nId));
+            json.insert("friends", sql_manage::Instance()->GetMyFriend());
 
             qDebug() << "upload head" << json;
+            qint64 curTime = QDateTime::currentSecsSinceEpoch();//时间戳
 
-            m_tcp->sendMsg(UpdateHeadPic, json);
+            //发送更新的头像到服务器
+            filesocket->sendFile(MyApp::m_strHeadPath+MyApp::m_strHeadFile,curTime,SendPicture);
+            myHelper::Sleep(500);
+            m_tcp->sendMsg(UpdateHeadPic, json);//主要是为了通知其他用户我更新了头像 去下载我的头像
         });
 
         initUI();
@@ -438,7 +444,7 @@ void MainWindow::DownloadFriendHead(const int &userId, const QString &strHead)
    // leftBar->DownloadFriendHead(userId);
 
     // 延迟一点发送
-//    myHelper::Sleep(100);
+    myHelper::Sleep(100);
 
     QJsonObject jsonReply;
     jsonReply.insert("from", MyApp::m_nId);

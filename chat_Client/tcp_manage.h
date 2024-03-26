@@ -91,6 +91,9 @@ public:
     // 设置当前socket的id
     void setUserId(const int &id);
 
+
+    void StartTransferFile(QString fileName);
+
 signals:
     //   void sucessRecvfile(QString recvFileName);
     //   void sendFileSucess(QString fileName);
@@ -101,6 +104,8 @@ signals:
     void signalConnectd();
 
     void signalFileArrived(const QJsonValue&);
+
+
 
 private slots:
     // 发送文件数据，更新进度条

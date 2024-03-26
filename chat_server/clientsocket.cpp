@@ -443,12 +443,13 @@ void ClientSocket::ParseUpdateUserHead(const QJsonValue &dataVal)
         // 通知其他在线好友，说我已经修改了头像
         QJsonArray jsonFriends =  dataObj.value("friends").toArray();
         QJsonObject jsonObj;
-        // 是我在更新，我要去下载我的头像
+        // 是我在更新，要去下载我的头像
         jsonObj.insert("id", nId);
         jsonObj.insert("head", strHead);
 
         for (int i = 0; i < jsonFriends.size(); i++) {
             nId = jsonFriends.at(i).toInt();
+            qDebug()<<nId;
             emit sendMessagetoClient(UpdateHeadPic, nId, jsonObj);
         }
     }
@@ -785,6 +786,7 @@ ClientFileSocket::ClientFileSocket(QObject *parent, QTcpSocket *tcpSocket):QObje
 
     // 我们更新进度条
     connect(m_tcpSocket, &QTcpSocket::readyRead, this, &ClientFileSocket::sltReadyRead);
+
     connect(m_tcpSocket, &QTcpSocket::disconnected, this, &ClientFileSocket::signalDisConnected);
 
     // 当有数据发送成功时，我们更新进度条
@@ -1088,7 +1090,7 @@ void ClientFileSocket::sltReadyRead()
         //客户端的TcpFileSocket在连上服务器后会首先发来三个字节的数据，分别是下面三个字段
         in >> m_UserId >> m_WindowId >> tag;
         if(m_WindowId == -2){
-           qDebug() << "用户" << m_UserId << "全局收发文件的FileSocket已连接上服务器" ;
+            qDebug() << "用户" << m_UserId << "全局收发文件的FileSocket已连接上服务器" <<tag;
         }else{
            qDebug() << "聊天双方ID分别为:[" << "sender:" << m_UserId
                     << "  ->  receiver:" << m_WindowId << "]"
@@ -1128,9 +1130,17 @@ void ClientFileSocket::sltReadyRead()
            //如果用户为群发文件，则保存在 GroupDir/UserDir/ 下
            QString strFilePath;
            if(tag == 0){
-               strFilePath = MyApp::m_strRecvPath + "User/" + QString::number(m_UserId) + "/";
-               MyApp::createDir(strFilePath);
-               qDebug()<<"creat success";
+               if(m_WindowId==-2)
+               {
+                    qDebug()<<"收到头像文件";
+                    strFilePath=MyApp::m_strHeadPath+QString::number(m_UserId)+"/";
+                    MyApp::createDir(strFilePath);
+               }else
+               {
+                   strFilePath = MyApp::m_strRecvPath + "User/" + QString::number(m_UserId) + "/";
+                   MyApp::createDir(strFilePath);
+                   qDebug()<<"creat success";
+               }
            }else if(tag == 1){
                strFilePath = MyApp::m_strRecvPath + "Group/" + QString::number(m_WindowId) + "/";
                MyApp::createDir(strFilePath);
@@ -1160,7 +1170,6 @@ void ClientFileSocket::sltReadyRead()
     if (bytesReceived < ullRecvTotalBytes){
         bytesReceived += quint64(m_tcpSocket->bytesAvailable());
         inBlock = m_tcpSocket->readAll();
-
         if (fileToRecv->isOpen()){
            fileToRecv->write(inBlock);
            qDebug()<<"write";
@@ -1184,6 +1193,8 @@ void ClientFileSocket::sltReadyRead()
         fileTransFinished();
     }
 }
+
+
 
 void ClientFileSocket::sltUpdateClientProgress(qint64 numBytes)
 {

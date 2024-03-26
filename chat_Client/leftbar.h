@@ -6,6 +6,8 @@
 #include <QButtonGroup>
 #include<systemsetting.h>
 #include"weather/wtheatherdlg.h"
+#include"headedit.h"
+
 
 class personMsgDlg;
 
@@ -44,6 +46,7 @@ private:
     QPushButton *btn_weather;
     personMsgDlg *pMsgDlg;
     SystemSetting sysSet;
+    headEdit headedit;
 
 };
 
