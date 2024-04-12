@@ -205,6 +205,18 @@ void rightw::refreshGroupList(QJsonValue dataVal)
     }
 }
 
+void rightw::forbidSendMsg(int id)
+{
+    qDebug()<<"rightw forbidSendMsg";
+    int cnt = chatWindowList.size();
+    for(int i = 0;i < cnt;i++){
+        if(id == chatWindowList.at(i)->getID()){
+            chatWindowList.at(i)->forbidSendMsg();
+            return;
+        }
+    }
+}
+
 void rightw::on_pushButton_4_clicked()
 {
 

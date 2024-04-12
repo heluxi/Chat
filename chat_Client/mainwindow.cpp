@@ -303,7 +303,7 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     break;
     case DeleteFriend:
     {
-//        parseDeleteFriendReply(dataVal);
+        parseDeleteFriendReply(dataVal);
     }
     break;
     case DeleteGroup:
@@ -784,6 +784,18 @@ void MainWindow::parseGetGroupMembersReply(const QJsonValue &dataVal)
     qDebug() << "收到服务器发来的群成员: "
              << dataVal;
     rightBar->refreshGroupList(dataVal);
+}
+
+void MainWindow::parseDeleteFriendReply(const QJsonValue &dataVal)
+{
+    if(dataVal.isObject()){
+        QJsonObject json = dataVal.toObject();
+        int id = json.value("id").toInt();
+
+        midBar->deleteFriend(id);//从联系人列表中删除
+
+        rightBar->forbidSendMsg(id);
+    }
 }
 
 void MainWindow::parseSendFileReply(const QJsonValue &dataVal)

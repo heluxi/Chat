@@ -72,7 +72,7 @@ void TcpMsgServer::SltNewConnection()
 
 
 /**
- * @brief TcpMsgServer::SltConnected
+ * TcpMsgServer::SltConnected
  * 通过验证后，才可以加入容器进行管理(online
  */
 void TcpMsgServer::SltConnected()
@@ -80,7 +80,8 @@ void TcpMsgServer::SltConnected()
     //sender 如果在由信号激活的插槽中调用该函数 返回指向发送信号的对象的指针 否则返回0
     ClientSocket *client = (ClientSocket *)this->sender();
     if (NULL == client) return;
-
+    //加入容器中
+    m_clients.push_back(client);
     //send message 发送全部
     connect(client,&ClientSocket::sendMessagetoClient,this,&TcpMsgServer::SltMsgToClient);
     //signal to signal
@@ -88,11 +89,11 @@ void TcpMsgServer::SltConnected()
 
     //get name from id
     Q_EMIT signalUserStatus(QString("用户 [%1] 上线").arg(Database::Instance()->getUserName(client->getUserID())));
-    m_clients.push_back(client);
+
 }
 
 /**
- * @brief TcpMsgServer::SltDisConnected
+ *TcpMsgServer::SltDisConnected
  * 有客户端下线
  */
 void TcpMsgServer::SltDisConnected()
@@ -317,6 +318,9 @@ void TcpFileServer::SltClientDownloadFile(const QJsonValue &json)
 //            }
 //        }
 //    }
+
+
+
 }
 
 

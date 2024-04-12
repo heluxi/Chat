@@ -36,6 +36,7 @@ public:
     QList<Cell*> getAllCells() const;
     void resetCellState();
     void refreshCellTime(int id,qint64 time,QString msg);
+    void setTag(int tag);
 
 signals:
     void popMenuToShow(Cell*,QMenu *);

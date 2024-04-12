@@ -373,7 +373,7 @@ void BubbleView::paintEvent(QPaintEvent *)
 
     if(info->sender == Me || info->sender == You){//自己发送的消息
         //画头像
-        //painter.drawPixmap(iconRect,headIcon);
+
 
         headIcon->setGeometry(iconRect.x(),iconRect.y(),iconRect.width(),iconRect.height());
 

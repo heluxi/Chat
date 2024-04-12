@@ -70,7 +70,7 @@ void ListWidget::cancelCellOnTop(Cell *cell)
 
 void ListWidget::insertCell(Cell *cell)
 {
-    if(cell->type == Cell_GroupDrawer || cell->type == Cell_FriendDrawer){
+    if(cell->type == Cell_GroupDrawer || cell->type == Cell_FriendDrawer){//一个分组的抽屉
         cells.append(cell);
     }else if(cell->type == Cell_FriendContact || cell->type == Cell_GroupContact){
         if(tag == 2){
@@ -97,6 +97,7 @@ void ListWidget::removeCell(Cell *cell)
 {
 
     qDebug()<<cell->type;
+    qDebug()<<tag;
     if(cell->type == Cell_GroupDrawer || cell->type == Cell_FriendDrawer){
         cells.removeOne(cell);
     }else if(cell->type == Cell_FriendChat || cell->type == Cell_GroupChat){
@@ -132,6 +133,7 @@ void ListWidget::removeAllCells()
 
 void ListWidget::refreshList()
 {
+    qDebug()<<"refreList...";
     this->clear();//首先移除所有格子
     sonItems.clear();
     for(Cell *cell : cells){
@@ -303,6 +305,12 @@ void ListWidget::refreshCellTime(int id, qint64 time,QString msg)
             return;
         }
     }
+}
+
+void ListWidget::setTag(int tag)
+{
+
+    this->tag=tag;
 }
 
 

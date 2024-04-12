@@ -44,6 +44,7 @@ private:
     MyButton *btn_contact;
     MyButton *btn_settings;
     QPushButton *btn_weather;
+    QPushButton *btn_date;
     personMsgDlg *pMsgDlg;
     SystemSetting sysSet;
     headEdit headedit;

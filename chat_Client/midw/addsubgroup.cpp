@@ -11,6 +11,20 @@ AddSubGroup::AddSubGroup(QWidget *parent) :
     ui(new Ui::AddSubGroup)
 {
     ui->setupUi(this);
+    this->setFixedSize(300,200 );
+    this->setStyleSheet("background-color: rgb(85, 85, 85);");
+
+    setWindowFlags(Qt::WindowCloseButtonHint);
+
+    QPalette palette = this->palette();
+    palette.setBrush(QPalette::Window,QBrush(QPixmap(":/backgroud3.jpg").
+                                              scaled(this->size(),Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));// 使用平滑的缩放方式
+    this->setPalette(palette);// 给widget加上背景图
+
+    QFont font = QFont("Microsoft YaHei", 12, 50, false);
+    ui->lb_name->setFont(font);
+
+
 }
 
 AddSubGroup::~AddSubGroup()

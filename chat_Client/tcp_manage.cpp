@@ -36,12 +36,7 @@ void clientSock::connectServer(const QString &host, const int &port)
 
 void  clientSock::sendMsg(const quint8 &type, const QJsonValue &dataVal)
 {
-//        QString sendmsg=QString("[%1]:%2").arg(name).arg(msg);
-//        int len=tcpSocket->write(sendmsg.toUtf8());
-//        if(len<0)
-//        {
-//            qDebug()<<"发送失败！";
-//        }
+
     // 连接服务器
     if (!tcpSocket->isOpen()) {
         tcpSocket->connectToHost(MyApp::m_strHostAddr, quint16(MyApp::m_nMsgPort));
@@ -134,7 +129,7 @@ void clientSock::recvMsg()
                 QJsonObject obj;
                 obj=dataVal.toObject();
                 int id=obj.value("id").toInt();
-                QString infor=QString("连接成功！\n 你的ID是：%1").arg(id);
+                QString infor=QString("注册成功！请返回登录界面！\n 你的ID是：%1").arg(id);
                 qDebug()<<infor;
                 QMessageBox::information(NULL,"sucess",infor,QMessageBox::Ok);
                 emit registerOk(dataVal);
@@ -204,6 +199,15 @@ void clientSock::recvMsg()
             case RefreshGroups:
             {
                emit signalMessage(RefreshGroups, dataVal);
+            }
+            case DeleteFriend:
+            {
+               Q_EMIT signalMessage(DeleteFriend,dataVal);
+            }
+            break;
+            case DeleteGroup:
+            {
+               Q_EMIT signalMessage(DeleteGroup,dataVal);
             }
             break;
             default:
@@ -546,7 +550,7 @@ void clientFileSock::setUserId(const int &id)
 
 void clientFileSock::StartTransferFile(QString fileName)
 {
-   qDebug()<<"正在上传头像到服务器.....";
+
    // 如果没有连接服务器，重新连接下
    if (!fileSocket->isOpen()) {
         connectToServer(MyApp::m_strHostAddr, MyApp::m_nFilePort, ID);

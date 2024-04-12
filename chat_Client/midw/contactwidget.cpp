@@ -8,7 +8,7 @@
 #include "sql_manage.h"
 #include "addsubgroup.h"
 #include "myapp.h"
-
+#include"myHelper.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QMenu>
@@ -19,7 +19,7 @@
 #include <QJsonArray>
 #include <QSqlQuery>
 #include <QMessageBox>
-#include"mybutton.h"
+
 
 ContactWidget::ContactWidget(QWidget *parent) :
     QWidget(parent),
@@ -66,6 +66,10 @@ ContactWidget::ContactWidget(QWidget *parent) :
             this,&ContactWidget::setPopMenuCell);
 
     this->setContentsMargins(0,0,0,0);
+
+    ui->friendList->setTag(2);
+    ui->groupList->setTag(2);
+
 }
 
 ContactWidget::~ContactWidget()
@@ -77,6 +81,7 @@ ContactWidget::~ContactWidget()
 
 void ContactWidget::InitList()
 {
+
     //---------------------好友列表------------------------
     //设置好友列表抽屉右击菜单
     QMenu *dadMenu = new QMenu(this);
@@ -398,13 +403,14 @@ void ContactWidget::onSonMenuSelected(QAction *action)
         ui->friendList->refreshList();
         //删除中栏中的格子
         emit deleteChat(id);
-//        myHelper::Sleep(500);
+        myHelper::Sleep(500);
 
         //通知服务器，删除好友
         QJsonObject json;
         json.insert("userID1",MyApp::m_nId);//我的id
         json.insert("userID2",id);//该好友的id
         emit signalSendMessage(DeleteFriend,json);
+
     }else if(!action->text().compare(tr("发送群消息"))){
         emit openDialog(popMenuCell);
     }else if(!action->text().compare(tr("退出该群"))){

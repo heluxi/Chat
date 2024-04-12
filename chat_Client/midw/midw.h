@@ -26,6 +26,7 @@ public:
     void switchToChatList();
 
     void addCellToContact(Cell*);
+    void deleteFriend(int id);
 
     Cell* isIDExist(int id);
 

@@ -71,6 +71,8 @@ private:
 
     void parseRefreshFriend(const QJsonValue &dataVal);
     void parseRefreshGroups(const QJsonValue &dataVal);
+
+    void parseDeleteFriend(const QJsonValue &dataVal);
 private:
     QTcpSocket *m_tcpSocket;
     int m_id;

@@ -230,6 +230,20 @@ void midw::addCellToContact(Cell *c)
     contactWidget->addCell(c);
 }
 
+void midw::deleteFriend(int id)
+{
+    qDebug()<<"midw deleteFrind";
+    QList<Cell*> cells = ui->chatList->getAllCells();
+    int cnt = cells.size();
+    for(int i = 0;i < cnt;i++){
+        if(cells.at(i)->id == id){
+            cells.at(i)->deleted = true;//标记为已删除，下次用户再点击时弹出对话框提示
+            contactWidget->deleteFriend(id);//更新联系人列表和本地数据库
+            return;
+        }
+    }
+}
+
 Cell *midw::isIDExist(int id)
 {
     QList<Cell*> cells = ui->chatList->getAllCells();

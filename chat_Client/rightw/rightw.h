@@ -33,6 +33,7 @@ public:
     void addNewUserToGroupList(int groupID,Cell *newUser);//新用户入群
 
     void refreshGroupList(QJsonValue dataVal);
+    void forbidSendMsg(int id);
 signals:
 //    void stayOnTop(bool);
     void signalSendMessage(const quint8 &, const QJsonValue &);

@@ -60,6 +60,7 @@ include($$PWD/midw/midw.pri)
 include($$PWD/rightw/rightw.pri)
 include($$PWD/login/login.pri)
 include($$PWD/weather/weather.pri)
+include($$PWD/lunarcalendarwidget/lunarcalendarwidget.pri)
 
 RESOURCES += \
     res.qrc

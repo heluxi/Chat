@@ -84,7 +84,7 @@ public:
 signals:
 
 private:
-    static Database *self;
+    static Database *self;//保证一个类只有一个实例
     QSqlDatabase userdb;
     void queryAll();
 

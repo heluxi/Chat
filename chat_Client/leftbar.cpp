@@ -8,6 +8,7 @@
 #include"headedit.h"
 #include"myHelper.h"
 #include"type.h"
+#include"lunarcalendarwidget/lunarcalendarwidget.h"
 leftBar::leftBar(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::leftBar)
@@ -59,6 +60,12 @@ leftBar::leftBar(QWidget *parent) :
         << ":/天气.svg"
         << ":/天气.svg";
     btn_weather=new MyButton(nullptr,tmp,QSize(63,41));
+    tmp.clear();
+    tmp << ":/日历.svg"
+        << ":/日历.svg"
+        << ":/日历.svg";
+
+    btn_date=new MyButton(nullptr,tmp,QSize(63,41));
 
 
 
@@ -66,12 +73,14 @@ leftBar::leftBar(QWidget *parent) :
 
     QVBoxLayout *layout=new QVBoxLayout;
     layout->addWidget(btn_chat);
-    layout->addStretch();
+    layout->addStretch(80);
     layout->addWidget(btn_contact);
-    layout->addStretch();
+    layout->addStretch(80);
     layout->addWidget(btn_weather);
-    layout->addStretch();
+    layout->addStretch(80);
     layout->addWidget(btn_settings);
+    layout->addStretch(80);
+    layout->addWidget(btn_date);
 
     ui->widget->setLayout(layout);
 
@@ -86,6 +95,10 @@ leftBar::leftBar(QWidget *parent) :
 
         sysSet.show();
 
+    });
+    connect(btn_date,&QPushButton::clicked,this,[=](){
+      LunarCalendarWidget *calendar=new LunarCalendarWidget();
+        calendar->show();
     });
 
     connect(&sysSet,&SystemSetting::changeBackgroundColor,this,&leftBar::changeBackgroundColor);

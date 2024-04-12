@@ -5,7 +5,7 @@
 #include "qtmetamacros.h"
 #include "type.h"
 #include "myapp.h"
-
+#include<iostream>
 #include "database.h"
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -94,21 +94,6 @@ void ClientSocket::readMsg()
                 Q_EMIT signalDownloadFile(data);
             }
             break;
-//            case GetFile:
-//            {
-//                emit signalDownloadFile(data);
-//            }
-//            break;
-//            case GetPicture:
-//            {
-//                emit signalDownloadFile(data);
-//            }
-//            break;
-//            case SendFace:
-//            {
-//                ParseGroupMessages(reply);
-//            }
-//            break;
             case FindFriend:
                 parseFindFriend(data);
                 break;
@@ -187,6 +172,11 @@ void ClientSocket::readMsg()
             case GetOfflineMsg:
             {
                 parseGetOfflineMsg(data);
+            }
+            break;
+            case DeleteFriend:
+            {
+                parseDeleteFriend(data);
             }
             break;
             default:
@@ -753,6 +743,38 @@ void ClientSocket::parseRefreshGroups(const QJsonValue &dataVal)
 
     sendMessage(RefreshGroups, jsonArray);
 
+}
+
+void ClientSocket::parseDeleteFriend(const QJsonValue &dataVal)
+{
+
+    if(dataVal.isObject()){
+        QJsonObject json = dataVal.toObject();
+        int userID1 = json.value("userID1").toInt();
+        int userID2 = json.value("userID2").toInt();
+
+        QSqlQuery query;
+        QString sql = "delete from Friendship where userID1=";
+        sql.append(QString::number(userID1));
+        sql.append(" and userID2=");
+        sql.append(QString::number(userID2));
+        query.exec(sql);
+
+        QString sql2 = "delete from Friendship where userID1=";
+        sql2.append(QString::number(userID2));
+        sql2.append(" and userID2=");
+        sql2.append(QString::number(userID1));
+        query.exec(sql2);
+
+        qDebug() << userID1 << "和" << userID2 << "解除好友关系" ;
+
+        QJsonObject jsonObj;
+        jsonObj.insert("msg","user" + QString::number(userID1) + " have deleted you.");
+        jsonObj.insert("id",userID1);
+
+        //通知被删除的用户
+        emit sendMessagetoClient(DeleteFriend,userID2,jsonObj);
+    }
 }
 
 
