@@ -179,6 +179,11 @@ void ClientSocket::readMsg()
                 parseDeleteFriend(data);
             }
             break;
+            case DeleteGroup:
+            {
+                parseDeleteGroup(data);
+            }
+            break;
             default:
                 break;
             }
@@ -774,6 +779,58 @@ void ClientSocket::parseDeleteFriend(const QJsonValue &dataVal)
 
         //通知被删除的用户
         emit sendMessagetoClient(DeleteFriend,userID2,jsonObj);
+    }
+}
+
+void ClientSocket::parseDeleteGroup(const QJsonValue &dataVal)
+{
+    if(dataVal.isObject()){
+        QJsonObject json = dataVal.toObject();
+        int userID = json.value("id").toInt();
+        int groupID = json.value("group").toInt();
+
+        qDebug() << userID << "请求退出群" << groupID;
+                QSqlQuery query;
+        QString sql = "delete from GroupUser where groupID=";
+        sql.append(QString::number(groupID));
+        sql.append(" and userID=");
+        sql.append(QString::number(userID));
+        query.exec(sql);
+
+
+        //----------------------------------------------
+
+        //通知该群的用户，更新聊天窗口中的群列表信息，并且显示该用户已经加入群
+        QJsonObject newUserInfo = Database::Instance()->getUserInfo(userID);
+        QString name = newUserInfo.value("name").toString();
+        QString head = newUserInfo.value("head").toString();
+
+        QJsonObject groupInfo = Database::Instance()->getGroupInfo(groupID);
+        QString groupName = groupInfo.value("name").toString();
+
+        QJsonArray jsonArr = Database::Instance()->getGroupUsers(groupID);
+        for (int i = 0; i < jsonArr.size(); i++) {
+            QJsonObject json = jsonArr.at(i).toObject();
+            int id = json.value("id").toInt();
+
+            if(id == userID)//不通知请求发送者,因为他已经处理了该条消息
+                continue;
+
+            // 重组消息
+            QJsonObject jsonMsg;
+            jsonMsg.insert("group", groupID);
+            jsonMsg.insert("groupName",groupName);
+            jsonMsg.insert("id", userID);//退群用户的id
+            jsonMsg.insert("name", name);//退群用户的名字
+            jsonMsg.insert("head",head);
+            jsonMsg.insert("to", id);
+            jsonMsg.insert("msg", QString::number(userID) + "已退出该群");
+            jsonMsg.insert("tag",1);
+            jsonMsg.insert("type",Notice);
+            jsonMsg.insert("noticeType",ExitGroup);
+
+            Q_EMIT sendMessagetoClient(DeleteGroup, id, jsonMsg);
+        }
     }
 }
 

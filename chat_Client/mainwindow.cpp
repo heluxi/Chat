@@ -308,7 +308,7 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     break;
     case DeleteGroup:
     {
-//        parseDeleteGroupReply(dataVal);
+        parseDeleteGroupReply(dataVal);
     }
     break;
     default:
@@ -838,6 +838,20 @@ void MainWindow::parseSendFileReply(const QJsonValue &dataVal)
 void MainWindow::SltUpdateUserHead(const int &userId, const QString &strHead)
 {
     emit updateUserHead(userId,strHead);
+}
+
+void MainWindow::parseDeleteGroupReply(const QJsonValue &dataVal)
+{
+    if(dataVal.isObject()){
+        QJsonObject json = dataVal.toObject();
+        int groupid = json.value("group").toInt();
+        QString groupName = json.value("groupName").toString();
+
+        int id = json.value("id").toInt();
+        QString name = json.value("name").toString();
+
+        rightBar->removeUserFromGroupList(groupid,id);
+    }
 }
 
 void MainWindow::sltFileRecvFinished(quint8, QString, int)

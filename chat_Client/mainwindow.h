@@ -70,6 +70,7 @@ private:
     void parseSendFileReply(const QJsonValue &dataVal);
 
     void SltUpdateUserHead(const int &userId, const QString &strHead);
+    void parseDeleteGroupReply(const QJsonValue &dataVal);
 
     void sltFileRecvFinished(quint8,QString,int);
     void SltConnectedToServer();

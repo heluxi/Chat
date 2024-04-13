@@ -34,6 +34,7 @@ public:
 
     void refreshGroupList(QJsonValue dataVal);
     void forbidSendMsg(int id);
+    void removeUserFromGroupList(int groupID, int userID);
 signals:
 //    void stayOnTop(bool);
     void signalSendMessage(const quint8 &, const QJsonValue &);

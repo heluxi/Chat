@@ -217,6 +217,19 @@ void rightw::forbidSendMsg(int id)
     }
 }
 
+void rightw::removeUserFromGroupList(int groupID, int userID)
+{
+    int cnt = chatWindowList.size();
+    for(int i = 0;i < cnt;i++){
+        if(groupID == chatWindowList.at(i)->getID()){
+            //注意，若右栏没有对应的群聊天窗口，则不处理这条消息
+            chatWindowList.at(i)->removeCellFromGroupList(userID);
+            return;
+        }
+    }
+
+}
+
 void rightw::on_pushButton_4_clicked()
 {
 

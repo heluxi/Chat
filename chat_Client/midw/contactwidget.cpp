@@ -430,7 +430,7 @@ void ContactWidget::onSonMenuSelected(QAction *action)
 
             //删除中栏中的格子
             emit deleteChat(id);
-//            myHelper::Sleep(500);
+            myHelper::Sleep(500);
 
             //通知服务器，退出该群
             QJsonObject json;
