@@ -38,6 +38,7 @@ protected:
 signals:
     void signalFind(QJsonObject);
     void updateUserHead(const int &userId, const QString &strHead);
+    void updateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
 
 private slots:
 
@@ -75,6 +76,9 @@ private:
     void sltFileRecvFinished(quint8,QString,int);
     void SltConnectedToServer();
     void SltBeginToSend();
+    void UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
+
+
 
     //    void on_btn_min_clicked();
 

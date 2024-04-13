@@ -57,6 +57,7 @@ public:
     // 获取我的好友
     QJsonArray getMyFriends() const;
     QJsonArray GetMyFriend() const;
+    QJsonArray GetMyFriend(const int &userId) const;
     // 获取我的群组
     QJsonArray getMyGroups() const;
     // 获取我的历史聊天列表

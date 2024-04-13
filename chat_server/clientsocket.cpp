@@ -149,13 +149,19 @@ void ClientSocket::readMsg()
             }
             break;
             case Login:
+            {
                 UserLogin(data);
+            }
                 break;
             case Register:
+            {
                 parseReister(data);
+            }
                 break;
             case UserOnLine:
+            {
                 ParseUserOnline(data);
+            }
             break;
             case Logout:
             {
@@ -379,6 +385,7 @@ void ClientSocket::parseReister(const QJsonValue &dataVal)
 void ClientSocket::ParseUserOnline(const QJsonValue &dataVal)
 {
     // data 的 value 是数组
+    qDebug()<<"ParseUserOnline......";
     if (dataVal.isArray()) {
         QJsonArray jsonArray = dataVal.toArray();
         int nSize = jsonArray.size();
@@ -386,11 +393,12 @@ void ClientSocket::ParseUserOnline(const QJsonValue &dataVal)
             int nId = jsonArray.at(i).toInt();
             int nStatus = Database::Instance()->getUserOnLineStatus(nId);
             // 给在线的好友通报一下状态
+
             if (OnLine == nStatus) {
                 QJsonObject jsonObj;
                 jsonObj.insert("id", m_id);
                 jsonObj.insert("text", "online");
-
+                qDebug()<<"向用户"<<nId<<"通报状态";
                 emit sendMessagetoClient(UserOnLine, nId, jsonObj);
             }
         }

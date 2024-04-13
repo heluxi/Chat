@@ -41,6 +41,7 @@ public slots:
     void onSwitchPage(int);
     void setPopMenuCell(Cell*,QMenu*);
     void sltUpdateFriendList(QString);
+    void UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
 };
 
 #endif // CONTACTWIDGET_H

@@ -494,6 +494,28 @@ void ContactWidget::sltUpdateFriendList(QString name)
     ui->friendList->insertCell(c);
 }
 
+void ContactWidget::UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal)
+{
+    if (!dataVal.isObject()) return;
+    QJsonObject jsonObj = dataVal.toObject();
+    int nId = jsonObj.value("id").toInt();
+    qDebug()<<"用户上线了"<<nId;
+    QString msg=QString("你的好友%1上线了").arg(QString::number(nId));
+    QMessageBox::information(this,"",msg+"\n快去和他聊天吧!");
+
+    QList<Cell *> groups = ui->friendList->getAllCells();
+    foreach (Cell *cell, groups.at(0)->childs) {
+        if (cell->id == nId) {
+            cell->SetStatus(nStatus);
+            cell->SetSubtitle(QString("当前用户状态：%1 ").arg(OnLine == nStatus ? tr("在线") : tr("离线")));
+        }
+    }
+
+    // 更新显示
+    ui->friendList->refreshList();
+//    TestMedia::Instance()->playWav(MyApp::m_strSoundPath + "userlogon.wav");
+}
+
 void ContactWidget::onSwitchPage(int page)
 {
     if(page == 0){

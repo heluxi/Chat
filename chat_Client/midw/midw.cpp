@@ -58,6 +58,7 @@ midw::midw(QWidget *parent) :
             this,&midw::signalSendMessage);
     connect(contactWidget,&ContactWidget::openDialog,this,&midw::sltOpenDialog);
     connect(contactWidget,&ContactWidget::deleteChat,this,&midw::deleteChatCell);
+    connect(this,&midw::UpdateFriendStatus,contactWidget,&ContactWidget::UpdateFriendStatus);
 
     newGroup = new CreateGroupWnd;
     connect(newGroup,SIGNAL(signalCreateGroup(const QJsonValue &)),
@@ -503,6 +504,7 @@ void midw::sltupdateUserHead(const int &userId, const QString &strHead)
     //ui->frindListWidget->upload();
     ui->chatList->refreshList();
 }
+
 
 
 

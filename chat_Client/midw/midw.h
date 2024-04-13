@@ -40,6 +40,7 @@ signals:
     void resetRightPage();
     void contactBtnClicked();
     void createGroupSucess(int);
+    void UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
 
 
 public slots:
@@ -59,6 +60,7 @@ public slots:
 
     void deleteChatCell(int);
     void sltupdateUserHead(const int &userId, const QString &strHead);
+
 
 
 private:

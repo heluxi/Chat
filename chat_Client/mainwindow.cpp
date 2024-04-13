@@ -92,6 +92,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(rightBar,&rightw::exitApp,this,[=](){
         delete midBar;
     });
+
+    connect(this,&MainWindow::updateFriendStatus,midBar,&midw::UpdateFriendStatus) ;
 }
 
 MainWindow::~MainWindow()
@@ -214,12 +216,12 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     switch (type) {
     case UserOnLine:
     {
-//        UpdateFriendStatus(OnLine, dataVal);
+        UpdateFriendStatus(OnLine, dataVal);
     }
     break;
     case UserOffLine:
     {
-//        UpdateFriendStatus(OffLine, dataVal);
+        UpdateFriendStatus(OffLine, dataVal);
     }
     break;
     case UpdateHeadPic:
@@ -866,7 +868,15 @@ void MainWindow::SltConnectedToServer()
 
 void MainWindow::SltBeginToSend()
 {
-//    headupLoadSOcket->sendFile(MyApp::m_strHeadFile);
+    //    headupLoadSOcket->sendFile(MyApp::m_strHeadFile);
+}
+
+
+//更新好友状态
+
+void MainWindow::UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal)
+{
+    emit updateFriendStatus(nStatus,dataVal);
 }
 
 //void MainWindow::on_btn_min_clicked()

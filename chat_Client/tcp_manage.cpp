@@ -247,7 +247,8 @@ if (dataVal.isObject()) {
         } else if (-3 == code) {
             emit signalStatus(LoginRepeat);
         }
-}
+    }
+    this->sltSendOnline();//通知好友上线
 }
 
 void clientSock::setID(int newID)
@@ -278,8 +279,9 @@ void clientSock::sltConnected()
 
 void clientSock::sltSendOnline()
 {
+    qDebug()<<"我上线了...";
     // 上线的时候给当前好友上报下状态
-    QJsonArray friendArr = sql_manage::Instance()->getMyFriends();
+    QJsonArray friendArr = sql_manage::Instance()->GetMyFriend();
 
     // 组织Jsonarror
     sendMsg(UserOnLine, friendArr);
