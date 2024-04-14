@@ -11,6 +11,10 @@
 #include<QSqlQuery>
 #include <QJsonArray>
 #include <QMessageBox>
+#include<QFileInfo>
+#include"myHelper.h"
+
+
 
 midw::midw(QWidget *parent) :
     QWidget(parent),
@@ -70,8 +74,69 @@ midw::midw(QWidget *parent) :
 
 //        newGroup->close();
 //        QMessageBox::information(this,"Sucess","创建群聊成功！");
-//                                                      });
+//
+//connect(ui->yourui, SIGNAL(returnPressed()), this, SLOT(yourfunction(int)));的信号槽进行实现。                                                });
+    connect(ui->searchlineEdit,&QLineEdit::returnPressed,this,[=](){
 
+        qDebug()<<"搜索:"<<ui->searchlineEdit->text();
+        QString text = ui->searchlineEdit->text();
+        if (text.isEmpty()) {
+            QMessageBox::information(this, "错误", "用户id不能为空");
+            return;
+        }
+
+        int cnt = text.size();
+        for (int i = 0; i < cnt; i++) {
+            if (text[i] >= QChar(48) && text[i] <= QChar(57)) {
+                continue;
+            } else {
+                QMessageBox::information(this, "错误", "用户id包含非法字符");
+                return;
+            }
+        }
+        int id=text.toInt();
+        if(sql_manage::Instance()->isMyFriend(id))
+        {
+            QJsonArray myGroups =sql_manage::Instance()->GetMyFriend(id);
+            qDebug()<<myGroups;
+            for(int i = 0;i < myGroups.size();i++){
+                QJsonObject json = myGroups.at(i).toObject();
+
+
+            QString name = json.value("name").toString();
+
+            QString iconPath = json.value("head").toString();
+            p.setId(id);
+            p.setName(name);
+            p.sethead(iconPath);
+            p.show();
+
+            QFileInfo fileInfo(iconPath);
+            if(iconPath.isEmpty() || !fileInfo.exists()){
+                //头像文件不存在，向服务器获取
+                //c->iconPath = ":/Icons/MainWindow/default_head_icon.png";
+                QJsonObject json;
+                json.insert("tag",-2);
+                json.insert("from",MyApp::m_nId);
+                json.insert("id",-2);
+                json.insert("who",id);
+
+                signalSendMessage(GetPicture, json);
+                myHelper::Sleep(500);//等待半秒
+
+                QString headPath = MyApp::m_strHeadPath + QString::number(id) + ".png";
+
+                      }
+
+
+            }
+
+        }
+        else {
+            QMessageBox::information(this, "错误", "用户还不是你好友");
+        }
+
+    });
 }
 
 midw::~midw()

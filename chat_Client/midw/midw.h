@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "contactwidget.h"
 #include"creategroupwnd.h"
+#include"rightw/personalinfo.h"
 
 
 namespace Ui {
@@ -72,6 +73,8 @@ private:
     Cell *selectedCell = nullptr;//选中的格子，即如果右边有对话框时，对应中间的格子就是这个,初始化时没有被选中的
 
     QMenu *addMenu;
+    personalInfo p;
+
 
 };
 

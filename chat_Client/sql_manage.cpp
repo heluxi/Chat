@@ -306,13 +306,16 @@ QJsonArray sql_manage::GetMyFriend(const int &userId) const
 {
     QJsonArray  myFriends;
 
-    QString strQuery = "SELECT [id] FROM MyFriend ";
-    strQuery.append("WHERE userId=");
-    strQuery.append(QString::number(userId));
+    QString strQuery = QString("SELECT * FROM MyFriend  where id=%1").arg(userId);
+    QSqlQuery query(strQuery);
 
-    QSqlQuery query(strQuery, userdb);
-    while (query.next()) {
-       myFriends.append(query.value("id").toInt());
+    while (query.next()){
+       QJsonObject json;
+       json.insert("id",query.value("id").toInt());
+       json.insert("head",query.value("head").toString());//本地头像地址
+       json.insert("name",query.value("name").toString());
+       json.insert("subgroup",query.value("subgroup").toString());
+       myFriends.append(json);
     }
 
     return myFriends;
