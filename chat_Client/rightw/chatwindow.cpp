@@ -311,6 +311,7 @@ void ChatWindow::msgReceived(QJsonValue &value)
         info->myID = MyApp::m_nId;
         info->tag = tag;
         info->msgType = MessageType(json.value("type").toInt());
+        info->name = json.value("name").toString();
         if(tag == 1)
             info->groupID = cell->id;
 

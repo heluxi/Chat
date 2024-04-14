@@ -52,6 +52,27 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
                                   scaled(20,20,Qt::IgnoreAspectRatio,Qt::SmoothTransformation));
             errorLabel->setFixedSize(20,20);
         }
+        connect(headIcon,&QPushButton::clicked,this,[=](){
+
+            if(info->sender==Me)
+            {
+                qDebug()<<info->myID;
+
+                            pinfo.setId(info->myID);
+                            pinfo.setName(MyApp::m_strUserName);
+                            pinfo.sethead(MyApp::m_strHeadPath + MyApp::m_strHeadFile);
+                            pinfo.show();
+
+            }else{
+                qDebug()<<info->yourID;
+
+                            pinfo.setId(info->yourID);
+                            pinfo.setName(info->name);
+                            pinfo.sethead(info->headIcon);
+                            pinfo.show();
+            }
+
+        });
     }
 
     if(info->msgType == Files){
@@ -174,27 +195,7 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
             mainLayout->setContentsMargins(0,20+20,10+40+20,10);
         }
     }
-//    connect(headIcon,&MyButton::clicked,this,[=](){
 
-//        if(info->sender==Me)
-//        {
-//            qDebug()<<info->myID;
-
-////            pinfo.setId(info->myID);
-////            pinfo.setName(MyApp::m_strUserName);
-////            pinfo.sethead(MyApp::m_strHeadPath + MyApp::m_strHeadFile);
-////            pinfo.show();
-
-//        }else{
-//            qDebug()<<info->yourID;
-
-////            pinfo.setId(info->yourID);
-////            pinfo.setName(info->name);
-////            pinfo.sethead(info->headIcon);
-////            pinfo.show();
-//        }
-
-//    });
 }
 
 QSize BubbleView::setRect()
@@ -515,6 +516,7 @@ void BubbleView::enterEvent(QEvent *e)
     //qDebug() << frameRect << "  " << ev->pos();
     if(frameRect.contains(ev->pos())){
         setCursor(Qt::PointingHandCursor);
+
     }
 //    return QWidget::enterEvent(e);
 }

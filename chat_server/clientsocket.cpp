@@ -171,6 +171,11 @@ void ClientSocket::readMsg()
                 m_tcpSocket->abort();
             }
             break;
+            case GetFriendStatus:
+            {
+                ParseGetFriendStatus(data);
+            }
+            break;
             case UpdateHeadPic:
             {
                 ParseUpdateUserHead(data);
@@ -859,6 +864,22 @@ void ClientSocket::parseDeleteGroup(const QJsonValue &dataVal)
             Q_EMIT sendMessagetoClient(DeleteGroup, id, jsonMsg);
         }
     }
+}
+
+void ClientSocket::ParseGetFriendStatus(const QJsonValue &dataVal)
+{
+    QJsonArray jsonArray;
+    // data 的 value 是数组
+    if (dataVal.isArray()) {
+        QJsonArray array = dataVal.toArray();
+        int nSize = array.size();
+        for (int i = 0; i < nSize; ++i) {
+            int nId = array.at(i).toInt();
+            jsonArray.append(Database::Instance()->getUserStatus(nId));
+        }
+    }
+
+    sendMessage(RefreshFriends, jsonArray);
 }
 
 

@@ -63,6 +63,7 @@ typedef enum {
     FindFriend          = 0x75,     //查找好友或者群
 
     GetOfflineMsg       = 0x80   ,   //获取离线消息
+    GetFriendStatus,
     SendFileHead
 } E_MSG_TYPE;
 

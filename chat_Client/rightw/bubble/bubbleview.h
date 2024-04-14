@@ -62,7 +62,7 @@ private:
     QLabel *errorLabel;
 
     QMenu *popMenu;
-//    personalInfo pinfo;
+    personalInfo pinfo;
 
 protected:
     void paintEvent(QPaintEvent*);
