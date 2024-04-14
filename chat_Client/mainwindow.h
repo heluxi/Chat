@@ -39,6 +39,7 @@ signals:
     void signalFind(QJsonObject);
     void updateUserHead(const int &userId, const QString &strHead);
     void updateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
+    void update(const QJsonValue &dataVal);
 
 private slots:
 
@@ -48,6 +49,7 @@ private slots:
     void sltCreateGroup();
 
     void onleftBtnClicked(int page);
+
 
 private:
     // 以下便是每个消息类型的解析
@@ -77,7 +79,7 @@ private:
     void SltConnectedToServer();
     void SltBeginToSend();
     void UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
-
+    void ParseRefreshFriendsReply(const QJsonValue &dataVal);
 
 
     //    void on_btn_min_clicked();

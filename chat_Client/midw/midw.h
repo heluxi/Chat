@@ -41,6 +41,7 @@ signals:
     void contactBtnClicked();
     void createGroupSucess(int);
     void UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal);
+    void update(const QJsonValue &dataVal);
 
 
 public slots:

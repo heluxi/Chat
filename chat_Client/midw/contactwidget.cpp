@@ -132,8 +132,13 @@ void ContactWidget::InitList()
         sonGroupListMenu->addAction(c->groupName);
     }
 
+
+
+
+
     //查询本地数据库获取我的好友
     QJsonArray myFriends = sql_manage::Instance()->getMyFriends();
+
     for(int i = 0;i < myFriends.size();i++){
         QJsonObject json = myFriends.at(i).toObject();
         Cell *c = new Cell;
@@ -142,6 +147,7 @@ void ContactWidget::InitList()
         c->iconPath = json.value("head").toString();
         c->groupName = json.value("subgroup").toString();
         c->type = Cell_FriendContact;
+
         c->status = OffLine;
 //        c->subTitle=QString("离线");
         c->msg=QString("离线");
@@ -322,6 +328,12 @@ void ContactWidget::onFriendDadMenuSelected(QAction *action)
         w.exec();
     }else if(!action->text().compare(tr("刷新"))){
         qDebug() << "刷新";
+        //向服务器获取在线好友状态
+        QJsonArray friendArr=sql_manage::Instance()->GetMyFriend();
+        emit signalSendMessage(RefreshFriends, friendArr);
+
+
+
     }else if(!action->text().compare(tr("删除该组"))){
         qDebug() << "删除该组";
         if(!popMenuCell->name.compare(tr("默认分组"))){
@@ -527,7 +539,30 @@ void ContactWidget::UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &
 
     // 更新显示
     ui->friendList->refreshList();
-//    TestMedia::Instance()->playWav(MyApp::m_strSoundPath + "userlogon.wav");
+    //    TestMedia::Instance()->playWav(MyApp::m_strSoundPath + "userlogon.wav");
+}
+
+void ContactWidget::update(const QJsonValue &dataVal)
+{
+    // data 的 value 是数组
+    if (dataVal.isArray()) {
+        QJsonArray array = dataVal.toArray();
+        int nSize = array.size();
+        for (int i = 0; i < nSize; ++i) {
+            QJsonObject jsonObj = array.at(i).toObject();
+            int nId = jsonObj.value("id").toInt();
+            int nStatus = jsonObj.value("status").toInt();
+
+            QList<Cell *> friends = ui->friendList->getAllCells();
+            foreach (Cell *cell, friends.at(0)->childs) {
+                if (cell->id == nId) {
+                    cell->SetStatus(nStatus);
+                }
+            }
+
+            ui->friendList->refreshList();
+        }
+    }
 }
 
 void ContactWidget::onSwitchPage(int page)

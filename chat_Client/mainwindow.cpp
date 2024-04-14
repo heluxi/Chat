@@ -98,6 +98,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(this,&MainWindow::updateFriendStatus,midBar,&midw::UpdateFriendStatus) ;
+    connect(this,&MainWindow::update,midBar,&midw::update);
 }
 
 MainWindow::~MainWindow()
@@ -228,6 +229,11 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
         UpdateFriendStatus(OffLine, dataVal);
     }
     break;
+    case GetFriendStatus:
+    {
+        //sql_manage::Instance()->updateFriendStatus();
+    }
+    break;
     case UpdateHeadPic:
     {
          //你的好友更新了头像
@@ -278,7 +284,7 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     break;
     case RefreshFriends:
     {
-//        ParseRefreshFriendsReply(dataVal);
+        ParseRefreshFriendsReply(dataVal);
     }
     break;
     case RefreshGroups:
@@ -881,6 +887,11 @@ void MainWindow::SltBeginToSend()
 void MainWindow::UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &dataVal)
 {
     emit updateFriendStatus(nStatus,dataVal);
+}
+
+void MainWindow::ParseRefreshFriendsReply(const QJsonValue &dataVal)
+{
+    emit update(dataVal);
 }
 
 //void MainWindow::on_btn_min_clicked()

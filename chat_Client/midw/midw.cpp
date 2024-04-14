@@ -59,6 +59,7 @@ midw::midw(QWidget *parent) :
     connect(contactWidget,&ContactWidget::openDialog,this,&midw::sltOpenDialog);
     connect(contactWidget,&ContactWidget::deleteChat,this,&midw::deleteChatCell);
     connect(this,&midw::UpdateFriendStatus,contactWidget,&ContactWidget::UpdateFriendStatus);
+    connect(this,&midw::update,contactWidget,&ContactWidget::update);
 
     newGroup = new CreateGroupWnd;
     connect(newGroup,SIGNAL(signalCreateGroup(const QJsonValue &)),

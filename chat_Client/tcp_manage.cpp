@@ -152,6 +152,11 @@ void clientSock::recvMsg()
                 Q_EMIT signalMessage(UserOffLine, dataVal);
             }
             break;
+            case GetFriendStatus:
+            {
+                Q_EMIT signalMessage(GetFriendStatus, dataVal);
+            }
+            break;
             case Logout:
             {
                 tcpSocket->abort();

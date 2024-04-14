@@ -4,7 +4,7 @@
 #include "bubbleinfo.h"
 #include "mybutton.h"
 #include "radiusprogressbar.h"
-
+#include"rightw/personalinfo.h"
 #include <QWidget>
 #include <QPainter>
 #include <QPaintEvent>
@@ -62,6 +62,7 @@ private:
     QLabel *errorLabel;
 
     QMenu *popMenu;
+//    personalInfo pinfo;
 
 protected:
     void paintEvent(QPaintEvent*);

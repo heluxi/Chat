@@ -7,6 +7,7 @@
 #include <QFileInfo>
 #include "rightw/bubble/bubbleinfo.h"
 #include"myapp.h"
+#include "rightw/personalinfo.h"
 
 BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
     : QWidget(parent),info(info)
@@ -18,6 +19,7 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
     connect(info,&BubbleInfo::updateProgressBar,
             this,&BubbleView::slotupdateProgressBar);
     connect(info,&BubbleInfo::updatePopMenu,this,&BubbleView::sltUpdatePopMenu);
+
 
     if(info->sender != System){
         QStringList tmp;
@@ -172,6 +174,27 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
             mainLayout->setContentsMargins(0,20+20,10+40+20,10);
         }
     }
+//    connect(headIcon,&MyButton::clicked,this,[=](){
+
+//        if(info->sender==Me)
+//        {
+//            qDebug()<<info->myID;
+
+////            pinfo.setId(info->myID);
+////            pinfo.setName(MyApp::m_strUserName);
+////            pinfo.sethead(MyApp::m_strHeadPath + MyApp::m_strHeadFile);
+////            pinfo.show();
+
+//        }else{
+//            qDebug()<<info->yourID;
+
+////            pinfo.setId(info->yourID);
+////            pinfo.setName(info->name);
+////            pinfo.sethead(info->headIcon);
+////            pinfo.show();
+//        }
+
+//    });
 }
 
 QSize BubbleView::setRect()

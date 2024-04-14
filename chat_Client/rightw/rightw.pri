@@ -10,6 +10,7 @@ HEADERS += \
     $$PWD/myemotionwidget.h \
     $$PWD/mylikesitemwidget.h \
     $$PWD/mytextedit.h \
+    $$PWD/personalinfo.h \
     $$PWD/rightw.h
 
 
@@ -24,11 +25,13 @@ SOURCES += \
     $$PWD/myemotionwidget.cpp \
     $$PWD/mylikesitemwidget.cpp \
     $$PWD/mytextedit.cpp \
+    $$PWD/personalinfo.cpp \
     $$PWD/rightw.cpp
 
 FORMS += \
     $$PWD/chatwindow.ui \
     $$PWD/myemotionwidget.ui \
+    $$PWD/personalinfo.ui \
     $$PWD/rightw.ui
 
 RESOURCES += \
