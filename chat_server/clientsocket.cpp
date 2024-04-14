@@ -165,6 +165,7 @@ void ClientSocket::readMsg()
             break;
             case Logout:
             {
+                qDebug()<<"用户下线";
                 ParseLogout(data);
                 Q_EMIT signalDisConnected();
                 m_tcpSocket->abort();
@@ -196,7 +197,7 @@ void ClientSocket::readMsg()
 
         }
 
-    }        
+    }
 }
 
 void ClientSocket::parseFriendMessages(const QByteArray &reply)
@@ -407,29 +408,47 @@ void ClientSocket::ParseUserOnline(const QJsonValue &dataVal)
 
 void ClientSocket::ParseLogout(const QJsonValue &dataVal)
 {
-    // data 的 value 是对象
-    if (dataVal.isObject()) {
-        QJsonObject dataObj = dataVal.toObject();
-
-        QJsonArray array = dataObj.value("friends").toArray();
-        int nId = dataObj.value("id").toInt();
-        int nSize = array.size();
-
-        Database::Instance()->updateUserStatus(nId, OffLine);
-
+    qDebug()<<"ParseUserLogout......";
+    if (dataVal.isArray()) {
+        QJsonArray jsonArray = dataVal.toArray();
+        int nSize = jsonArray.size();
         for (int i = 0; i < nSize; ++i) {
-            nId = array.at(i).toInt();
+            int nId = jsonArray.at(i).toInt();
             int nStatus = Database::Instance()->getUserOnLineStatus(nId);
             // 给在线的好友通报一下状态
+
             if (OnLine == nStatus) {
                 QJsonObject jsonObj;
                 jsonObj.insert("id", m_id);
-                jsonObj.insert("text", "offline");
-
+                jsonObj.insert("text", "online");
+                qDebug()<<"向用户"<<nId<<"通报状态";
                 emit sendMessagetoClient(UserOffLine, nId, jsonObj);
             }
         }
     }
+//    // data 的 value 是对象
+//    if (dataVal.isObject()) {
+//        QJsonObject dataObj = dataVal.toObject();
+
+//        QJsonArray array = dataObj.value("data").toArray();
+//        int nId = dataObj.value("id").toInt();
+//        int nSize = array.size();
+
+//        Database::Instance()->updateUserStatus(nId, OffLine);
+
+//        for (int i = 0; i < nSize; ++i) {
+//            nId = array.at(i).toInt();
+//            int nStatus = Database::Instance()->getUserOnLineStatus(nId);
+//            // 给在线的好友通报一下状态
+//            if (OnLine == nStatus) {
+//                QJsonObject jsonObj;
+//                jsonObj.insert("id", m_id);
+//                jsonObj.insert("text", "offline");
+
+//                emit sendMessagetoClient(UserOffLine, nId, jsonObj);
+//            }
+//        }
+//    }
 }
 
 void ClientSocket::ParseUpdateUserHead(const QJsonValue &dataVal)

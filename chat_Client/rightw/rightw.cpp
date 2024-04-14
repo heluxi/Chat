@@ -235,7 +235,8 @@ void rightw::on_pushButton_4_clicked()
 
     //通知主窗口销毁 执行析构函数和一些数据的记录
     emit exitApp();
-    exit(0);
+
+
 }
 
 void rightw::sltcloseBtnclicked()

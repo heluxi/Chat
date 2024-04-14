@@ -26,6 +26,11 @@ clientSock::clientSock(QObject *parent)
 
 }
 
+clientSock::~clientSock()
+{
+    sltSendOffline();
+}
+
 void clientSock::connectServer(const QString &host, const int &port)
 {
     if (tcpSocket->isOpen())
@@ -289,13 +294,13 @@ void clientSock::sltSendOnline()
 
 void clientSock::sltSendOffline()
 {
-    QJsonObject json;
-    json.insert("id", ID);
-    QJsonArray friendArr = sql_manage::Instance()->getMyFriends();
-    json.insert("friends", friendArr);
+    qDebug()<<"我下线了....";
+
+    QJsonArray friendArr = sql_manage::Instance()->GetMyFriend();
+
 
     // 通知我的好友，我下线了
-    this->sendMsg(Logout, json);
+    sendMsg(Logout,friendArr);
 }
 
 

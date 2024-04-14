@@ -91,6 +91,10 @@ MainWindow::MainWindow(QWidget *parent)
    // connect(rightBar,&rightw::fullBtnclicked,this,&MainWindow::showMaximized);
     connect(rightBar,&rightw::exitApp,this,[=](){
         delete midBar;
+        m_tcp->sltSendOffline();
+        this->hide();//延迟一会 方便通知服务器和其他用户我下线了
+        QTimer::singleShot(500,this,SLOT(exit(0)));
+
     });
 
     connect(this,&MainWindow::updateFriendStatus,midBar,&midw::UpdateFriendStatus) ;

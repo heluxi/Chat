@@ -142,7 +142,14 @@ void ContactWidget::InitList()
         c->iconPath = json.value("head").toString();
         c->groupName = json.value("subgroup").toString();
         c->type = Cell_FriendContact;
-        c->status = OnLine;
+        c->status = OffLine;
+//        c->subTitle=QString("离线");
+        c->msg=QString("离线");
+        if(c->id==MyApp::m_nId)
+        {
+            c->status = OnLine;
+
+        }
 
         QFileInfo fileInfo(c->iconPath);
         if(c->iconPath.isEmpty() || !fileInfo.exists()){
@@ -499,9 +506,16 @@ void ContactWidget::UpdateFriendStatus(const quint8 &nStatus, const QJsonValue &
     if (!dataVal.isObject()) return;
     QJsonObject jsonObj = dataVal.toObject();
     int nId = jsonObj.value("id").toInt();
-    qDebug()<<"用户上线了"<<nId;
-    QString msg=QString("你的好友%1上线了").arg(QString::number(nId));
-    QMessageBox::information(this,"",msg+"\n快去和他聊天吧!");
+    if(nStatus==OnLine)
+    {
+        qDebug()<<"用户上线了"<<nId;
+        QString msg=QString("你的好友%1上线了").arg(QString::number(nId));
+        QMessageBox::information(this,"",msg+"\n快去和他聊天吧!");
+    }else{
+        qDebug()<<"用户离线了"<<nId;
+
+
+    }
 
     QList<Cell *> groups = ui->friendList->getAllCells();
     foreach (Cell *cell, groups.at(0)->childs) {

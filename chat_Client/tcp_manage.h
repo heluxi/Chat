@@ -16,6 +16,7 @@ class clientSock : public QObject
     Q_OBJECT
 public:
     explicit clientSock(QObject *parent = nullptr);
+    ~clientSock();
 
     void connectServer(const QString &host, const int &port);
 
