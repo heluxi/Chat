@@ -133,7 +133,7 @@ midw::midw(QWidget *parent) :
 
         }
         else {
-            QMessageBox::information(this, "错误", "用户还不是你好友");
+            QMessageBox::information(this, "错误", "用户不存在\n或用户还不是你好友");
         }
 
     });

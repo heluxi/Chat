@@ -58,18 +58,18 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
             {
                 qDebug()<<info->myID;
 
-                            pinfo.setId(info->myID);
-                            pinfo.setName(MyApp::m_strUserName);
-                            pinfo.sethead(MyApp::m_strHeadPath + MyApp::m_strHeadFile);
-                            pinfo.show();
+                pinfo.setId(info->myID);
+                pinfo.setName(MyApp::m_strUserName);
+                pinfo.sethead(MyApp::m_strHeadPath + MyApp::m_strHeadFile);
+                pinfo.show();
 
             }else{
                 qDebug()<<info->yourID;
 
-                            pinfo.setId(info->yourID);
-                            pinfo.setName(info->name);
-                            pinfo.sethead(info->headIcon);
-                            pinfo.show();
+                pinfo.setId(info->yourID);
+                pinfo.setName(info->name);
+                pinfo.sethead(info->headIcon);
+                pinfo.show();
             }
 
         });
@@ -156,44 +156,96 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
         picture = new QLabel;
 
         picture->setScaledContents(true);
-        QPixmap pixmap = QPixmap(info->msg);
-        if(pixmap.isNull()){
-            qDebug() << "cannot find picture:" << info->msg;
-            pixmap = QPixmap(":res/Icons/MainWindow/deleted.png");
-            info->msg = ":res/Icons/MainWindow/deleted.png";
-        }
-        //qDebug() << "picture size:" << pixmap.size();
+        QFileInfo fileInfo=QFileInfo(info->msg);
+        QString fileType=fileInfo.suffix();
+        if(fileType=="gif")
+        {
+            QMovie* movie=new QMovie(info->msg);
+            QPixmap pixmap = QPixmap(info->msg);
+            info->showAnimation=false;
+            if(pixmap.isNull()){
+                qDebug() << "cannot find picture:" << info->msg;
+                pixmap = QPixmap(":res/Icons/MainWindow/deleted.png");
+                info->msg = ":res/Icons/MainWindow/deleted.png";
+            }
+            //qDebug() << "picture size:" << pixmap.size();
 
-        QSize pixSize = pixmap.size();
-        int width = pixSize.width();
-        int height = pixSize.height();
+            QSize pixSize = pixmap.size();
+            int width = pixSize.width();
+            int height = pixSize.height();
+            qDebug()<<"width"<<width<<"height:"<<height;
+            int pictureWidth;
+            int pictureHeight;
 
-        int pictureWidth;
-        int pictureHeight;
+//            if(height > width){//高度大于宽度
+//                pictureHeight = 50;//高度保持150，宽度按原比例缩放
+//                pictureWidth = int(double(pictureHeight)/double(height) * width);
+//            }else{
+//                pictureWidth = 50;//宽度保持150，高度按原比例缩放
+//                pictureHeight = int(double(pictureWidth)/double(width) * height);
+//            }
+            pictureWidth = width;//宽度保持150，高度按原比例缩放
+            pictureHeight =height;
 
-        if(height > width){//高度大于宽度
-            pictureHeight = 150;//高度保持150，宽度按原比例缩放
-            pictureWidth = int(double(pictureHeight)/double(height) * width);
+            picture->setPixmap(pixmap.scaled(pictureWidth,pictureHeight));
+            picture->setStyleSheet("border:2px solid #4ba4f2;border-radius:0px");
+            picture->setFixedSize(40,40);
+            //picture->setScaledContents(true);
+            picture->setMovie(movie);
+            movie->start();
+
+            QHBoxLayout *mainLayout = new QHBoxLayout(this);
+            if(info->sender == You){
+                mainLayout->addWidget(picture);
+                mainLayout->addStretch(1);
+                mainLayout->setContentsMargins(10+40+20,0,0,0);
+            }else if(info->sender == Me){
+                mainLayout->addStretch(1);
+                mainLayout->addWidget(picture);
+                mainLayout->setContentsMargins(0,0,10+40+20,0);
+            }
+
         }else{
-            pictureWidth = 150;//宽度保持150，高度按原比例缩放
-            pictureHeight = int(double(pictureWidth)/double(width) * height);
+            QPixmap pixmap = QPixmap(info->msg);
+            if(pixmap.isNull()){
+                qDebug() << "cannot find picture:" << info->msg;
+                pixmap = QPixmap(":res/Icons/MainWindow/deleted.png");
+                info->msg = ":res/Icons/MainWindow/deleted.png";
+            }
+            //qDebug() << "picture size:" << pixmap.size();
+
+            QSize pixSize = pixmap.size();
+            int width = pixSize.width();
+            int height = pixSize.height();
+
+            int pictureWidth;
+            int pictureHeight;
+
+            if(height > width){//高度大于宽度
+                pictureHeight = 150;//高度保持150，宽度按原比例缩放
+                pictureWidth = int(double(pictureHeight)/double(height) * width);
+            }else{
+                pictureWidth = 150;//宽度保持150，高度按原比例缩放
+                pictureHeight = int(double(pictureWidth)/double(width) * height);
+            }
+
+            picture->setPixmap(pixmap.scaled(pictureWidth,pictureHeight,
+                                             Qt::KeepAspectRatio,Qt::SmoothTransformation));
+            picture->setStyleSheet("border:2px solid #4ba4f2;border-radius:0px");
+            picture->setScaledContents(true);
+
+            QHBoxLayout *mainLayout = new QHBoxLayout(this);
+            if(info->sender == You){
+                mainLayout->addWidget(picture);
+                mainLayout->addStretch(1);
+                mainLayout->setContentsMargins(10+40+20,20+20,0,10);
+            }else if(info->sender == Me){
+                mainLayout->addStretch(1);
+                mainLayout->addWidget(picture);
+                mainLayout->setContentsMargins(0,20+20,10+40+20,10);
+            }
         }
 
-        picture->setPixmap(pixmap.scaled(pictureWidth,pictureHeight,
-                                         Qt::KeepAspectRatio,Qt::SmoothTransformation));
-        picture->setStyleSheet("border:2px solid #4ba4f2;border-radius:0px");
-        picture->setScaledContents(true);
-
-        QHBoxLayout *mainLayout = new QHBoxLayout(this);
-        if(info->sender == You){
-            mainLayout->addWidget(picture);
-            mainLayout->addStretch(1);
-            mainLayout->setContentsMargins(10+40+20,20+20,0,10);
-        }else if(info->sender == Me){
-            mainLayout->addStretch(1);
-            mainLayout->addWidget(picture);
-            mainLayout->setContentsMargins(0,20+20,10+40+20,10);
-        }
     }
 
 }
@@ -465,9 +517,14 @@ void BubbleView::paintEvent(QPaintEvent *)
             painter.drawText(textRect,info->msg,option);
 
         }else if(info->msgType == Picture){//图片
-            //            if(info->sender == Me)
-            //                picture->setGeometry(iconRect.x()- 10 - picture->width(),iconRect.y()+20,
-            //                                 picture->width(),picture->height());
+                        if(info->sender == Me)
+            {
+                picture->setGeometry(iconRect.x()- 10 - picture->width(),iconRect.y()+20,
+                                             picture->width(),picture->height());
+                        }else{
+                picture->setGeometry(iconRect.x()+62,iconRect.y()+10,
+                                     picture->width(),picture->height());
+                        }
 
         }else if(info->msgType == Files){//文件消息
             if(info->sender == Me){

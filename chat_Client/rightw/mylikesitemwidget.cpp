@@ -7,9 +7,9 @@ MyLikesItemWidget::MyLikesItemWidget(QString fileName):QLabel(NULL)
     QImage* img=new QImage;
     if(! ( img->load(fileName) ) ) //加载图像
     {
-        QMessageBox::information(this,
-                                 tr("打开图像失败"),
-                                 tr("打开图像失败!"));
+//        QMessageBox::information(this,
+//                                 tr("打开图像失败"),
+//                                 tr("打开图像失败!"));
         delete img;
         return;
     }

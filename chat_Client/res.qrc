@@ -152,7 +152,6 @@
         <file>sea.jpg</file>
         <file>background.jpg</file>
         <file>backgroud2.jpg</file>
-        <file>background3.jpeg</file>
         <file>backgroud3.jpg</file>
         <file>群组创建.svg</file>
         <file>群组+.svg</file>
@@ -207,5 +206,7 @@
         <file>res/images/applay_hover.png</file>
         <file>添加好友.svg</file>
         <file>日历.svg</file>
+        <file>表情包.svg</file>
+        <file>收藏.svg</file>
     </qresource>
 </RCC>

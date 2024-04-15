@@ -10,8 +10,8 @@ public:
     MyEmotionItemWidget(QString fileName);
     QString getFileName();
 
-//     void enterEvent(QEvent* event);
-//     void leaveEvent(QEvent* event);
+     void enterEvent(QEvent* event);
+     void leaveEvent(QEvent* event);
  private:
      QString fileName;
 };

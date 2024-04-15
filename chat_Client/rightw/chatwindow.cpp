@@ -359,6 +359,7 @@ void ChatWindow::msgReceived(QJsonValue &value)
             qDebug() << "收到照片:" << value;
                 if(tag == 1)
                 info->groupID = cell->id;
+                 info->showAnimation = false;
             return;
         }else if(info->msgType == Notice){
             info->sender = System;
@@ -639,12 +640,10 @@ void ChatWindow::sendMsg()
             QMessageBox::information(this,"警告","请等待当前图片发送完成!");
         }
     }else if(sender()==ui->btn_emoj){
-        //qDebug()<<"dhajsd";
-        //g
+
         emoj=new MyEmotionWidget;
         emoj->show();
         auto g=[&](){
-            qDebug()<<"dhajsd";
             BubbleInfo *info = new BubbleInfo;
             info->sender = Me;
             info->myID = MyApp::m_nId;

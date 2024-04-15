@@ -14,21 +14,21 @@ MyEmotionItemWidget::MyEmotionItemWidget(QString fileName)
    // iconMovie->stop();
 
 }
-//// 鼠标进入Label事件
-//void MyEmotionItemWidget::enterEvent(QEvent *event)
-//{
-//    QMovie* movie = this->movie();
-//    movie->start();
-////    return QWidget::enterEvent(event);
-//}
-//// 鼠标离开Label事件
-//void MyEmotionItemWidget::leaveEvent(QEvent *event)
-//{
-//    QMovie* movie = this->movie();
-//    movie->jumpToFrame(0);
-//    movie->stop();
-////    return QWidget::leaveEvent(event);
-//}
+// 鼠标进入Label事件
+void MyEmotionItemWidget::enterEvent(QEvent *event)
+{
+    QMovie* movie = this->movie();
+    movie->start();
+//    return QWidget::enterEvent(event);
+}
+// 鼠标离开Label事件
+void MyEmotionItemWidget::leaveEvent(QEvent *event)
+{
+    QMovie* movie = this->movie();
+    movie->jumpToFrame(0);
+    movie->stop();
+//    return QWidget::leaveEvent(event);
+}
 QString MyEmotionItemWidget::getFileName()
 {
     return fileName;

@@ -26,14 +26,19 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(255, 255, 255);
+</string>
    </property>
    <property name="currentIndex">
     <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
+    <attribute name="icon">
+     <iconset resource="../res.qrc">
+      <normaloff>:/表情包.svg</normaloff>:/表情包.svg</iconset>
+    </attribute>
     <attribute name="title">
-     <string>QQ</string>
+     <string/>
     </attribute>
     <widget class="QTableWidget" name="tableWidget">
      <property name="geometry">
@@ -99,8 +104,12 @@
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
+    <attribute name="icon">
+     <iconset resource="../res.qrc">
+      <normaloff>:/收藏.svg</normaloff>:/收藏.svg</iconset>
+    </attribute>
     <attribute name="title">
-     <string>likes</string>
+     <string/>
     </attribute>
     <widget class="QTableWidget" name="tableWidget_2">
      <property name="geometry">
@@ -112,7 +121,7 @@
       </rect>
      </property>
      <property name="rowCount">
-      <number>5</number>
+      <number>7</number>
      </property>
      <property name="columnCount">
       <number>5</number>
@@ -143,6 +152,8 @@
      <row/>
      <row/>
      <row/>
+     <row/>
+     <row/>
      <column/>
      <column/>
      <column/>
@@ -168,6 +179,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
  <connections/>
 </ui>

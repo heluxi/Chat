@@ -226,7 +226,7 @@ void ClientSocket::parseFriendMessages(const QByteArray &reply)
             QJsonObject dataObj = dataVal.toObject();
             int reveicerID = dataObj.value("to").toInt();//获取消息接受者的ID
 
-            Q_EMIT sendMessagetoClient(quint8(nType), reveicerID, dataObj);//(type,reveicerID,data)
+             emit sendMessagetoClient(quint8(nType), reveicerID, dataObj);//(type,reveicerID,data)
         }
     }
 }

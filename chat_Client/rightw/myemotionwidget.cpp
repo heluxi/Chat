@@ -60,7 +60,7 @@ void MyEmotionWidget::initEmotion()
     this->installEventFilter(this);
 
     QString path = ":/emotions/%1.gif";
-    for (int i = 0; i < 12; i++)
+    for (int i = 0; i < 130; i++)
     {
        // qDebug()<<"jiazai..."<<i;
         addEmotionItem(path.arg(i + 1));
@@ -72,7 +72,7 @@ void MyEmotionWidget::initLikes()
     //ui->tableWidget_2->setFocusPolicy(Qt::NoFocus);
 
     QString path = ":/likes/%1.jpg";
-    for (int i = 0; i < 12; i++)
+    for (int i = 0; i < 33; i++)
     {
         addLikesItem(path.arg(i + 1));
     }
@@ -87,6 +87,7 @@ void MyEmotionWidget::on_tableWidget_cellClicked(int row, int column)
     currentFileName=myemoj->getFileName();
     //qDebug()<<"filename:"<<currentFileName;
     emit SendEmojoyMessage();
+    this->hide();
 }
 
 

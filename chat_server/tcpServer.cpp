@@ -86,6 +86,7 @@ void TcpMsgServer::SltConnected()
     connect(client,&ClientSocket::sendMessagetoClient,this,&TcpMsgServer::SltMsgToClient);
     //signal to signal
     connect(client, &ClientSocket::signalDownloadFile, this, &TcpMsgServer::signalDownloadFile);
+    connect(client,&ClientSocket::sendMessagetoClient,this,&TcpMsgServer::SltMsgToClient);
 
     //get name from id
     Q_EMIT signalUserStatus(QString("用户 [%1] 上线").arg(Database::Instance()->getUserName(client->getUserID())));
