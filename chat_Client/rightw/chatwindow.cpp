@@ -639,7 +639,7 @@ void ChatWindow::sendMsg()
         }else{
             QMessageBox::information(this,"警告","请等待当前图片发送完成!");
         }
-    }else if(sender()==ui->btn_emoj){
+    }else if(sender()==ui->btn_emoj){//发送表情包
 
         emoj=new MyEmotionWidget;
         emoj->show();

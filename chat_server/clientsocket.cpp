@@ -14,7 +14,7 @@
 #include <QSqlQuery>
 #include <QFileInfo>
 #include <QMessageBox>
-
+#include"global.h"
 
 ClientSocket::ClientSocket(QObject *parent,QTcpSocket* tcpSocket)
     : QObject{parent}
@@ -1029,8 +1029,8 @@ void ClientFileSocket::insertDataBase(QString filepath, QString filename)
         query.bindValue(2, 0);
         query.exec();
         //qDebug() << query.lastError().text();
-
-        if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"){
+        qDebug()<<fileinfo.suffix();
+        if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"||fileinfo.suffix().toLower() == "gif"){
             //通知发送该图片的客户端已经收到该图片,客户端消除动画
             {
                 QJsonObject json;
@@ -1056,7 +1056,7 @@ void ClientFileSocket::insertDataBase(QString filepath, QString filename)
                     emit sendMessagetoClient(SendPicture,m_WindowId,json);
                 }
 
-//                myHelper::Sleep(500);//等待500毫秒
+                myHelper::Sleep(500);//等待500毫秒
 
                 //如果客户端在线，500毫秒后可以确定客户端打开了连接，可以进行文件传输
                 //若用户不在线，则需要把未传输的文件记录到数据库中，等到用户上线后重新传送
@@ -1115,7 +1115,7 @@ void ClientFileSocket::insertDataBase(QString filepath, QString filename)
             int id = json.value("id").toInt();//要发送的目标用户id
 
             if(id == m_UserId){//通知发送该图片的客户端已经收到该文件,客户端消除动画
-                if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"){
+                if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"||fileinfo.suffix().toLower() == "gif"){
                     QJsonObject json;
                     json.insert("from",m_UserId);
                     json.insert("to",m_WindowId);
@@ -1129,7 +1129,7 @@ void ClientFileSocket::insertDataBase(QString filepath, QString filename)
                 query.exec();
                 //qDebug() << query.lastError().text();
 
-                if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"){
+                if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"||fileinfo.suffix().toLower() == "gif"){
                     //此处需要先判断用户是否在线，若不在线，则不发送，等到下次用户启动客户端再发送
                     int status = Database::Instance()->getUserOnLineStatus(id);
                     if(status == OnLine){

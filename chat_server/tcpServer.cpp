@@ -1,5 +1,5 @@
 #include "tcpServer.h"
-
+#include"global.h"
 #include<QJsonParseError>
 #include <QJsonObject>
 #include <QJsonValue>

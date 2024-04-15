@@ -23,6 +23,7 @@ HEADERS += \
 #    animationstackedwidget.h \
     clientsocket.h \
     database.h \
+    global.h \
     iconhelper.h \
     mainwindow.h \
     modifdialog.h \

@@ -456,7 +456,7 @@ void clientFileSock::recvFile()
 //                                                  : QString::number(senderID) + " in group " + QString::number(ID)));
 
             QFileInfo fileinfo(fileReadName);
-            if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"){//证明收到的是图片
+            if(fileinfo.suffix().toLower() == "gif"||fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"){//证明收到的是图片
                 //emit signalFileArrived(Picture,winID);//通知聊天窗口在聊天界面插入一个气泡
             }else{
 
@@ -487,7 +487,7 @@ void clientFileSock::recvFile()
 
    // 更新进度条
    QFileInfo fileinfo(fileReadName);
-   if(fileinfo.suffix().toLower() != "png" && fileinfo.suffix().toLower() != "jpg" && tag != -2){
+   if(fileinfo.suffix().toLower() != "gif"&&fileinfo.suffix().toLower() != "png" && fileinfo.suffix().toLower() != "jpg" && tag != -2){
         //注意收到图片是不需要更新进度条的
         if(ID != -2)
             Q_EMIT signalUpdateProgress(bytesReceived, ullRecvTotalBytes);
@@ -502,7 +502,7 @@ void clientFileSock::recvFile()
         fileNameSize = 0;
 
         QFileInfo fileinfo(fileReadName);
-        if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"){//证明收到的是图片
+        if(fileinfo.suffix().toLower() == "png" || fileinfo.suffix().toLower() == "jpg"||fileinfo.suffix().toLower() == "gif"){//证明收到的是图片
             if(ID != -2)
                 Q_EMIT signalFileRecvOk(Picture, fileToRecv->fileName(), tag == 0?0:int(senderID));
         }else{
