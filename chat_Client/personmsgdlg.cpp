@@ -22,6 +22,12 @@ personMsgDlg::personMsgDlg(QWidget *parent) :
     //QString headPath=MyApp::m_strHeadFile+MyApp::m_strHeadPath;
     //QFileInfo fileInfo(headPath);
     QString headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
+    QFileInfo fileInfo(headPath);
+    if(!fileInfo.exists()||MyApp::m_strHeadFile.isEmpty())
+    {
+
+        headPath =":/默认头像.svg";
+    }
     QString style=QString("border-image: url(%1);").arg(headPath);
     ui->headBtn->setStyleSheet(style);
 

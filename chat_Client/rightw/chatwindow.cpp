@@ -23,6 +23,7 @@
 #include <QMessageBox>
 #include <QJsonArray>
 #include"myapp.h"
+#include"myHelper.h"
 
 ChatWindow::ChatWindow(QWidget *parent,Cell *c) :
     QWidget(parent),
@@ -202,11 +203,11 @@ void ChatWindow::refreshGroupList(QJsonValue &dataVal)
                 json.insert("who",c->id);
                 emit signalSendMessage(GetPicture, json);
 
-//                myHelper::Sleep(500);//等待500毫秒
+                myHelper::Sleep(500);//等待500毫秒
 
                 if(!fileinfo.exists()){
-                    head = "default.png";
-                    c->iconPath = MyApp::m_strHeadPath + head;//没有收到则显示默认头像
+                    head = ":/默认头像.svg";
+                    c->iconPath =  head;//没有收到则显示默认头像
                 }
             }
 
@@ -494,7 +495,7 @@ void ChatWindow::sendMsg()
 //info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
     QFileInfo headFile(info->headIcon);
     if(!headFile.exists() || MyApp::m_strHeadFile.isEmpty()){
-        info->headIcon = MyApp::m_strHeadPath + "default.png";
+        info->headIcon = ":/默认头像.svg";
         //info->headIcon=":/res/Icons/MainWindow/default_head_icon.png";
     }
     info->name = MyApp::m_strUserName;//我的名字

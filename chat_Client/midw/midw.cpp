@@ -235,8 +235,21 @@ void midw::InitChatList()
         if(tag == 0){
             c->type = Cell_FriendChat;
             c->groupName = json.value("subgroup").toString();
+            QString headPath=c->iconPath;
+            QFileInfo fileInfo(headPath);
+            if(headPath==""||!fileInfo.exists())
+            {
+                c->iconPath=":/默认头像.svg";
+            }
+
         }else if(tag == 1){
             c->type = Cell_GroupChat;
+            QString headPath=c->iconPath;
+            QFileInfo fileInfo(headPath);
+            if(headPath==""||!fileInfo.exists())
+            {
+                c->iconPath=":/群众、用户群体.svg";
+            }
         }
 
         ui->chatList->insertCell(c);

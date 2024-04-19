@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include "myapp.h"
+#include"myHelper.h"
 
 FindFriendWnd::FindFriendWnd(int tag) :
     QDialog(),tag(tag),
@@ -169,22 +170,22 @@ void FindFriendWnd::SltfindFrindReply(const QJsonValue &jsonVal)
             QString head = json.value("head").toString();
 
 
-                        QFileInfo fileInfo(MyApp::m_strHeadPath + head);
-                        if(!fileInfo.exists()){
-                            QJsonObject json;
-                            json.insert("tag",-2);
-                            json.insert("from",MyApp::m_nId);
-                            json.insert("id",-2);
-                            json.insert("who",id);
+             QFileInfo fileInfo(MyApp::m_strHeadPath + head);
+             if(!fileInfo.exists()){
+             QJsonObject json;
+             json.insert("tag",-2);
+             json.insert("from",MyApp::m_nId);
+             json.insert("id",-2);
+             json.insert("who",id);
 
                             emit signalSendMessage(GetPicture, json);
-//                            myHelper::Sleep(500);//等待半秒
+                            myHelper::Sleep(500);//等待半秒
 
                             QString headPath = MyApp::m_strHeadPath + QString::number(id) + ".png";
                             QFileInfo fileInfo_(headPath);
 
                             if(!fileInfo_.exists()){
-                                head = ":/res/Icons/MainWindow/contact3_.png";//没有收到则显示默认头像
+                                head = ":/默认头像.svg";//没有收到则显示默认头像
                             }else{
                                 head = headPath;
                             }

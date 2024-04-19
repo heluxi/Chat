@@ -19,12 +19,12 @@ leftBar::leftBar(QWidget *parent) :
     //ui->headBtn->setStyleSheet(headPath);
     QString headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
     qDebug()<<headPath<<"....\n";
-//    //头像不存在就是默认头像
-//    QFileInfo fileInfo(headPath);
-//    if(!fileInfo.exists() || MyApp::m_strHeadFile.isEmpty()){
-//        MyApp::m_strHeadFile = "default.png";
-//        headPath = MyApp::m_strHeadPath + MyApp::m_strHeadFile;
-//    }
+    //头像不存在就是默认头像
+    QFileInfo fileInfo(headPath);
+    if(!fileInfo.exists() || MyApp::m_strHeadFile.isEmpty()){
+        //MyApp::m_strHeadFile = ":/默认头像.svg";
+        headPath = ":/默认头像.svg";
+    }
 
     QString head=QString("border-image: url(%1);"
                            "background-color: rgb(255, 255, 255);border-radius:30px;").arg(headPath);
@@ -141,7 +141,8 @@ void leftBar::sltheadChange(QString headPath)
 
     QFile souceFile(headPath);
     QFile targetFile(MyApp::m_strHeadPath+MyApp::m_strHeadFile);
-
+    qDebug()<<"souceFile "<<headPath;
+    qDebug()<<"targetFile"<<MyApp::m_strHeadPath+MyApp::m_strHeadFile;
     if(!souceFile.open(QIODevice::ReadOnly))
     {
         qDebug()<<"souce文件打开失败";

@@ -176,14 +176,6 @@ BubbleView::BubbleView(QWidget *parent,BubbleInfo *info)
             qDebug()<<"width"<<width<<"height:"<<height;
             int pictureWidth;
             int pictureHeight;
-
-//            if(height > width){//高度大于宽度
-//                pictureHeight = 50;//高度保持150，宽度按原比例缩放
-//                pictureWidth = int(double(pictureHeight)/double(height) * width);
-//            }else{
-//                pictureWidth = 50;//宽度保持150，高度按原比例缩放
-//                pictureHeight = int(double(pictureWidth)/double(width) * height);
-//            }
             pictureWidth = width;//宽度保持150，高度按原比例缩放
             pictureHeight =height;
 
@@ -290,6 +282,13 @@ QSize BubbleView::setRect()
             }else{
                 pictureWidth = 150;//宽度保持150，高度按原比例缩放
                 pictureHeight = int(double(pictureWidth)/double(width) * height);
+            }
+            QFileInfo fileInfo=QFileInfo(info->msg);
+            QString fileType=fileInfo.suffix();
+            if(fileType=="gif")
+            {
+                frameRect = QRect(iconRect.x()-Blank1-pictureWidth - Blank4,iconRect.y()+Blank3,
+                                  pictureWidth + Blank4,pictureHeight + Blank4);
             }
 
             frameRect = QRect(iconRect.x()-Blank1-pictureWidth - Blank4*2,iconRect.y()+Blank3,

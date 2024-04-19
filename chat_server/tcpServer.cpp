@@ -83,7 +83,7 @@ void TcpMsgServer::SltConnected()
     //加入容器中
     m_clients.push_back(client);
     //send message 发送全部
-    connect(client,&ClientSocket::sendMessagetoClient,this,&TcpMsgServer::SltMsgToClient);
+    //connect(client,&ClientSocket::sendMessagetoClient,this,&TcpMsgServer::SltMsgToClient);
     //signal to signal
     connect(client, &ClientSocket::signalDownloadFile, this, &TcpMsgServer::signalDownloadFile);
     connect(client,&ClientSocket::sendMessagetoClient,this,&TcpMsgServer::SltMsgToClient);

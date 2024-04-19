@@ -238,6 +238,7 @@ void MainWindow::sltTcpReply(quint8 type, QJsonValue dataVal)
     case UpdateHeadPic:
     {
          //你的好友更新了头像
+
         ParseUpFriendHead(dataVal);
     }
     break;
@@ -444,28 +445,33 @@ QString MainWindow::GetHeadPixmap(const QString &name) const
 //到服务器下载用户头像
 void MainWindow::DownloadFriendHead(const int &userId, const QString &strHead)
 {
-    if (QFile::exists(strHead)) return;
+    int id = userId;
 
-    headupLoadSOcket=new clientFileSock(this);
+    QString head = strHead;
+
+    QFileInfo fileInfo(MyApp::m_strHeadPath + head);
+
+    if(!fileInfo.exists()){
+        QJsonObject json;
+        json.insert("tag",-2);
+        json.insert("from",MyApp::m_nId);
+        json.insert("id",-2);
+        json.insert("who",id);
+
+        m_tcp->sendMsg(GetPicture,json);
+        qDebug()<<"到服务器下载用户头像......";
+        myHelper::Sleep(500);//等待半秒
+
+    }
 
 
-    connect(headupLoadSOcket, SIGNAL(signalConnectd()), this, SLOT(SltConnectedToServer()));
-    connect(headupLoadSOcket, SIGNAL(signamFileRecvOk(quint8,QString)), this, SLOT(SltFileRecvOk(quint8,QString)));
-    headupLoadSOcket->connectToServer(MyApp::m_strHostAddr,MyApp::m_nFilePort,-2);
-    // 连接服务器，等服务器将文件下发过来
-//    ui->widgetHead->DownloadFriendHead(userId);
-   // leftBar->DownloadFriendHead(userId);
+//    QJsonObject jsonReply;
+//    jsonReply.insert("from", MyApp::m_nId);
+//    jsonReply.insert("id",  -2);
+//    jsonReply.insert("msg", strHead);
 
-    // 延迟一点发送
-    myHelper::Sleep(100);
-
-    QJsonObject jsonReply;
-    jsonReply.insert("from", MyApp::m_nId);
-    jsonReply.insert("id",  -2);
-    jsonReply.insert("msg", strHead);
-
-    m_tcp->sendMsg(GetFile, jsonReply);
-    qDebug() << "get file" << jsonReply;
+//    m_tcp->sendMsg(GetFile, jsonReply);
+//    qDebug() << "get file" << jsonReply;
 }
 
 void MainWindow::parseAddFriendReply(QJsonValue dataVal)
@@ -536,7 +542,7 @@ void MainWindow::parseAddGroupReply(const QJsonValue &dataVal)
             json.insert("who",cell->id);
             m_tcp->sendMsg(GetPicture,json);
 
-//            myHelper::Sleep(500);//等待500毫秒
+            myHelper::Sleep(500);//等待500毫秒
         }
 
         cell->groupid = groupid;
