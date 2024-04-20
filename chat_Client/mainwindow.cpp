@@ -462,7 +462,10 @@ void MainWindow::DownloadFriendHead(const int &userId, const QString &strHead)
         qDebug()<<"到服务器下载用户头像......";
         myHelper::Sleep(500);//等待半秒
 
+    }else{
+        qDebug()<<"好友头像已下载";
     }
+    //更新列表
 
 
 //    QJsonObject jsonReply;

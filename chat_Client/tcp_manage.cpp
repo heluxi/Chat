@@ -196,6 +196,7 @@ void clientSock::recvMsg()
                 // 你的好友更新了头像
                emit signalMessage(UpdateHeadPic, dataVal);
             }
+            break;
             case GetGroupMembers:
             {
                emit signalMessage(GetGroupMembers, dataVal);
