@@ -80,6 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
         rightBar->setCurrentPage(0);
     });
 
+
     connect(midBar,&midw::contactBtnClicked,[&](){
         onleftBtnClicked(1);
     });
@@ -93,13 +94,18 @@ MainWindow::MainWindow(QWidget *parent)
         delete midBar;
         m_tcp->sltSendOffline();
         this->hide();//延迟一会 方便通知服务器和其他用户我下线了
-        QTimer::singleShot(500,this,SLOT(quit()));
+        myHelper::Sleep(1000);
+        exit(0);
 
 
     });
 
     connect(this,&MainWindow::updateFriendStatus,midBar,&midw::UpdateFriendStatus) ;
     connect(this,&MainWindow::update,midBar,&midw::update);
+
+    connect(rightBar,&rightw::stayOnTop,this,&MainWindow::stayOnTop);
+    connect(rightBar,&rightw::Maxmin,this,&MainWindow::sltMaxMin);
+
 }
 
 MainWindow::~MainWindow()
@@ -445,13 +451,7 @@ QString MainWindow::GetHeadPixmap(const QString &name) const
 //到服务器下载用户头像
 void MainWindow::DownloadFriendHead(const int &userId, const QString &strHead)
 {
-    int id = userId;
-
-    QString head = strHead;
-
-    QFileInfo fileInfo(MyApp::m_strHeadPath + head);
-
-    if(!fileInfo.exists()){
+        int id = userId;
         QJsonObject json;
         json.insert("tag",-2);
         json.insert("from",MyApp::m_nId);
@@ -462,19 +462,10 @@ void MainWindow::DownloadFriendHead(const int &userId, const QString &strHead)
         qDebug()<<"到服务器下载用户头像......";
         myHelper::Sleep(500);//等待半秒
 
-    }else{
-        qDebug()<<"好友头像已下载";
-    }
+
     //更新列表
 
 
-//    QJsonObject jsonReply;
-//    jsonReply.insert("from", MyApp::m_nId);
-//    jsonReply.insert("id",  -2);
-//    jsonReply.insert("msg", strHead);
-
-//    m_tcp->sendMsg(GetFile, jsonReply);
-//    qDebug() << "get file" << jsonReply;
 }
 
 void MainWindow::parseAddFriendReply(QJsonValue dataVal)
@@ -933,6 +924,28 @@ void MainWindow::onleftBtnClicked(int page)
 
         qDebug() << "显示设置面板";
 
+    }
+}
+
+void MainWindow::stayOnTop(bool top)
+{
+    if(top)
+        this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    else
+        this->setWindowFlags(Qt::FramelessWindowHint | Qt::Widget);
+    show();
+}
+
+void MainWindow::sltMaxMin(bool max)
+{
+
+    QWidget *pWindow = this->window();
+    if(max)
+    {
+
+        pWindow->showFullScreen();
+    }else{
+        pWindow ->showNormal();
     }
 }
 

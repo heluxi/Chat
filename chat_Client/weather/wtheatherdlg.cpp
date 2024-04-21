@@ -8,11 +8,13 @@ wtheatherDlg::wtheatherDlg(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("天气"));
 
+    setWindowIcon(QIcon(":/weather_icon.png"));
+
     netThread = new NET_THREAD(this);
 
     timShowMessage = new QTimer(this);
 
-    timShowMessage->start(5000);
+    timShowMessage->start(2000);
 
     /* 关联槽函数 */
     connect(ui->label_refresh, SIGNAL(mouse_clicked()), netThread->weather, SLOT(slot_refresh_manually()));
@@ -20,7 +22,7 @@ wtheatherDlg::wtheatherDlg(QWidget *parent) :
     connect(ui->label_local_city, SIGNAL(mouse_clicked()), this, SLOT(slot_change_local_city()));
     connect(timShowMessage, SIGNAL(timeout()), this, SLOT(slot_show_message()));
 
-    netThread->startThread();
+    netThread->startThread();//开启线程去发送http请求以及解析数据
 }
 
 wtheatherDlg::~wtheatherDlg()

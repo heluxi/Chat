@@ -12,6 +12,8 @@
 
 LunarCalendarWidget::LunarCalendarWidget(QWidget *parent) : QWidget(parent)
 {
+    setWindowTitle("日历");
+    setWindowIcon(QIcon(":/日历2.svg"));
     //判断图形字体是否存在,不存在则加入
     QFontDatabase fontDb;
     if (!fontDb.families().contains("FontAwesome")) {

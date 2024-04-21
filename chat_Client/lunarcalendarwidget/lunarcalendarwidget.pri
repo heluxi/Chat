@@ -1,16 +1,13 @@
  
 
-FORMS += \
-    $$PWD/frmlunarcalendarwidget.ui
+FORMS +=
 
 HEADERS += \
-    $$PWD/frmlunarcalendarwidget.h \
     $$PWD/lunarcalendarinfo.h \
     $$PWD/lunarcalendaritem.h \
     $$PWD/lunarcalendarwidget.h
 
 SOURCES += \
-    $$PWD/frmlunarcalendarwidget.cpp \
     $$PWD/lunarcalendarinfo.cpp \
     $$PWD/lunarcalendaritem.cpp \
     $$PWD/lunarcalendarwidget.cpp

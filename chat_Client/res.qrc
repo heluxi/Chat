@@ -209,5 +209,7 @@
         <file>表情包.svg</file>
         <file>收藏.svg</file>
         <file>默认头像.svg</file>
+        <file>天气2.svg</file>
+        <file>日历2.svg</file>
     </qresource>
 </RCC>

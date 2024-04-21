@@ -50,6 +50,9 @@ private slots:
 
     void onleftBtnClicked(int page);
 
+    void stayOnTop(bool top);
+    void sltMaxMin(bool top);
+
 
 private:
     // 以下便是每个消息类型的解析

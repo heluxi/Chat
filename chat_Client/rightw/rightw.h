@@ -42,6 +42,8 @@ signals:
     void closeWindow();
     void fullBtnclicked();
     void  exitApp();
+    void  stayOnTop(bool);
+    void  Maxmin(bool);
 
 public slots:
     void on_pushButton_4_clicked();
@@ -54,6 +56,9 @@ public slots:
     void sltchangeBackgroundColor(QString color);
     void sltchangeleftBuble(QString color);
     void sltchangerightBuble(QString color);
+
+private slots:
+    void on_fullBtn_clicked();
 
 private:
     Ui::rightw *ui;
@@ -69,6 +74,7 @@ private:
     int cnt = 1;
     int currentPage = 0;
     bool isOntop=false;
+    bool isMaxisize=false;
 };
 
 #endif // RIGHTW_H

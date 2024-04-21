@@ -281,14 +281,15 @@ void loginw::writeOffLineMsgToDatabase(const QJsonValue &dataVal)
 void loginw::sltGetOffLineMsg()
 {
     //加载离线消息
+
     QJsonObject json;
     json.insert("id",MyApp::m_nId);
     json.insert("msg","request for loading offline msg");
     qDebug() << "begin to load offline msg from server,time:"
              << QDateTime::currentDateTime().toString("yyyy-MM-dd  hh:mm:ss.zzz");
     tcpSocket->sendMsg(GetOfflineMsg,json);
-
-    //    myHelper::Sleep(2000);//等待2秒
+    qDebug()<<"正在向服务器获取离线消息....";
+    myHelper::Sleep(1000);//等待1秒
 }
 
 void loginw::paintEvent(QPaintEvent *e)

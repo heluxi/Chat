@@ -251,18 +251,8 @@ void rightw::sltfullBtnclicked()
 
 void rightw::sltOnTopBtnclicked()
 {
-    qDebug()<<"设置置顶";
-    if(isOntop)
-    {
-        //取消置顶
-        isOntop=false;
-        setWindowFlags(this->windowFlags() &~Qt::WindowStaysOnTopHint);
-    }else{
-        //设置置顶
-        isOntop=true;
-       setWindowFlags(this->windowFlags() | Qt::WindowStaysOnTopHint);
-    }
-
+    isOntop=!isOntop;
+    emit stayOnTop(isOntop);
 }
 
 void rightw::sltchangeBackgroundColor(QString color)
@@ -288,4 +278,20 @@ void rightw::sltchangerightBuble(QString color)
 
 
 
+
+
+void rightw::on_fullBtn_clicked()
+{
+    isMaxisize=!isMaxisize;
+    if(isMaxisize)
+    {
+        ui->fullBtn->setStyleSheet("image:url(:res/Icons/MainWindow/back.png)");
+        emit Maxmin(isMaxisize);
+    }else
+    {
+        ui->fullBtn->setStyleSheet("image: url(:/res/pic/放大.png)");
+        emit Maxmin(isMaxisize);
+    }
+
+}
 

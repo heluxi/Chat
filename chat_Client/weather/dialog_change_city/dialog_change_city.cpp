@@ -9,7 +9,7 @@ Dialog_Change_City::Dialog_Change_City(QWidget *parent) :
     ui(new Ui::Dialog_Change_City)
 {
     ui->setupUi(this);
-
+    setWindowTitle("搜索");
     cityList.clear();
 }
 

@@ -6,8 +6,8 @@
 
 WEATHER::WEATHER(QObject *parent) : QObject(parent)
 {
-    setCurrentProvince("广东");
-    setCurrentCity("宝安");
+    setCurrentProvince("重庆");
+    setCurrentCity("重庆");
 }
 
 WEATHER::~WEATHER()
@@ -146,7 +146,7 @@ void WEATHER::parsingNetworkResult(QByteArray data)
 
 void WEATHER::sendNetworkRequest(QString procince, QString city)
 {
-    QNetworkRequest  request;
+    QNetworkRequest  request;//用于设置Url
     QString url;
 
     url.append(weather_api);
@@ -156,7 +156,8 @@ void WEATHER::sendNetworkRequest(QString procince, QString city)
     dbg("url:", url);
     request.setUrl(QUrl(url));
 
-    manager->get(request);
+    manager->get(request);//QNetWorkAccessManager 管理网络请求和响应 发送和处理http响应
+
 }
 
 /**

@@ -31,39 +31,40 @@ leftBar::leftBar(QWidget *parent) :
     ui->headBtn->setStyleSheet(head);
 
 
-
-
-
-
-
     QStringList tmp;
-    tmp << ":/res/pic/Chat.png"
-        << ":/Icons/MainWindow/chat2.png"
-        << ":/res/pic/Chat.png";
+    tmp << ":/res/Icons/MainWindow/chat2.png"
+        << ":/res/Icons/MainWindow/chat3.png"
+        << ":/res/Icons/MainWindow/chat3.png";
 
     btn_chat=new MyButton(nullptr,tmp,QSize(63,41));
     tmp.clear();
-    tmp << ":/res/pic/\347\224\250\346\210\267.png"
-        << ":/Icons/MainWindow/chat2.png"
-        << ":/res/pic/\347\224\250\346\210\267.png";
+    tmp << ":/res/Icons/MainWindow/contact2.png"
+        << ":/res/Icons/MainWindow/contact3.png"
+        << ":/res/Icons/MainWindow/contact3.png";
+//    tmp << ":/res/pic/\347\224\250\346\210\267.png"
+//        << ":/Icons/MainWindow/chat2.png"
+//        << ":/res/pic/\347\224\250\346\210\267.png";
     btn_contact = new MyButton(nullptr,tmp,QSize(63,41));
 
 
     tmp.clear();
-    tmp << ":/res/pic/3.1 \350\256\276\347\275\256.png"
-        << ":/Icons/MainWindow/chat2.png"
-        << ":/res/pic/3.1 \350\256\276\347\275\256.png";
+//    tmp << ":/res/pic/3.1 \350\256\276\347\275\256.png"
+//        << ":/Icons/MainWindow/chat2.png"
+//        << ":/res/pic/3.1 \350\256\276\347\275\256.png";
+    tmp << ":/res/Icons/MainWindow/settings2.png"
+        << ":/res/Icons/MainWindow/settings3.png"
+        << ":/res/Icons/MainWindow/settings.png";
     btn_settings = new MyButton(nullptr,tmp,QSize(63,41));
 
     tmp.clear();
     tmp << ":/天气.svg"
-        << ":/天气.svg"
-        << ":/天气.svg";
+        << ":/天气2.svg"
+        << ":/天气2svg";
     btn_weather=new MyButton(nullptr,tmp,QSize(63,41));
     tmp.clear();
     tmp << ":/日历.svg"
-        << ":/日历.svg"
-        << ":/日历.svg";
+        << ":/日历2.svg"
+        << ":/日历2.svg";
 
     btn_date=new MyButton(nullptr,tmp,QSize(63,41));
 
@@ -110,7 +111,7 @@ leftBar::leftBar(QWidget *parent) :
         WDlg.show();
     });
 
-    btn_chat->onBtnClicked();//默认选中会话列表按钮
+    //btn_chat->onBtnClicked();//默认选中会话列表按钮
 }
 
 leftBar::~leftBar()
